@@ -1,0 +1,3831 @@
+% Added by DocsPostProcessor:
+\setlength{\parskip}{0.125in}
+% \\ Added by DocsPostProcessor.
+
+% Replaced by DocsPostProcessor:
+% \documentclass[11pt]{report}
+\documentclass[a4paper]{report}
+% \\ Replaced by DocsPostProcessor.
+
+\def\bl{\mbox{}\newline\mbox{}\newline{}}
+
+% Added by DocsPostProcessor:
+\usepackage{amssymb,latexsym,amsmath,amscd,mathtext,ifthen}
+\usepackage[unicode]{hyperref}
+\usepackage{listings}
+\usepackage{literat}
+\usepackage{graphicx}
+\usepackage[top = 2.0cm]{geometry}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+
+\input glyphtounicode
+\pdfgentounicode=1
+
+\setlength{\skip\footins}{0.5cm}
+\setlength{\footnotesep}{0.5cm}
+
+\newcommand\abs[1]{\left|#1\right|}
+% \\ Added by DocsPostProcessor.
+
+\usepackage{ifthen}
+\newcommand{\hide}[2]{
+\ifthenelse{\equal{#1}{inherited}}%
+{}%
+{}%
+}
+\newcommand{\entityintro}[3]{%
+  \hbox to \hsize{%
+    \vbox{%
+      \hbox to .2in{}%
+    }%
+    {\bf #1}%
+    \dotfill\pageref{#2}%
+  }
+  \makebox[\hsize]{%
+    \parbox{.4in}{}%
+    \parbox[l]{5in}{%
+      \vspace{1mm}\it%
+      #3%
+      \vspace{1mm}%
+    }%
+  }%
+}
+\newcommand{\isep}[0]{%
+\setlength{\itemsep}{-.4ex}
+}
+\newcommand{\sld}[0]{%
+\setlength{\topsep}{0em}
+\setlength{\partopsep}{0em}
+\setlength{\parskip}{0em}
+\setlength{\parsep}{-1em}
+}
+\newcommand{\headref}[3]{%
+\ifthenelse{#1 = 1}{%
+\addcontentsline{toc}{section}{\hspace{\qquad}\protect\numberline{}{#3}}%
+}{}%
+\ifthenelse{#1 = 2}{%
+\addcontentsline{toc}{subsection}{\hspace{\qquad}\protect\numerline{}{#3}}%
+}{}%
+\ifthenelse{#1 = 3}{%
+\addcontentsline{toc}{subsubsection}{\hspace{\qquad}\protect\numerline{}{#3}}%
+}{}%
+\label{#3}%
+\makebox[\textwidth][l]{#2 #3}%
+}%
+\newcommand{\membername}[1]{{\it #1}\linebreak}
+\newcommand{\divideents}[1]{\vskip -1em\indent\rule{2in}{.5mm}}
+\newcommand{\refdefined}[1]{
+\expandafter\ifx\csname r@#1\endcsname\relax
+\relax\else
+{$($ in \ref{#1}, page \pageref{#1}$)$}
+\fi}
+\newcommand{\startsection}[4]{
+\gdef\classname{#2}
+\subsection{\label{#3}{\bf {\sc #1} #2}}{
+\rule[1em]{\hsize}{4pt}\vskip -1em
+\vskip .1in 
+#4
+}%
+}
+\newcommand{\startsubsubsection}[2]{
+\subsubsection{\sc #1}{%
+\rule[1em]{\hsize}{2pt}%
+#2}
+}
+\usepackage{color}
+
+% Replaced by DocsPostProcessor:
+% \date{DoNotModifyDateHere}
+\date{Ноябрь --- декабрь, 2017}
+% \\ Replaced by DocsPostProcessor.
+
+
+% Removed by DocsPostProcessor:
+% \pagestyle{myheadings}
+% \\ Removed by DocsPostProcessor.
+
+\addtocontents{toc}{\protect\def\protect\packagename{}}
+\addtocontents{toc}{\protect\def\protect\classname{}}
+\markboth{\protect\packagename -- \protect\classname}{\protect\packagename -- \protect\classname}
+\oddsidemargin 0in
+\evensidemargin 0in
+% \topmargin -.8in
+\chardef\bslash=`\\
+\textheight 9.4in
+\textwidth 6.5in
+
+% Replaced by DocsPostProcessor:
+% \title{DoNotModifyTitleHere}
+\title{
+\includegraphics{images/raic-2015-logo-302x140.png}\\
+\vspace{0.61in}
+\textsc{\Huge CodeWars 2017}\\
+\vspace{0.50in}
+\textsc{\LARGE Правила}\\
+\textsc{\small Версия 0.9.0 BETA}\\
+\vspace{2.75in}
+\includegraphics{images/mail-ru-and-ssu-logo.png}
+}
+% \\ Replaced by DocsPostProcessor.
+
+\begin{document}
+\maketitle
+\sloppy
+\raggedright
+\tableofcontents
+
+% Added by DocsPostProcessor:
+\markboth{qqq}{{\footnotesize CodeWars 2017}}
+\input TutorialRu.tex
+\raggedright
+\sloppy
+% \\ Added by DocsPostProcessor.
+
+\gdef\packagename{}
+\gdef\classname{}
+\newpage
+\def\packagename{model}
+\chapter{\bf Package model}{
+\vskip -.25in
+\hbox to \hsize{\it Package Contents\hfil Page}
+\rule{\hsize}{.7mm}
+\vskip .13in
+\hbox{\bf Classes}
+\entityintro{ActionType}{l0}{Возможные действия игрока.}
+\entityintro{CircularUnit}{l1}{Базовый класс для определения круглых объектов.}
+\entityintro{Facility}{l2}{Класс, определяющий сооружение --- прямоугольную область на карте.}
+\entityintro{FacilityType}{l3}{Тип сооружения.}
+\entityintro{Game}{l4}{Предоставляет доступ к различным игровым константам.}
+\entityintro{Move}{l5}{Стратегия игрока может управлять юнитами посредством установки свойств объекта данного класса.}
+\entityintro{Player}{l6}{Содержит данные о текущем состоянии игрока.}
+\entityintro{TerrainType}{l7}{Тип местности.}
+\entityintro{Unit}{l8}{Базовый класс для определения объектов (<<юнитов>>) на игровом поле.}
+\entityintro{Vehicle}{l9}{Класс, определяющий технику.}
+\entityintro{VehicleType}{l10}{Тип техники.}
+\entityintro{VehicleUpdate}{l11}{Класс, частично определяющий технику.}
+\entityintro{WeatherType}{l12}{Тип погоды.}
+\entityintro{World}{l13}{Этот класс описывает игровой мир.}
+
+% Removed by DocsPostProcessor:
+% \vskip .1in
+% \rule{\hsize}{.7mm}
+% \\ Removed by DocsPostProcessor.
+
+\vskip .1in
+\newpage
+\section{Classes}{
+\startsection{Class}{ActionType}{l0}{%
+{\small Возможные действия игрока.
+ \bl 
+ Игрок не может совершить новое действие, если в течение последних {\tt game.actionDetectionInterval - 1} игровых
+ тиков он уже совершил максимально возможное для него количество действий. В начале игры это ограничение для каждого
+ игрока равно {\tt game.baseActionCount}. Ограничение увеличивается за каждый контролируемый игроком центр
+ управления ({\tt FacilityType.CONTROL\_CENTER}).
+ \bl 
+ Большинство действий требует указания дополнительных параметров, являющихся полями объекта {\tt move}. В случае,
+ если эти параметры установлены некорректно либо указаны не все обязательные параметры, действие будет проигнорировано
+ игровым симулятором. Любое действие, отличное от {\tt NONE}, даже проигнорированное, будет учтено в счётчике
+ действий игрока.}
+\vskip .1in 
+\startsubsubsection{Declaration}{
+\fbox{\vbox{
+\hbox{\vbox{\small public final 
+class 
+ActionType}}
+\noindent\hbox{\vbox{{\bf extends} Enum}}
+}}}
+\startsubsubsection{Fields}{
+\begin{itemize}
+\item{
+public static final ActionType NONE\begin{itemize}\item{\vskip -.9ex Ничего не делать.}\end{itemize}
+}
+\item{
+public static final ActionType CLEAR\_AND\_SELECT\begin{itemize}\item{\vskip -.9ex Пометить юнитов, соответствующих некоторым параметрам, как выделенных.
+ При этом, со всех остальных юнитов выделение снимается.
+ Юниты других игроков автоматически исключаются из выделения.}\end{itemize}
+}
+\item{
+public static final ActionType ADD\_TO\_SELECTION\begin{itemize}\item{\vskip -.9ex Пометить юнитов, соответствующих некоторым параметрам, как выделенных.
+ При этом, выделенные ранее юниты остаются выделенными.
+ Юниты других игроков автоматически исключаются из выделения.}\end{itemize}
+}
+\item{
+public static final ActionType DESELECT\begin{itemize}\item{\vskip -.9ex Снять выделение с юнитов, соответствующих некоторым параметрам.}\end{itemize}
+}
+\item{
+public static final ActionType ASSIGN\begin{itemize}\item{\vskip -.9ex Установить для выделенных юнитов принадлежность к группе.}\end{itemize}
+}
+\item{
+public static final ActionType DISMISS\begin{itemize}\item{\vskip -.9ex Убрать у выделенных юнитов принадлежность к группе.}\end{itemize}
+}
+\item{
+public static final ActionType DISBAND\begin{itemize}\item{\vskip -.9ex Расформировать группу.}\end{itemize}
+}
+\item{
+public static final ActionType MOVE\begin{itemize}\item{\vskip -.9ex Приказать выделенным юнитам меремещаться в указанном направлении.}\end{itemize}
+}
+\item{
+public static final ActionType ROTATE\begin{itemize}\item{\vskip -.9ex Приказать выделенным юнитам поворачиваться относительно некоторой точки.}\end{itemize}
+}
+\item{
+public static final ActionType SETUP\_VEHICLE\_PRODUCTION\begin{itemize}\item{\vskip -.9ex Настроить производство нужного типа техники на заводе ({\tt FacilityType.VEHICLE\_FACTORY}).}\end{itemize}
+}
+\end{itemize}
+}
+\hide{inherited}{
+\startsubsubsection{Methods inherited from class {\tt Enum}}{
+\par{\small 
+\refdefined{l14}\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{clone}
+{\tt protected final Object {\bf clone}(  )
+}%end signature
+}%end item
+\divideents{compareTo}
+\item{\vskip -1.9ex 
+\membername{compareTo}
+{\tt public final int {\bf compareTo}( {\tt Enum } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{equals}
+\item{\vskip -1.9ex 
+\membername{equals}
+{\tt public final boolean {\bf equals}( {\tt Object } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{finalize}
+\item{\vskip -1.9ex 
+\membername{finalize}
+{\tt protected final void {\bf finalize}(  )
+}%end signature
+}%end item
+\divideents{getDeclaringClass}
+\item{\vskip -1.9ex 
+\membername{getDeclaringClass}
+{\tt public final Class {\bf getDeclaringClass}(  )
+}%end signature
+}%end item
+\divideents{hashCode}
+\item{\vskip -1.9ex 
+\membername{hashCode}
+{\tt public final int {\bf hashCode}(  )
+}%end signature
+}%end item
+\divideents{name}
+\item{\vskip -1.9ex 
+\membername{name}
+{\tt public final String {\bf name}(  )
+}%end signature
+}%end item
+\divideents{ordinal}
+\item{\vskip -1.9ex 
+\membername{ordinal}
+{\tt public final int {\bf ordinal}(  )
+}%end signature
+}%end item
+\divideents{toString}
+\item{\vskip -1.9ex 
+\membername{toString}
+{\tt public String {\bf toString}(  )
+}%end signature
+}%end item
+\divideents{valueOf}
+\item{\vskip -1.9ex 
+\membername{valueOf}
+{\tt public static Enum {\bf valueOf}( {\tt Class } {\bf arg0},
+{\tt String } {\bf arg1} )
+}%end signature
+}%end item
+\end{itemize}
+}}
+}
+}
+\startsection{Class}{CircularUnit}{l1}{%
+{\small Базовый класс для определения круглых объектов. Содержит также все свойства юнита.}
+\vskip .1in 
+\startsubsubsection{Declaration}{
+\fbox{\vbox{
+\hbox{\vbox{\small public abstract 
+class 
+CircularUnit}}
+\noindent\hbox{\vbox{{\bf extends} Unit}}
+}}}
+
+% Removed by DocsPostProcessor:
+% \startsubsubsection{Constructors}{
+% \vskip -2em
+% \begin{itemize}
+% \item{\vskip -1.9ex 
+% \membername{CircularUnit}
+% {\tt protected {\bf CircularUnit}( {\tt long } {\bf id},
+% {\tt double } {\bf x},
+% {\tt double } {\bf y},
+% {\tt double } {\bf radius} )
+% \label{l15}\label{l16}}%end signature
+% }%end item
+% \end{itemize}
+% }
+% \\ Removed by DocsPostProcessor.
+
+\startsubsubsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{getRadius}
+{\tt public double {\bf getRadius}(  )
+\label{l17}\label{l18}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает радиус объекта. 
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\hide{inherited}{
+\startsubsubsection{Methods inherited from class {\tt Unit}}{
+\par{\small 
+\refdefined{l8}\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{getDistanceTo}
+{\tt public double {\bf getDistanceTo}( {\tt double } {\bf x},
+{\tt double } {\bf y} )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Parameters}
+\sld\isep
+  \begin{itemize}
+\sld\isep
+   \item{
+\sld
+{\tt x} - X-координата точки.}
+   \item{
+\sld
+{\tt y} - Y-координата точки.}
+  \end{itemize}
+}%end item
+\item{{\bf Returns} - 
+Возвращает расстояние до точки от центра данного объекта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getDistanceTo}
+\item{\vskip -1.9ex 
+\membername{getDistanceTo}
+{\tt public double {\bf getDistanceTo}( {\tt Unit } {\bf unit} )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Parameters}
+\sld\isep
+  \begin{itemize}
+\sld\isep
+   \item{
+\sld
+{\tt unit} - Объект, до центра которого необходимо определить расстояние.}
+  \end{itemize}
+}%end item
+\item{{\bf Returns} - 
+Возвращает расстояние от центра данного объекта до центра указанного объекта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getId}
+\item{\vskip -1.9ex 
+\membername{getId}
+{\tt public long {\bf getId}(  )
+}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает уникальный идентификатор объекта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getSquaredDistanceTo}
+\item{\vskip -1.9ex 
+\membername{getSquaredDistanceTo}
+{\tt public double {\bf getSquaredDistanceTo}( {\tt double } {\bf x},
+{\tt double } {\bf y} )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Parameters}
+\sld\isep
+  \begin{itemize}
+\sld\isep
+   \item{
+\sld
+{\tt x} - X-координата точки.}
+   \item{
+\sld
+{\tt y} - Y-координата точки.}
+  \end{itemize}
+}%end item
+\item{{\bf Returns} - 
+Возвращает квадрат расстояния до точки от центра данного объекта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getSquaredDistanceTo}
+\item{\vskip -1.9ex 
+\membername{getSquaredDistanceTo}
+{\tt public double {\bf getSquaredDistanceTo}( {\tt Unit } {\bf unit} )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Parameters}
+\sld\isep
+  \begin{itemize}
+\sld\isep
+   \item{
+\sld
+{\tt unit} - Объект, до центра которого необходимо определить квадрат расстояния.}
+  \end{itemize}
+}%end item
+\item{{\bf Returns} - 
+Возвращает квадрат расстояния от центра данного объекта до центра указанного объекта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getX}
+\item{\vskip -1.9ex 
+\membername{getX}
+{\tt public final double {\bf getX}(  )
+}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает X-координату центра объекта. Ось абсцисс направлена слева направо. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getY}
+\item{\vskip -1.9ex 
+\membername{getY}
+{\tt public final double {\bf getY}(  )
+}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает Y-координату центра объекта. Ось ординат направлена сверху вниз. 
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}}
+}
+}
+\startsection{Class}{Facility}{l2}{%
+{\small Класс, определяющий сооружение --- прямоугольную область на карте.}
+\vskip .1in 
+\startsubsubsection{Declaration}{
+\fbox{\vbox{
+\hbox{\vbox{\small public 
+class 
+Facility}}
+\noindent\hbox{\vbox{{\bf extends} Object}}
+}}}
+
+% Removed by DocsPostProcessor:
+% \startsubsubsection{Constructors}{
+% \vskip -2em
+% \begin{itemize}
+% \item{\vskip -1.9ex 
+% \membername{Facility}
+% {\tt public {\bf Facility}( {\tt long } {\bf id},
+% {\tt FacilityType } {\bf type},
+% {\tt long } {\bf ownerPlayerId},
+% {\tt double } {\bf left},
+% {\tt double } {\bf top},
+% {\tt double } {\bf capturePoints},
+% {\tt VehicleType } {\bf vehicleType},
+% {\tt int } {\bf productionProgress} )
+% \label{l19}\label{l20}}%end signature
+% }%end item
+% \end{itemize}
+% }
+% \\ Removed by DocsPostProcessor.
+
+\startsubsubsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{getCapturePoints}
+{\tt public double {\bf getCapturePoints}(  )
+\label{l21}\label{l22}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает индикатор захвата сооружения в интервале от {\tt -game.maxFacilityCapturePoints} до
+ {\tt game.maxFacilityCapturePoints}. Если индикатор находится в положительной зоне, очки захвата принадлежат
+ вам, иначе вашему противнику. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getId}
+\item{\vskip -1.9ex 
+\membername{getId}
+{\tt public long {\bf getId}(  )
+\label{l23}\label{l24}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает уникальный идентификатор сооружения. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getLeft}
+\item{\vskip -1.9ex 
+\membername{getLeft}
+{\tt public double {\bf getLeft}(  )
+\label{l25}\label{l26}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает абсциссу левой границы сооружения. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getOwnerPlayerId}
+\item{\vskip -1.9ex 
+\membername{getOwnerPlayerId}
+{\tt public long {\bf getOwnerPlayerId}(  )
+\label{l27}\label{l28}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает идентификатор игрока, захватившего сооружение, или {\tt -1}, если сооружение никем не
+ контролируется. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getProductionProgress}
+\item{\vskip -1.9ex 
+\membername{getProductionProgress}
+{\tt public int {\bf getProductionProgress}(  )
+\label{l29}\label{l30}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает неотрицательное число --- прогресс производства техники. Применимо только к заводу
+ ({\tt FacilityType.VEHICLE\_FACTORY}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTop}
+\item{\vskip -1.9ex 
+\membername{getTop}
+{\tt public double {\bf getTop}(  )
+\label{l31}\label{l32}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает ординату верхней границы сооружения. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getType}
+\item{\vskip -1.9ex 
+\membername{getType}
+{\tt public FacilityType {\bf getType}(  )
+\label{l33}\label{l34}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает тип сооружения. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getVehicleType}
+\item{\vskip -1.9ex 
+\membername{getVehicleType}
+{\tt public VehicleType {\bf getVehicleType}(  )
+\label{l35}\label{l36}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает тип техники, производящейся в данном сооружении, или {\tt null}. Применимо только к заводу
+ ({\tt FacilityType.VEHICLE\_FACTORY}). 
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\hide{inherited}{
+}
+}
+\startsection{Class}{FacilityType}{l3}{%
+{\small Тип сооружения.}
+\vskip .1in 
+\startsubsubsection{Declaration}{
+\fbox{\vbox{
+\hbox{\vbox{\small public final 
+class 
+FacilityType}}
+\noindent\hbox{\vbox{{\bf extends} Enum}}
+}}}
+\startsubsubsection{Fields}{
+\begin{itemize}
+\item{
+public static final FacilityType CONTROL\_CENTER\begin{itemize}\item{\vskip -.9ex Центр управления. Увеличивает возможное количество действий игрока на
+ {\tt game.additionalActionCountPerControlCenter} за {\tt game.actionDetectionInterval} игровых тиков.}\end{itemize}
+}
+\item{
+public static final FacilityType VEHICLE\_FACTORY\begin{itemize}\item{\vskip -.9ex Завод. Может производить технику любого типа по выбору игрока.}\end{itemize}
+}
+\end{itemize}
+}
+\hide{inherited}{
+\startsubsubsection{Methods inherited from class {\tt Enum}}{
+\par{\small 
+\refdefined{l14}\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{clone}
+{\tt protected final Object {\bf clone}(  )
+}%end signature
+}%end item
+\divideents{compareTo}
+\item{\vskip -1.9ex 
+\membername{compareTo}
+{\tt public final int {\bf compareTo}( {\tt Enum } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{equals}
+\item{\vskip -1.9ex 
+\membername{equals}
+{\tt public final boolean {\bf equals}( {\tt Object } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{finalize}
+\item{\vskip -1.9ex 
+\membername{finalize}
+{\tt protected final void {\bf finalize}(  )
+}%end signature
+}%end item
+\divideents{getDeclaringClass}
+\item{\vskip -1.9ex 
+\membername{getDeclaringClass}
+{\tt public final Class {\bf getDeclaringClass}(  )
+}%end signature
+}%end item
+\divideents{hashCode}
+\item{\vskip -1.9ex 
+\membername{hashCode}
+{\tt public final int {\bf hashCode}(  )
+}%end signature
+}%end item
+\divideents{name}
+\item{\vskip -1.9ex 
+\membername{name}
+{\tt public final String {\bf name}(  )
+}%end signature
+}%end item
+\divideents{ordinal}
+\item{\vskip -1.9ex 
+\membername{ordinal}
+{\tt public final int {\bf ordinal}(  )
+}%end signature
+}%end item
+\divideents{toString}
+\item{\vskip -1.9ex 
+\membername{toString}
+{\tt public String {\bf toString}(  )
+}%end signature
+}%end item
+\divideents{valueOf}
+\item{\vskip -1.9ex 
+\membername{valueOf}
+{\tt public static Enum {\bf valueOf}( {\tt Class } {\bf arg0},
+{\tt String } {\bf arg1} )
+}%end signature
+}%end item
+\end{itemize}
+}}
+}
+}
+\startsection{Class}{Game}{l4}{%
+{\small Предоставляет доступ к различным игровым константам.}
+\vskip .1in 
+\startsubsubsection{Declaration}{
+\fbox{\vbox{
+\hbox{\vbox{\small public 
+class 
+Game}}
+\noindent\hbox{\vbox{{\bf extends} Object}}
+}}}
+
+% Removed by DocsPostProcessor:
+% \startsubsubsection{Constructors}{
+% \vskip -2em
+% \begin{itemize}
+% \item{\vskip -1.9ex 
+% \membername{Game}
+% {\tt public {\bf Game}( {\tt long } {\bf randomSeed},
+% {\tt int } {\bf tickCount},
+% {\tt double } {\bf worldWidth},
+% {\tt double } {\bf worldHeight},
+% {\tt boolean } {\bf fogOfWarEnabled},
+% {\tt int } {\bf victoryScore},
+% {\tt int } {\bf facilityCaptureScore},
+% {\tt int } {\bf vehicleEliminationScore},
+% {\tt int } {\bf actionDetectionInterval},
+% {\tt int } {\bf baseActionCount},
+% {\tt int } {\bf additionalActionCountPerControlCenter},
+% {\tt int } {\bf maxUnitGroup},
+% {\tt int } {\bf terrainWeatherMapColumnCount},
+% {\tt int } {\bf terrainWeatherMapRowCount},
+% {\tt double } {\bf plainTerrainVisionFactor},
+% {\tt double } {\bf plainTerrainStealthFactor},
+% {\tt double } {\bf plainTerrainSpeedFactor},
+% {\tt double } {\bf swampTerrainVisionFactor},
+% {\tt double } {\bf swampTerrainStealthFactor},
+% {\tt double } {\bf swampTerrainSpeedFactor},
+% {\tt double } {\bf forestTerrainVisionFactor},
+% {\tt double } {\bf forestTerrainStealthFactor},
+% {\tt double } {\bf forestTerrainSpeedFactor},
+% {\tt double } {\bf clearWeatherVisionFactor},
+% {\tt double } {\bf clearWeatherStealthFactor},
+% {\tt double } {\bf clearWeatherSpeedFactor},
+% {\tt double } {\bf cloudWeatherVisionFactor},
+% {\tt double } {\bf cloudWeatherStealthFactor},
+% {\tt double } {\bf cloudWeatherSpeedFactor},
+% {\tt double } {\bf rainWeatherVisionFactor},
+% {\tt double } {\bf rainWeatherStealthFactor},
+% {\tt double } {\bf rainWeatherSpeedFactor},
+% {\tt double } {\bf vehicleRadius},
+% {\tt int } {\bf tankDurability},
+% {\tt double } {\bf tankSpeed},
+% {\tt double } {\bf tankVisionRange},
+% {\tt double } {\bf tankGroundAttackRange},
+% {\tt double } {\bf tankAerialAttackRange},
+% {\tt int } {\bf tankGroundDamage},
+% {\tt int } {\bf tankAerialDamage},
+% {\tt int } {\bf tankGroundDefence},
+% {\tt int } {\bf tankAerialDefence},
+% {\tt int } {\bf tankAttackCooldownTicks},
+% {\tt int } {\bf tankProductionCost},
+% {\tt int } {\bf ifvDurability},
+% {\tt double } {\bf ifvSpeed},
+% {\tt double } {\bf ifvVisionRange},
+% {\tt double } {\bf ifvGroundAttackRange},
+% {\tt double } {\bf ifvAerialAttackRange},
+% {\tt int } {\bf ifvGroundDamage},
+% {\tt int } {\bf ifvAerialDamage},
+% {\tt int } {\bf ifvGroundDefence},
+% {\tt int } {\bf ifvAerialDefence},
+% {\tt int } {\bf ifvAttackCooldownTicks},
+% {\tt int } {\bf ifvProductionCost},
+% {\tt int } {\bf arrvDurability},
+% {\tt double } {\bf arrvSpeed},
+% {\tt double } {\bf arrvVisionRange},
+% {\tt int } {\bf arrvGroundDefence},
+% {\tt int } {\bf arrvAerialDefence},
+% {\tt int } {\bf arrvProductionCost},
+% {\tt double } {\bf arrvRepairRange},
+% {\tt double } {\bf arrvRepairSpeed},
+% {\tt int } {\bf helicopterDurability},
+% {\tt double } {\bf helicopterSpeed},
+% {\tt double } {\bf helicopterVisionRange},
+% {\tt double } {\bf helicopterGroundAttackRange},
+% {\tt double } {\bf helicopterAerialAttackRange},
+% {\tt int } {\bf helicopterGroundDamage},
+% {\tt int } {\bf helicopterAerialDamage},
+% {\tt int } {\bf helicopterGroundDefence},
+% {\tt int } {\bf helicopterAerialDefence},
+% {\tt int } {\bf helicopterAttackCooldownTicks},
+% {\tt int } {\bf helicopterProductionCost},
+% {\tt int } {\bf fighterDurability},
+% {\tt double } {\bf fighterSpeed},
+% {\tt double } {\bf fighterVisionRange},
+% {\tt double } {\bf fighterGroundAttackRange},
+% {\tt double } {\bf fighterAerialAttackRange},
+% {\tt int } {\bf fighterGroundDamage},
+% {\tt int } {\bf fighterAerialDamage},
+% {\tt int } {\bf fighterGroundDefence},
+% {\tt int } {\bf fighterAerialDefence},
+% {\tt int } {\bf fighterAttackCooldownTicks},
+% {\tt int } {\bf fighterProductionCost},
+% {\tt double } {\bf maxFacilityCapturePoints},
+% {\tt double } {\bf facilityCapturePointsPerVehiclePerTick},
+% {\tt double } {\bf facilityWidth},
+% {\tt double } {\bf facilityHeight} )
+% \label{l37}\label{l38}}%end signature
+% }%end item
+% \end{itemize}
+% }
+% \\ Removed by DocsPostProcessor.
+
+\startsubsubsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{getActionDetectionInterval}
+{\tt public int {\bf getActionDetectionInterval}(  )
+\label{l39}\label{l40}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает интервал, учитываемый в ограничении количества действий стратегии. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getAdditionalActionCountPerControlCenter}
+\item{\vskip -1.9ex 
+\membername{getAdditionalActionCountPerControlCenter}
+{\tt public int {\bf getAdditionalActionCountPerControlCenter}(  )
+\label{l41}\label{l42}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает дополнительное количество действий за каждый захваченный центр управления
+ ({\tt FacilityType.CONTROL\_CENTER}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getArrvAerialDefence}
+\item{\vskip -1.9ex 
+\membername{getArrvAerialDefence}
+{\tt public int {\bf getArrvAerialDefence}(  )
+\label{l43}\label{l44}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает защиту БРЭМ от атак воздушной техники. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getArrvDurability}
+\item{\vskip -1.9ex 
+\membername{getArrvDurability}
+{\tt public int {\bf getArrvDurability}(  )
+\label{l45}\label{l46}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает максимальную прочность БРЭМ. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getArrvGroundDefence}
+\item{\vskip -1.9ex 
+\membername{getArrvGroundDefence}
+{\tt public int {\bf getArrvGroundDefence}(  )
+\label{l47}\label{l48}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает защиту БРЭМ от атак наземной техники. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getArrvProductionCost}
+\item{\vskip -1.9ex 
+\membername{getArrvProductionCost}
+{\tt public int {\bf getArrvProductionCost}(  )
+\label{l49}\label{l50}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает количество тиков, необхожимое для производства одной БРЭМ на заводе
+ ({\tt FacilityType.VEHICLE\_FACTORY}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getArrvRepairRange}
+\item{\vskip -1.9ex 
+\membername{getArrvRepairRange}
+{\tt public double {\bf getArrvRepairRange}(  )
+\label{l51}\label{l52}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает максимальное расстояние (от центра до центра), на котором БРЭМ может ремонтировать
+ дружественную технику. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getArrvRepairSpeed}
+\item{\vskip -1.9ex 
+\membername{getArrvRepairSpeed}
+{\tt public double {\bf getArrvRepairSpeed}(  )
+\label{l53}\label{l54}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает максимальное количество прочности, которое БРЭМ может восстановить дружественной технике за
+ один тик. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getArrvSpeed}
+\item{\vskip -1.9ex 
+\membername{getArrvSpeed}
+{\tt public double {\bf getArrvSpeed}(  )
+\label{l55}\label{l56}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает максимальную скорость БРЭМ. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getArrvVisionRange}
+\item{\vskip -1.9ex 
+\membername{getArrvVisionRange}
+{\tt public double {\bf getArrvVisionRange}(  )
+\label{l57}\label{l58}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает базовый радиус обзора БРЭМ. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getBaseActionCount}
+\item{\vskip -1.9ex 
+\membername{getBaseActionCount}
+{\tt public int {\bf getBaseActionCount}(  )
+\label{l59}\label{l60}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает базовое количество действий, которое может совершить стратегия за
+ {\tt actionDetectionInterval} последовательных тиков. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getClearWeatherSpeedFactor}
+\item{\vskip -1.9ex 
+\membername{getClearWeatherSpeedFactor}
+{\tt public double {\bf getClearWeatherSpeedFactor}(  )
+\label{l61}\label{l62}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает мультипликатор максимальной скорости воздушной техники, находящейся в области ясной погоды
+ ({\tt WeatherType.CLEAR}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getClearWeatherStealthFactor}
+\item{\vskip -1.9ex 
+\membername{getClearWeatherStealthFactor}
+{\tt public double {\bf getClearWeatherStealthFactor}(  )
+\label{l63}\label{l64}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает мультипликатор радиуса обзора любой техники при обнаружении воздушной техники противника,
+ находящейся в области ясной погоды ({\tt WeatherType.CLEAR}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getClearWeatherVisionFactor}
+\item{\vskip -1.9ex 
+\membername{getClearWeatherVisionFactor}
+{\tt public double {\bf getClearWeatherVisionFactor}(  )
+\label{l65}\label{l66}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает мультипликатор радиуса обзора воздушной техники, находящейся в области ясной погоды
+ ({\tt WeatherType.CLEAR}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getCloudWeatherSpeedFactor}
+\item{\vskip -1.9ex 
+\membername{getCloudWeatherSpeedFactor}
+{\tt public double {\bf getCloudWeatherSpeedFactor}(  )
+\label{l67}\label{l68}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает мультипликатор максимальной скорости воздушной техники, находящейся в плотных облаках
+ ({\tt WeatherType.CLOUD}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getCloudWeatherStealthFactor}
+\item{\vskip -1.9ex 
+\membername{getCloudWeatherStealthFactor}
+{\tt public double {\bf getCloudWeatherStealthFactor}(  )
+\label{l69}\label{l70}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает мультипликатор радиуса обзора любой техники при обнаружении воздушной техники противника,
+ находящейся в плотных облаках ({\tt WeatherType.CLOUD}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getCloudWeatherVisionFactor}
+\item{\vskip -1.9ex 
+\membername{getCloudWeatherVisionFactor}
+{\tt public double {\bf getCloudWeatherVisionFactor}(  )
+\label{l71}\label{l72}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает мультипликатор радиуса обзора воздушной техники, находящейся в плотных облаках
+ ({\tt WeatherType.CLOUD}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getFacilityCapturePointsPerVehiclePerTick}
+\item{\vskip -1.9ex 
+\membername{getFacilityCapturePointsPerVehiclePerTick}
+{\tt public double {\bf getFacilityCapturePointsPerVehiclePerTick}(  )
+\label{l73}\label{l74}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает скорость изменения индикатора захвата сооружения ({\tt facility.capturePoints}) за каждую
+ единицу техники, центр которой находится внутри сооружения. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getFacilityCaptureScore}
+\item{\vskip -1.9ex 
+\membername{getFacilityCaptureScore}
+{\tt public int {\bf getFacilityCaptureScore}(  )
+\label{l75}\label{l76}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает количество баллов за захват сооружения. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getFacilityHeight}
+\item{\vskip -1.9ex 
+\membername{getFacilityHeight}
+{\tt public double {\bf getFacilityHeight}(  )
+\label{l77}\label{l78}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает высоту сооружения. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getFacilityWidth}
+\item{\vskip -1.9ex 
+\membername{getFacilityWidth}
+{\tt public double {\bf getFacilityWidth}(  )
+\label{l79}\label{l80}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает ширину сооружения. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getFighterAerialAttackRange}
+\item{\vskip -1.9ex 
+\membername{getFighterAerialAttackRange}
+{\tt public double {\bf getFighterAerialAttackRange}(  )
+\label{l81}\label{l82}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает дальность атаки истребителя по воздушным целям. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getFighterAerialDamage}
+\item{\vskip -1.9ex 
+\membername{getFighterAerialDamage}
+{\tt public int {\bf getFighterAerialDamage}(  )
+\label{l83}\label{l84}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает урон одной атаки истребителя по воздушной технике. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getFighterAerialDefence}
+\item{\vskip -1.9ex 
+\membername{getFighterAerialDefence}
+{\tt public int {\bf getFighterAerialDefence}(  )
+\label{l85}\label{l86}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает защиту истребителя от атак воздушной техники. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getFighterAttackCooldownTicks}
+\item{\vskip -1.9ex 
+\membername{getFighterAttackCooldownTicks}
+{\tt public int {\bf getFighterAttackCooldownTicks}(  )
+\label{l87}\label{l88}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает интервал в тиках между двумя последовательными атаками истребителя. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getFighterDurability}
+\item{\vskip -1.9ex 
+\membername{getFighterDurability}
+{\tt public int {\bf getFighterDurability}(  )
+\label{l89}\label{l90}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает максимальную прочность истребителя. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getFighterGroundAttackRange}
+\item{\vskip -1.9ex 
+\membername{getFighterGroundAttackRange}
+{\tt public double {\bf getFighterGroundAttackRange}(  )
+\label{l91}\label{l92}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает дальность атаки истребителя по наземным целям. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getFighterGroundDamage}
+\item{\vskip -1.9ex 
+\membername{getFighterGroundDamage}
+{\tt public int {\bf getFighterGroundDamage}(  )
+\label{l93}\label{l94}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает урон одной атаки истребителя по наземной технике. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getFighterGroundDefence}
+\item{\vskip -1.9ex 
+\membername{getFighterGroundDefence}
+{\tt public int {\bf getFighterGroundDefence}(  )
+\label{l95}\label{l96}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает защиту истребителя от атак наземной техники. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getFighterProductionCost}
+\item{\vskip -1.9ex 
+\membername{getFighterProductionCost}
+{\tt public int {\bf getFighterProductionCost}(  )
+\label{l97}\label{l98}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает количество тиков, необхожимое для производства одного истребителя на заводе
+ ({\tt FacilityType.VEHICLE\_FACTORY}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getFighterSpeed}
+\item{\vskip -1.9ex 
+\membername{getFighterSpeed}
+{\tt public double {\bf getFighterSpeed}(  )
+\label{l99}\label{l100}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает максимальную скорость истребителя. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getFighterVisionRange}
+\item{\vskip -1.9ex 
+\membername{getFighterVisionRange}
+{\tt public double {\bf getFighterVisionRange}(  )
+\label{l101}\label{l102}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает базовый радиус обзора истребителя. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getForestTerrainSpeedFactor}
+\item{\vskip -1.9ex 
+\membername{getForestTerrainSpeedFactor}
+{\tt public double {\bf getForestTerrainSpeedFactor}(  )
+\label{l103}\label{l104}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает мультипликатор максимальной скорости наземной техники, находящейся в лесистой местности
+ ({\tt TerrainType.FOREST}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getForestTerrainStealthFactor}
+\item{\vskip -1.9ex 
+\membername{getForestTerrainStealthFactor}
+{\tt public double {\bf getForestTerrainStealthFactor}(  )
+\label{l105}\label{l106}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает мультипликатор радиуса обзора любой техники при обнаружении наземной техники противника,
+ находящейся в лесистой местности ({\tt TerrainType.FOREST}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getForestTerrainVisionFactor}
+\item{\vskip -1.9ex 
+\membername{getForestTerrainVisionFactor}
+{\tt public double {\bf getForestTerrainVisionFactor}(  )
+\label{l107}\label{l108}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает мультипликатор радиуса обзора наземной техники, находящейся в лесистой местности
+ ({\tt TerrainType.FOREST}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getHelicopterAerialAttackRange}
+\item{\vskip -1.9ex 
+\membername{getHelicopterAerialAttackRange}
+{\tt public double {\bf getHelicopterAerialAttackRange}(  )
+\label{l109}\label{l110}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает дальность атаки ударного вертолёта по воздушным целям. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getHelicopterAerialDamage}
+\item{\vskip -1.9ex 
+\membername{getHelicopterAerialDamage}
+{\tt public int {\bf getHelicopterAerialDamage}(  )
+\label{l111}\label{l112}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает урон одной атаки ударного вертолёта по воздушной технике. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getHelicopterAerialDefence}
+\item{\vskip -1.9ex 
+\membername{getHelicopterAerialDefence}
+{\tt public int {\bf getHelicopterAerialDefence}(  )
+\label{l113}\label{l114}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает защиту ударного вертолёта от атак воздушной техники. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getHelicopterAttackCooldownTicks}
+\item{\vskip -1.9ex 
+\membername{getHelicopterAttackCooldownTicks}
+{\tt public int {\bf getHelicopterAttackCooldownTicks}(  )
+\label{l115}\label{l116}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает интервал в тиках между двумя последовательными атаками ударного вертолёта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getHelicopterDurability}
+\item{\vskip -1.9ex 
+\membername{getHelicopterDurability}
+{\tt public int {\bf getHelicopterDurability}(  )
+\label{l117}\label{l118}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает максимальную прочность ударного вертолёта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getHelicopterGroundAttackRange}
+\item{\vskip -1.9ex 
+\membername{getHelicopterGroundAttackRange}
+{\tt public double {\bf getHelicopterGroundAttackRange}(  )
+\label{l119}\label{l120}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает дальность атаки ударного вертолёта по наземным целям. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getHelicopterGroundDamage}
+\item{\vskip -1.9ex 
+\membername{getHelicopterGroundDamage}
+{\tt public int {\bf getHelicopterGroundDamage}(  )
+\label{l121}\label{l122}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает урон одной атаки ударного вертолёта по наземной технике. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getHelicopterGroundDefence}
+\item{\vskip -1.9ex 
+\membername{getHelicopterGroundDefence}
+{\tt public int {\bf getHelicopterGroundDefence}(  )
+\label{l123}\label{l124}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает защиту ударного вертолёта от атак наземной техники. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getHelicopterProductionCost}
+\item{\vskip -1.9ex 
+\membername{getHelicopterProductionCost}
+{\tt public int {\bf getHelicopterProductionCost}(  )
+\label{l125}\label{l126}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает количество тиков, необхожимое для производства одного ударного вертолёта на заводе
+ ({\tt FacilityType.VEHICLE\_FACTORY}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getHelicopterSpeed}
+\item{\vskip -1.9ex 
+\membername{getHelicopterSpeed}
+{\tt public double {\bf getHelicopterSpeed}(  )
+\label{l127}\label{l128}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает максимальную скорость ударного вертолёта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getHelicopterVisionRange}
+\item{\vskip -1.9ex 
+\membername{getHelicopterVisionRange}
+{\tt public double {\bf getHelicopterVisionRange}(  )
+\label{l129}\label{l130}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает базовый радиус обзора ударного вертолёта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getIfvAerialAttackRange}
+\item{\vskip -1.9ex 
+\membername{getIfvAerialAttackRange}
+{\tt public double {\bf getIfvAerialAttackRange}(  )
+\label{l131}\label{l132}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает дальность атаки БМП по воздушным целям. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getIfvAerialDamage}
+\item{\vskip -1.9ex 
+\membername{getIfvAerialDamage}
+{\tt public int {\bf getIfvAerialDamage}(  )
+\label{l133}\label{l134}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает урон одной атаки БМП по воздушной технике. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getIfvAerialDefence}
+\item{\vskip -1.9ex 
+\membername{getIfvAerialDefence}
+{\tt public int {\bf getIfvAerialDefence}(  )
+\label{l135}\label{l136}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает защиту БМП от атак воздушной техники. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getIfvAttackCooldownTicks}
+\item{\vskip -1.9ex 
+\membername{getIfvAttackCooldownTicks}
+{\tt public int {\bf getIfvAttackCooldownTicks}(  )
+\label{l137}\label{l138}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает интервал в тиках между двумя последовательными атаками БМП. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getIfvDurability}
+\item{\vskip -1.9ex 
+\membername{getIfvDurability}
+{\tt public int {\bf getIfvDurability}(  )
+\label{l139}\label{l140}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает максимальную прочность БМП. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getIfvGroundAttackRange}
+\item{\vskip -1.9ex 
+\membername{getIfvGroundAttackRange}
+{\tt public double {\bf getIfvGroundAttackRange}(  )
+\label{l141}\label{l142}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает дальность атаки БМП по наземным целям. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getIfvGroundDamage}
+\item{\vskip -1.9ex 
+\membername{getIfvGroundDamage}
+{\tt public int {\bf getIfvGroundDamage}(  )
+\label{l143}\label{l144}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает урон одной атаки БМП по наземной технике. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getIfvGroundDefence}
+\item{\vskip -1.9ex 
+\membername{getIfvGroundDefence}
+{\tt public int {\bf getIfvGroundDefence}(  )
+\label{l145}\label{l146}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает защиту БМП от атак наземной техники. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getIfvProductionCost}
+\item{\vskip -1.9ex 
+\membername{getIfvProductionCost}
+{\tt public int {\bf getIfvProductionCost}(  )
+\label{l147}\label{l148}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает количество тиков, необхожимое для производства одной БМП на заводе
+ ({\tt FacilityType.VEHICLE\_FACTORY}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getIfvSpeed}
+\item{\vskip -1.9ex 
+\membername{getIfvSpeed}
+{\tt public double {\bf getIfvSpeed}(  )
+\label{l149}\label{l150}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает максимальную скорость БМП. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getIfvVisionRange}
+\item{\vskip -1.9ex 
+\membername{getIfvVisionRange}
+{\tt public double {\bf getIfvVisionRange}(  )
+\label{l151}\label{l152}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает базовый радиус обзора БМП. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getMaxFacilityCapturePoints}
+\item{\vskip -1.9ex 
+\membername{getMaxFacilityCapturePoints}
+{\tt public double {\bf getMaxFacilityCapturePoints}(  )
+\label{l153}\label{l154}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает максимально возможную абсолютную величину индикатора захвата сооружения
+ ({\tt facility.capturePoints}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getMaxUnitGroup}
+\item{\vskip -1.9ex 
+\membername{getMaxUnitGroup}
+{\tt public int {\bf getMaxUnitGroup}(  )
+\label{l155}\label{l156}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает максимально возможный индекс группы юнитов. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getPlainTerrainSpeedFactor}
+\item{\vskip -1.9ex 
+\membername{getPlainTerrainSpeedFactor}
+{\tt public double {\bf getPlainTerrainSpeedFactor}(  )
+\label{l157}\label{l158}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает мультипликатор максимальной скорости наземной техники, находящейся на равнинной местности
+ ({\tt TerrainType.PLAIN}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getPlainTerrainStealthFactor}
+\item{\vskip -1.9ex 
+\membername{getPlainTerrainStealthFactor}
+{\tt public double {\bf getPlainTerrainStealthFactor}(  )
+\label{l159}\label{l160}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает мультипликатор радиуса обзора любой техники при обнаружении наземной техники противника,
+ находящейся на равнинной местности ({\tt TerrainType.PLAIN}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getPlainTerrainVisionFactor}
+\item{\vskip -1.9ex 
+\membername{getPlainTerrainVisionFactor}
+{\tt public double {\bf getPlainTerrainVisionFactor}(  )
+\label{l161}\label{l162}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает мультипликатор радиуса обзора наземной техники, находящейся на равнинной местности
+ ({\tt TerrainType.PLAIN}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getRainWeatherSpeedFactor}
+\item{\vskip -1.9ex 
+\membername{getRainWeatherSpeedFactor}
+{\tt public double {\bf getRainWeatherSpeedFactor}(  )
+\label{l163}\label{l164}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает мультипликатор максимальной скорости воздушной техники, находящейся в условиях сильного дождя
+ ({\tt WeatherType.RAIN}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getRainWeatherStealthFactor}
+\item{\vskip -1.9ex 
+\membername{getRainWeatherStealthFactor}
+{\tt public double {\bf getRainWeatherStealthFactor}(  )
+\label{l165}\label{l166}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает мультипликатор радиуса обзора любой техники при обнаружении воздушной техники противника,
+ находящейся в условиях сильного дождя ({\tt WeatherType.RAIN}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getRainWeatherVisionFactor}
+\item{\vskip -1.9ex 
+\membername{getRainWeatherVisionFactor}
+{\tt public double {\bf getRainWeatherVisionFactor}(  )
+\label{l167}\label{l168}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает мультипликатор радиуса обзора воздушной техники, находящейся в условиях сильного дождя
+ ({\tt WeatherType.RAIN}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getRandomSeed}
+\item{\vskip -1.9ex 
+\membername{getRandomSeed}
+{\tt public long {\bf getRandomSeed}(  )
+\label{l169}\label{l170}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает некоторое число, которое ваша стратегия может использовать для инициализации генератора
+ случайных чисел. Данное значение имеет рекомендательный характер, однако позволит более точно воспроизводить
+ прошедшие игры. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getSwampTerrainSpeedFactor}
+\item{\vskip -1.9ex 
+\membername{getSwampTerrainSpeedFactor}
+{\tt public double {\bf getSwampTerrainSpeedFactor}(  )
+\label{l171}\label{l172}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает мультипликатор максимальной скорости наземной техники, находящейся в болотистой местности
+ ({\tt TerrainType.SWAMP}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getSwampTerrainStealthFactor}
+\item{\vskip -1.9ex 
+\membername{getSwampTerrainStealthFactor}
+{\tt public double {\bf getSwampTerrainStealthFactor}(  )
+\label{l173}\label{l174}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает мультипликатор радиуса обзора любой техники при обнаружении наземной техники противника,
+ находящейся в болотистой местности ({\tt TerrainType.SWAMP}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getSwampTerrainVisionFactor}
+\item{\vskip -1.9ex 
+\membername{getSwampTerrainVisionFactor}
+{\tt public double {\bf getSwampTerrainVisionFactor}(  )
+\label{l175}\label{l176}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает мультипликатор радиуса обзора наземной техники, находящейся в болотистой местности
+ ({\tt TerrainType.SWAMP}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTankAerialAttackRange}
+\item{\vskip -1.9ex 
+\membername{getTankAerialAttackRange}
+{\tt public double {\bf getTankAerialAttackRange}(  )
+\label{l177}\label{l178}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает дальность атаки танка по воздушным целям. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTankAerialDamage}
+\item{\vskip -1.9ex 
+\membername{getTankAerialDamage}
+{\tt public int {\bf getTankAerialDamage}(  )
+\label{l179}\label{l180}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает урон одной атаки танка по воздушной технике. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTankAerialDefence}
+\item{\vskip -1.9ex 
+\membername{getTankAerialDefence}
+{\tt public int {\bf getTankAerialDefence}(  )
+\label{l181}\label{l182}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает защиту танка от атак воздушной техники. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTankAttackCooldownTicks}
+\item{\vskip -1.9ex 
+\membername{getTankAttackCooldownTicks}
+{\tt public int {\bf getTankAttackCooldownTicks}(  )
+\label{l183}\label{l184}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает интервал в тиках между двумя последовательными атаками танка. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTankDurability}
+\item{\vskip -1.9ex 
+\membername{getTankDurability}
+{\tt public int {\bf getTankDurability}(  )
+\label{l185}\label{l186}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает максимальную прочность танка. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTankGroundAttackRange}
+\item{\vskip -1.9ex 
+\membername{getTankGroundAttackRange}
+{\tt public double {\bf getTankGroundAttackRange}(  )
+\label{l187}\label{l188}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает дальность атаки танка по наземным целям. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTankGroundDamage}
+\item{\vskip -1.9ex 
+\membername{getTankGroundDamage}
+{\tt public int {\bf getTankGroundDamage}(  )
+\label{l189}\label{l190}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает урон одной атаки танка по наземной технике. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTankGroundDefence}
+\item{\vskip -1.9ex 
+\membername{getTankGroundDefence}
+{\tt public int {\bf getTankGroundDefence}(  )
+\label{l191}\label{l192}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает защиту танка от атак наземной техники. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTankProductionCost}
+\item{\vskip -1.9ex 
+\membername{getTankProductionCost}
+{\tt public int {\bf getTankProductionCost}(  )
+\label{l193}\label{l194}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает количество тиков, необхожимое для производства одного танка на заводе
+ ({\tt FacilityType.VEHICLE\_FACTORY}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTankSpeed}
+\item{\vskip -1.9ex 
+\membername{getTankSpeed}
+{\tt public double {\bf getTankSpeed}(  )
+\label{l195}\label{l196}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает максимальную скорость танка. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTankVisionRange}
+\item{\vskip -1.9ex 
+\membername{getTankVisionRange}
+{\tt public double {\bf getTankVisionRange}(  )
+\label{l197}\label{l198}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает базовый радиус обзора танка. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTerrainWeatherMapColumnCount}
+\item{\vskip -1.9ex 
+\membername{getTerrainWeatherMapColumnCount}
+{\tt public int {\bf getTerrainWeatherMapColumnCount}(  )
+\label{l199}\label{l200}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает количество столбцов в картах местности и погоды. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTerrainWeatherMapRowCount}
+\item{\vskip -1.9ex 
+\membername{getTerrainWeatherMapRowCount}
+{\tt public int {\bf getTerrainWeatherMapRowCount}(  )
+\label{l201}\label{l202}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает количество строк в картах местности и погоды. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTickCount}
+\item{\vskip -1.9ex 
+\membername{getTickCount}
+{\tt public int {\bf getTickCount}(  )
+\label{l203}\label{l204}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает базовую длительность игры в тиках. Реальная длительность может отличаться от этого значения в
+ меньшую сторону. Эквивалентно {\tt world.tickCount}. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getVehicleEliminationScore}
+\item{\vskip -1.9ex 
+\membername{getVehicleEliminationScore}
+{\tt public int {\bf getVehicleEliminationScore}(  )
+\label{l205}\label{l206}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает количество баллов за уничтожение юнита противника. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getVehicleRadius}
+\item{\vskip -1.9ex 
+\membername{getVehicleRadius}
+{\tt public double {\bf getVehicleRadius}(  )
+\label{l207}\label{l208}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает радиус техники. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getVictoryScore}
+\item{\vskip -1.9ex 
+\membername{getVictoryScore}
+{\tt public int {\bf getVictoryScore}(  )
+\label{l209}\label{l210}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает количество баллов, получаемое игроком в случае уничтожения всех юнитов противника. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getWorldHeight}
+\item{\vskip -1.9ex 
+\membername{getWorldHeight}
+{\tt public double {\bf getWorldHeight}(  )
+\label{l211}\label{l212}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает высоту карты. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getWorldWidth}
+\item{\vskip -1.9ex 
+\membername{getWorldWidth}
+{\tt public double {\bf getWorldWidth}(  )
+\label{l213}\label{l214}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает ширину карты. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{isFogOfWarEnabled}
+\item{\vskip -1.9ex 
+\membername{isFogOfWarEnabled}
+{\tt public boolean {\bf isFogOfWarEnabled}(  )
+\label{l215}\label{l216}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает {\tt true}, если и только если в данной игре включен режим частичной видимости. 
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\hide{inherited}{
+}
+}
+\startsection{Class}{Move}{l5}{%
+{\small Стратегия игрока может управлять юнитами посредством установки свойств объекта данного класса.}
+\vskip .1in 
+\startsubsubsection{Declaration}{
+\fbox{\vbox{
+\hbox{\vbox{\small public 
+class 
+Move}}
+\noindent\hbox{\vbox{{\bf extends} Object}}
+}}}
+
+% Removed by DocsPostProcessor:
+% \startsubsubsection{Constructors}{
+% \vskip -2em
+% \begin{itemize}
+% \item{\vskip -1.9ex 
+% \membername{Move}
+% {\tt public {\bf Move}(  )
+% \label{l217}\label{l218}}%end signature
+% }%end item
+% \end{itemize}
+% }
+% \\ Removed by DocsPostProcessor.
+
+\startsubsubsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{getAction}
+{\tt public ActionType {\bf getAction}(  )
+\label{l219}\label{l220}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает текущее действие игрока. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getAngle}
+\item{\vskip -1.9ex 
+\membername{getAngle}
+{\tt public double {\bf getAngle}(  )
+\label{l221}\label{l222}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает текущий угол поворота. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getBottom}
+\item{\vskip -1.9ex 
+\membername{getBottom}
+{\tt public double {\bf getBottom}(  )
+\label{l223}\label{l224}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает текущую нижнюю границу прямоугольной рамки, предназначенной для выделения юнитов. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getFacilityId}
+\item{\vskip -1.9ex 
+\membername{getFacilityId}
+{\tt public long {\bf getFacilityId}(  )
+\label{l225}\label{l226}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает текущий идентификатор сооружения. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getGroup}
+\item{\vskip -1.9ex 
+\membername{getGroup}
+{\tt public int {\bf getGroup}(  )
+\label{l227}\label{l228}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает текущую группу юнитов. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getLeft}
+\item{\vskip -1.9ex 
+\membername{getLeft}
+{\tt public double {\bf getLeft}(  )
+\label{l229}\label{l230}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает текущую левую границу прямоугольной рамки, предназначенной для выделения юнитов. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getMaxAngularSpeed}
+\item{\vskip -1.9ex 
+\membername{getMaxAngularSpeed}
+{\tt public double {\bf getMaxAngularSpeed}(  )
+\label{l231}\label{l232}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает текущее абсолютное ограничение скорости поворота. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getMaxSpeed}
+\item{\vskip -1.9ex 
+\membername{getMaxSpeed}
+{\tt public double {\bf getMaxSpeed}(  )
+\label{l233}\label{l234}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает текущее ограничение линейной скорости. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getRight}
+\item{\vskip -1.9ex 
+\membername{getRight}
+{\tt public double {\bf getRight}(  )
+\label{l235}\label{l236}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает текущую правую границу прямоугольной рамки, предназначенной для выделения юнитов. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTop}
+\item{\vskip -1.9ex 
+\membername{getTop}
+{\tt public double {\bf getTop}(  )
+\label{l237}\label{l238}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает текущую верхнюю границу прямоугольной рамки, предназначенной для выделения юнитов. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getVehicleType}
+\item{\vskip -1.9ex 
+\membername{getVehicleType}
+{\tt public VehicleType {\bf getVehicleType}(  )
+\label{l239}\label{l240}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает текущий тип техники. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getX}
+\item{\vskip -1.9ex 
+\membername{getX}
+{\tt public double {\bf getX}(  )
+\label{l241}\label{l242}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает текущую абсциссу точки или вектора. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getY}
+\item{\vskip -1.9ex 
+\membername{getY}
+{\tt public double {\bf getY}(  )
+\label{l243}\label{l244}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает текущую ординату точки или вектора. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{setAction}
+\item{\vskip -1.9ex 
+\membername{setAction}
+{\tt public void {\bf setAction}( {\tt ActionType } {\bf action} )
+\label{l245}\label{l246}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Устанавливает действие игрока.
+}%end item
+  \end{itemize}
+}
+\end{itemize}
+}%end item
+\divideents{setAngle}
+\item{\vskip -1.9ex 
+\membername{setAngle}
+{\tt public void {\bf setAngle}( {\tt double } {\bf angle} )
+\label{l247}\label{l248}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Задаёт угол поворота.
+ \bl 
+ Является обязательным параметром для действия {\tt ActionType.ROTATE} и задаёт угол поворота относительно точки
+ ({\tt x}, {\tt y}). Положительные значения соответствуют повороту по часовой стрелке.
+ \bl 
+ Корректными значениями являются вещественные числа от {\tt -PI} до {\tt PI} включительно.
+}%end item
+  \end{itemize}
+}
+\end{itemize}
+}%end item
+\divideents{setBottom}
+\item{\vskip -1.9ex 
+\membername{setBottom}
+{\tt public void {\bf setBottom}( {\tt double } {\bf bottom} )
+\label{l249}\label{l250}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Устанавливает нижнюю границу прямоугольной рамки для выделения юнитов.
+ \bl 
+ Является обязательным параметром для действий {\tt ActionType.CLEAR\_AND\_SELECT},
+ {\tt ActionType.ADD\_TO\_SELECTION} и {\tt ActionType.DESELECT}, если не установлена группа юнитов.
+ В противном случае граница будет проигнорирована.
+ \bl 
+ Корректными значениями являются вещественные числа от {\tt top} до {\tt game.worldHeight} включительно. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{setFacilityId}
+\item{\vskip -1.9ex 
+\membername{setFacilityId}
+{\tt public void {\bf setFacilityId}( {\tt long } {\bf facilityId} )
+\label{l251}\label{l252}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Устанавливает идентификатор сооружения.
+ \bl 
+ Является обязательным параметром для действия {\tt ActionType.SETUP\_VEHICLE\_PRODUCTION}.
+ Если сооружение с данным идентификатором отсутствует в игре, не является заводом по производству техники
+ ({\tt FacilityType.VEHICLE\_FACTORY}) или принадлежит другому игроку, то действие будет проигнорировано.
+}%end item
+  \end{itemize}
+}
+\end{itemize}
+}%end item
+\divideents{setGroup}
+\item{\vskip -1.9ex 
+\membername{setGroup}
+{\tt public void {\bf setGroup}( {\tt int } {\bf group} )
+\label{l253}\label{l254}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Устанавливает группу юнитов для различных действий.
+ \bl 
+ Является опциональным параметром для действий {\tt ActionType.CLEAR\_AND\_SELECT},
+ {\tt ActionType.ADD\_TO\_SELECTION} и {\tt ActionType.DESELECT}. Если для этих действий группа юнитов
+ установлена, то параметр {\tt vehicleType}, а также параметры прямоугольной рамки {\tt left}, {\tt top},
+ {\tt right} и {\tt bottom} будут проигнорированы.
+ \bl 
+ Является обязательным параметром для действий {\tt ActionType.ASSIGN}, {\tt ActionType.DISMISS} и
+ {\tt ActionType.DISBAND}. Для действия {\tt ActionType.DISBAND} является единственным учитываемым параметром.
+ \bl 
+ Корректными значениями являются целые числа от {\tt 1} до {\tt game.maxUnitGroup} включительно.
+}%end item
+  \end{itemize}
+}
+\end{itemize}
+}%end item
+\divideents{setLeft}
+\item{\vskip -1.9ex 
+\membername{setLeft}
+{\tt public void {\bf setLeft}( {\tt double } {\bf left} )
+\label{l255}\label{l256}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Устанавливает левую границу прямоугольной рамки для выделения юнитов.
+ \bl 
+ Является обязательным параметром для действий {\tt ActionType.CLEAR\_AND\_SELECT},
+ {\tt ActionType.ADD\_TO\_SELECTION} и {\tt ActionType.DESELECT}, если не установлена группа юнитов.
+ В противном случае граница будет проигнорирована.
+ \bl 
+ Корректными значениями являются вещественные числа от {\tt 0.0} до {\tt right} включительно. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{setMaxAngularSpeed}
+\item{\vskip -1.9ex 
+\membername{setMaxAngularSpeed}
+{\tt public void {\bf setMaxAngularSpeed}( {\tt double } {\bf maxAngularSpeed} )
+\label{l257}\label{l258}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Устанавливает абсолютное ограничение скорости поворота в радианах за тик.
+ \bl 
+ Является опциональным параметром для действия {\tt ActionType.ROTATE}. Если для этого действия установлено
+ ограничение скорости поворота, то параметр {\tt maxSpeed} будет проигнорирован.
+ \bl 
+ Корректными значениями являются вещественные числа в интервале от {\tt 0.0} до {\tt PI} включительно. При
+ этом, {\tt 0.0} означает, что ограничение отсутствует.
+}%end item
+  \end{itemize}
+}
+\end{itemize}
+}%end item
+\divideents{setMaxSpeed}
+\item{\vskip -1.9ex 
+\membername{setMaxSpeed}
+{\tt public void {\bf setMaxSpeed}( {\tt double } {\bf maxSpeed} )
+\label{l259}\label{l260}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Устанавливает абсолютное ограничение линейной скорости.
+ \bl 
+ Является опциональным параметром для действий {\tt ActionType.MOVE} и {\tt ActionType.ROTATE}. Если для
+ действия {\tt ActionType.ROTATE} установлено ограничение скорости поворота, то этот параметр будет
+ проигнорирован.
+ \bl 
+ Корректными значениями являются вещественные неотрицательные числа. При этом, {\tt 0.0} означает, что
+ ограничение отсутствует.
+}%end item
+  \end{itemize}
+}
+\end{itemize}
+}%end item
+\divideents{setRight}
+\item{\vskip -1.9ex 
+\membername{setRight}
+{\tt public void {\bf setRight}( {\tt double } {\bf right} )
+\label{l261}\label{l262}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Устанавливает правую границу прямоугольной рамки для выделения юнитов.
+ \bl 
+ Является обязательным параметром для действий {\tt ActionType.CLEAR\_AND\_SELECT},
+ {\tt ActionType.ADD\_TO\_SELECTION} и {\tt ActionType.DESELECT}, если не установлена группа юнитов.
+ В противном случае граница будет проигнорирована.
+ \bl 
+ Корректными значениями являются вещественные числа от {\tt left} до {\tt game.worldWidth} включительно. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{setTop}
+\item{\vskip -1.9ex 
+\membername{setTop}
+{\tt public void {\bf setTop}( {\tt double } {\bf top} )
+\label{l263}\label{l264}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Устанавливает верхнюю границу прямоугольной рамки для выделения юнитов.
+ \bl 
+ Является обязательным параметром для действий {\tt ActionType.CLEAR\_AND\_SELECT},
+ {\tt ActionType.ADD\_TO\_SELECTION} и {\tt ActionType.DESELECT}, если не установлена группа юнитов.
+ В противном случае граница будет проигнорирована.
+ \bl 
+ Корректными значениями являются вещественные числа от {\tt 0.0} до {\tt bottom} включительно. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{setVehicleType}
+\item{\vskip -1.9ex 
+\membername{setVehicleType}
+{\tt public void {\bf setVehicleType}( {\tt VehicleType } {\bf vehicleType} )
+\label{l265}\label{l266}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Устанавливает тип техники.
+ \bl 
+ Является опциональным параметром для действий {\tt ActionType.CLEAR\_AND\_SELECT},
+ {\tt ActionType.ADD\_TO\_SELECTION} и {\tt ActionType.DESELECT}.
+ Указанные действия будут применены только к технике выбранного типа.
+ Параметр будет проигнорирован, если установлена группа юнитов.
+ \bl 
+ Является опциональным параметром для действия {\tt ActionType.SETUP\_VEHICLE\_PRODUCTION}.
+ Завод будет настроен на производство техники данного типа. При этом, прогресс производства будет обнулён.
+ Если данный параметр не установлен, то производство техники на заводе будет остановлено.
+}%end item
+  \end{itemize}
+}
+\end{itemize}
+}%end item
+\divideents{setX}
+\item{\vskip -1.9ex 
+\membername{setX}
+{\tt public void {\bf setX}( {\tt double } {\bf x} )
+\label{l267}\label{l268}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Устанавливает абсциссу точки или вектора.
+ \bl 
+ Является обязательным параметром для действия {\tt ActionType.MOVE} и задаёт целевую величину смещения юнитов
+ вдоль оси абсцисс.
+ \bl 
+ Является обязательным параметром для действия {\tt ActionType.ROTATE} и задаёт абсциссу точки, относительно
+ которой необходимо совершить поворот.
+ \bl 
+ Корректными значениями для действия {\tt ActionType.MOVE} являются вещественные числа от
+ {\tt -game.worldWidth} до {\tt game.worldWidth} включительно. Корректными значениями для действия
+ {\tt ActionType.ROTATE} являются вещественные числа от {\tt -game.worldWidth} до
+ {\tt 2.0 * game.worldWidth} включительно.
+}%end item
+  \end{itemize}
+}
+\end{itemize}
+}%end item
+\divideents{setY}
+\item{\vskip -1.9ex 
+\membername{setY}
+{\tt public void {\bf setY}( {\tt double } {\bf y} )
+\label{l269}\label{l270}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Устанавливает ординату точки или вектора.
+ \bl 
+ Является обязательным параметром для действия {\tt ActionType.MOVE} и задаёт целевую величину смещения юнитов
+ вдоль оси ординат.
+ \bl 
+ Является обязательным параметром для действия {\tt ActionType.ROTATE} и задаёт ординату точки, относительно
+ которой необходимо совершить поворот.
+ \bl 
+ Корректными значениями для действия {\tt ActionType.MOVE} являются вещественные числа от
+ {\tt -game.worldHeight} до {\tt game.worldHeight} включительно. Корректными значениями для действия
+ {\tt ActionType.ROTATE} являются вещественные числа от {\tt -game.worldHeight} до
+ {\tt 2.0 * game.worldHeight} включительно.
+}%end item
+  \end{itemize}
+}
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\hide{inherited}{
+}
+}
+\startsection{Class}{Player}{l6}{%
+{\small Содержит данные о текущем состоянии игрока.}
+\vskip .1in 
+\startsubsubsection{Declaration}{
+\fbox{\vbox{
+\hbox{\vbox{\small public 
+class 
+Player}}
+\noindent\hbox{\vbox{{\bf extends} Object}}
+}}}
+
+% Removed by DocsPostProcessor:
+% \startsubsubsection{Constructors}{
+% \vskip -2em
+% \begin{itemize}
+% \item{\vskip -1.9ex 
+% \membername{Player}
+% {\tt public {\bf Player}( {\tt long } {\bf id},
+% {\tt boolean } {\bf me},
+% {\tt boolean } {\bf strategyCrashed},
+% {\tt int } {\bf score},
+% {\tt int } {\bf remainingActionCooldownTicks} )
+% \label{l271}\label{l272}}%end signature
+% }%end item
+% \end{itemize}
+% }
+% \\ Removed by DocsPostProcessor.
+
+\startsubsubsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{getId}
+{\tt public long {\bf getId}(  )
+\label{l273}\label{l274}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает уникальный идентификатор игрока. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getRemainingActionCooldownTicks}
+\item{\vskip -1.9ex 
+\membername{getRemainingActionCooldownTicks}
+{\tt public int {\bf getRemainingActionCooldownTicks}(  )
+\label{l275}\label{l276}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает количество тиков, оставшееся до любого следующего действия.
+ Если значение равно {\tt 0}, игрок может совершить действие в данный тик. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getScore}
+\item{\vskip -1.9ex 
+\membername{getScore}
+{\tt public int {\bf getScore}(  )
+\label{l277}\label{l278}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает количество баллов, набранное игроком. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{isMe}
+\item{\vskip -1.9ex 
+\membername{isMe}
+{\tt public boolean {\bf isMe}(  )
+\label{l279}\label{l280}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает {\tt true} в том и только в том случае, если этот игрок ваш. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{isStrategyCrashed}
+\item{\vskip -1.9ex 
+\membername{isStrategyCrashed}
+{\tt public boolean {\bf isStrategyCrashed}(  )
+\label{l281}\label{l282}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает специальный флаг --- показатель того, что стратегия игрока <<упала>>.
+ Более подробную информацию можно найти в документации к игре. 
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\hide{inherited}{
+}
+}
+\startsection{Class}{TerrainType}{l7}{%
+{\small Тип местности.}
+\vskip .1in 
+\startsubsubsection{Declaration}{
+\fbox{\vbox{
+\hbox{\vbox{\small public final 
+class 
+TerrainType}}
+\noindent\hbox{\vbox{{\bf extends} Enum}}
+}}}
+\startsubsubsection{Fields}{
+\begin{itemize}
+\item{
+public static final TerrainType PLAIN\begin{itemize}\item{\vskip -.9ex Равнина.}\end{itemize}
+}
+\item{
+public static final TerrainType SWAMP\begin{itemize}\item{\vskip -.9ex Топь.}\end{itemize}
+}
+\item{
+public static final TerrainType FOREST\begin{itemize}\item{\vskip -.9ex Лес.}\end{itemize}
+}
+\end{itemize}
+}
+\hide{inherited}{
+\startsubsubsection{Methods inherited from class {\tt Enum}}{
+\par{\small 
+\refdefined{l14}\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{clone}
+{\tt protected final Object {\bf clone}(  )
+}%end signature
+}%end item
+\divideents{compareTo}
+\item{\vskip -1.9ex 
+\membername{compareTo}
+{\tt public final int {\bf compareTo}( {\tt Enum } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{equals}
+\item{\vskip -1.9ex 
+\membername{equals}
+{\tt public final boolean {\bf equals}( {\tt Object } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{finalize}
+\item{\vskip -1.9ex 
+\membername{finalize}
+{\tt protected final void {\bf finalize}(  )
+}%end signature
+}%end item
+\divideents{getDeclaringClass}
+\item{\vskip -1.9ex 
+\membername{getDeclaringClass}
+{\tt public final Class {\bf getDeclaringClass}(  )
+}%end signature
+}%end item
+\divideents{hashCode}
+\item{\vskip -1.9ex 
+\membername{hashCode}
+{\tt public final int {\bf hashCode}(  )
+}%end signature
+}%end item
+\divideents{name}
+\item{\vskip -1.9ex 
+\membername{name}
+{\tt public final String {\bf name}(  )
+}%end signature
+}%end item
+\divideents{ordinal}
+\item{\vskip -1.9ex 
+\membername{ordinal}
+{\tt public final int {\bf ordinal}(  )
+}%end signature
+}%end item
+\divideents{toString}
+\item{\vskip -1.9ex 
+\membername{toString}
+{\tt public String {\bf toString}(  )
+}%end signature
+}%end item
+\divideents{valueOf}
+\item{\vskip -1.9ex 
+\membername{valueOf}
+{\tt public static Enum {\bf valueOf}( {\tt Class } {\bf arg0},
+{\tt String } {\bf arg1} )
+}%end signature
+}%end item
+\end{itemize}
+}}
+}
+}
+\startsection{Class}{Unit}{l8}{%
+{\small Базовый класс для определения объектов (<<юнитов>>) на игровом поле.}
+\vskip .1in 
+\startsubsubsection{Declaration}{
+\fbox{\vbox{
+\hbox{\vbox{\small public abstract 
+class 
+Unit}}
+\noindent\hbox{\vbox{{\bf extends} Object}}
+}}}
+
+% Removed by DocsPostProcessor:
+% \startsubsubsection{Constructors}{
+% \vskip -2em
+% \begin{itemize}
+% \item{\vskip -1.9ex 
+% \membername{Unit}
+% {\tt protected {\bf Unit}( {\tt long } {\bf id},
+% {\tt double } {\bf x},
+% {\tt double } {\bf y} )
+% \label{l283}\label{l284}}%end signature
+% }%end item
+% \end{itemize}
+% }
+% \\ Removed by DocsPostProcessor.
+
+\startsubsubsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{getDistanceTo}
+{\tt public double {\bf getDistanceTo}( {\tt double } {\bf x},
+{\tt double } {\bf y} )
+\label{l285}\label{l286}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Parameters}
+\sld\isep
+  \begin{itemize}
+\sld\isep
+   \item{
+\sld
+{\tt x} - X-координата точки.}
+   \item{
+\sld
+{\tt y} - Y-координата точки.}
+  \end{itemize}
+}%end item
+\item{{\bf Returns} - 
+Возвращает расстояние до точки от центра данного объекта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getDistanceTo}
+\item{\vskip -1.9ex 
+\membername{getDistanceTo}
+{\tt public double {\bf getDistanceTo}( {\tt Unit } {\bf unit} )
+\label{l287}\label{l288}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Parameters}
+\sld\isep
+  \begin{itemize}
+\sld\isep
+   \item{
+\sld
+{\tt unit} - Объект, до центра которого необходимо определить расстояние.}
+  \end{itemize}
+}%end item
+\item{{\bf Returns} - 
+Возвращает расстояние от центра данного объекта до центра указанного объекта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getId}
+\item{\vskip -1.9ex 
+\membername{getId}
+{\tt public long {\bf getId}(  )
+\label{l289}\label{l290}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает уникальный идентификатор объекта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getSquaredDistanceTo}
+\item{\vskip -1.9ex 
+\membername{getSquaredDistanceTo}
+{\tt public double {\bf getSquaredDistanceTo}( {\tt double } {\bf x},
+{\tt double } {\bf y} )
+\label{l291}\label{l292}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Parameters}
+\sld\isep
+  \begin{itemize}
+\sld\isep
+   \item{
+\sld
+{\tt x} - X-координата точки.}
+   \item{
+\sld
+{\tt y} - Y-координата точки.}
+  \end{itemize}
+}%end item
+\item{{\bf Returns} - 
+Возвращает квадрат расстояния до точки от центра данного объекта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getSquaredDistanceTo}
+\item{\vskip -1.9ex 
+\membername{getSquaredDistanceTo}
+{\tt public double {\bf getSquaredDistanceTo}( {\tt Unit } {\bf unit} )
+\label{l293}\label{l294}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Parameters}
+\sld\isep
+  \begin{itemize}
+\sld\isep
+   \item{
+\sld
+{\tt unit} - Объект, до центра которого необходимо определить квадрат расстояния.}
+  \end{itemize}
+}%end item
+\item{{\bf Returns} - 
+Возвращает квадрат расстояния от центра данного объекта до центра указанного объекта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getX}
+\item{\vskip -1.9ex 
+\membername{getX}
+{\tt public final double {\bf getX}(  )
+\label{l295}\label{l296}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает X-координату центра объекта. Ось абсцисс направлена слева направо. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getY}
+\item{\vskip -1.9ex 
+\membername{getY}
+{\tt public final double {\bf getY}(  )
+\label{l297}\label{l298}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает Y-координату центра объекта. Ось ординат направлена сверху вниз. 
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\hide{inherited}{
+}
+}
+\startsection{Class}{Vehicle}{l9}{%
+{\small Класс, определяющий технику. Содержит также все свойства круглых объектов.}
+\vskip .1in 
+\startsubsubsection{Declaration}{
+\fbox{\vbox{
+\hbox{\vbox{\small public 
+class 
+Vehicle}}
+\noindent\hbox{\vbox{{\bf extends} CircularUnit}}
+}}}
+
+% Removed by DocsPostProcessor:
+% \startsubsubsection{Constructors}{
+% \vskip -2em
+% \begin{itemize}
+% \item{\vskip -1.9ex 
+% \membername{Vehicle}
+% {\tt public {\bf Vehicle}( {\tt long } {\bf id},
+% {\tt double } {\bf x},
+% {\tt double } {\bf y},
+% {\tt double } {\bf radius},
+% {\tt long } {\bf playerId},
+% {\tt int } {\bf durability},
+% {\tt int } {\bf maxDurability},
+% {\tt double } {\bf maxSpeed},
+% {\tt double } {\bf visionRange},
+% {\tt double } {\bf squaredVisionRange},
+% {\tt double } {\bf groundAttackRange},
+% {\tt double } {\bf squaredGroundAttackRange},
+% {\tt double } {\bf aerialAttackRange},
+% {\tt double } {\bf squaredAerialAttackRange},
+% {\tt int } {\bf groundDamage},
+% {\tt int } {\bf aerialDamage},
+% {\tt int } {\bf groundDefence},
+% {\tt int } {\bf aerialDefence},
+% {\tt int } {\bf attackCooldownTicks},
+% {\tt int } {\bf remainingAttackCooldownTicks},
+% {\tt VehicleType } {\bf type},
+% {\tt boolean } {\bf aerial},
+% {\tt boolean } {\bf selected},
+% {\tt int[]} {\bf groups} )
+% \label{l299}\label{l300}}%end signature
+% }%end item
+% \divideents{Vehicle}
+% \item{\vskip -1.9ex 
+% \membername{Vehicle}
+% {\tt public {\bf Vehicle}( {\tt Vehicle } {\bf vehicle},
+% {\tt VehicleUpdate } {\bf vehicleUpdate} )
+% \label{l301}\label{l302}}%end signature
+% }%end item
+% \end{itemize}
+% }
+% \\ Removed by DocsPostProcessor.
+
+\startsubsubsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{getAerialAttackRange}
+{\tt public double {\bf getAerialAttackRange}(  )
+\label{l303}\label{l304}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает максимальное расстояние (от центра до центра),
+ на котором данная техника может атаковать воздушные объекты. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getAerialDamage}
+\item{\vskip -1.9ex 
+\membername{getAerialDamage}
+{\tt public int {\bf getAerialDamage}(  )
+\label{l305}\label{l306}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает урон одной атаки по воздушному объекту. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getAerialDefence}
+\item{\vskip -1.9ex 
+\membername{getAerialDefence}
+{\tt public int {\bf getAerialDefence}(  )
+\label{l307}\label{l308}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает защиту от атак воздушых юнитов. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getAttackCooldownTicks}
+\item{\vskip -1.9ex 
+\membername{getAttackCooldownTicks}
+{\tt public int {\bf getAttackCooldownTicks}(  )
+\label{l309}\label{l310}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает минимально возможный интервал между двумя последовательными атаками данной техники. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getDurability}
+\item{\vskip -1.9ex 
+\membername{getDurability}
+{\tt public int {\bf getDurability}(  )
+\label{l311}\label{l312}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает текущую прочность. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getGroundAttackRange}
+\item{\vskip -1.9ex 
+\membername{getGroundAttackRange}
+{\tt public double {\bf getGroundAttackRange}(  )
+\label{l313}\label{l314}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает максимальное расстояние (от центра до центра),
+ на котором данная техника может атаковать наземные объекты. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getGroundDamage}
+\item{\vskip -1.9ex 
+\membername{getGroundDamage}
+{\tt public int {\bf getGroundDamage}(  )
+\label{l315}\label{l316}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает урон одной атаки по наземному объекту. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getGroundDefence}
+\item{\vskip -1.9ex 
+\membername{getGroundDefence}
+{\tt public int {\bf getGroundDefence}(  )
+\label{l317}\label{l318}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает защиту от атак наземных юнитов. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getGroups}
+\item{\vskip -1.9ex 
+\membername{getGroups}
+{\tt public int[] {\bf getGroups}(  )
+\label{l319}\label{l320}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает группы, в которые входит эта техника. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getMaxDurability}
+\item{\vskip -1.9ex 
+\membername{getMaxDurability}
+{\tt public int {\bf getMaxDurability}(  )
+\label{l321}\label{l322}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает максимальную прочность. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getMaxSpeed}
+\item{\vskip -1.9ex 
+\membername{getMaxSpeed}
+{\tt public double {\bf getMaxSpeed}(  )
+\label{l323}\label{l324}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает максимальное расстояние, на которое данная техника может переместиться за один игровой тик,
+ без учёта типа местности и погоды. При перемещении по дуге учитывается длина дуги,
+ а не кратчайшее расстояние между начальной и конечной точками. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getPlayerId}
+\item{\vskip -1.9ex 
+\membername{getPlayerId}
+{\tt public long {\bf getPlayerId}(  )
+\label{l325}\label{l326}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает идентификатор игрока, которому принадлежит техника. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getRemainingAttackCooldownTicks}
+\item{\vskip -1.9ex 
+\membername{getRemainingAttackCooldownTicks}
+{\tt public int {\bf getRemainingAttackCooldownTicks}(  )
+\label{l327}\label{l328}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает количество тиков, оставшееся до следующей атаки.
+ Для совершения атаки необходимо, чтобы это значение было равно нулю. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getSquaredAerialAttackRange}
+\item{\vskip -1.9ex 
+\membername{getSquaredAerialAttackRange}
+{\tt public double {\bf getSquaredAerialAttackRange}(  )
+\label{l329}\label{l330}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает квадрат максимального расстояния (от центра до центра),
+ на котором данная техника может атаковать воздушные объекты. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getSquaredGroundAttackRange}
+\item{\vskip -1.9ex 
+\membername{getSquaredGroundAttackRange}
+{\tt public double {\bf getSquaredGroundAttackRange}(  )
+\label{l331}\label{l332}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает квадрат максимального расстояния (от центра до центра),
+ на котором данная техника может атаковать наземные объекты. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getSquaredVisionRange}
+\item{\vskip -1.9ex 
+\membername{getSquaredVisionRange}
+{\tt public double {\bf getSquaredVisionRange}(  )
+\label{l333}\label{l334}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает квадрат максимального расстояния (от центра до центра),
+ на котором данная техника обнаруживает другие объекты, без учёта типа местности и погоды. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getType}
+\item{\vskip -1.9ex 
+\membername{getType}
+{\tt public VehicleType {\bf getType}(  )
+\label{l335}\label{l336}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает тип техники. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getVisionRange}
+\item{\vskip -1.9ex 
+\membername{getVisionRange}
+{\tt public double {\bf getVisionRange}(  )
+\label{l337}\label{l338}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает максимальное расстояние (от центра до центра),
+ на котором данная техника обнаруживает другие объекты, без учёта типа местности и погоды. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{isAerial}
+\item{\vskip -1.9ex 
+\membername{isAerial}
+{\tt public boolean {\bf isAerial}(  )
+\label{l339}\label{l340}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает {\tt true} в том и только том случае, если эта техника воздушная. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{isSelected}
+\item{\vskip -1.9ex 
+\membername{isSelected}
+{\tt public boolean {\bf isSelected}(  )
+\label{l341}\label{l342}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает {\tt true} в том и только том случае, если эта техника выделена. 
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\hide{inherited}{
+\startsubsubsection{Methods inherited from class {\tt CircularUnit}}{
+\par{\small 
+\refdefined{l1}\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{getRadius}
+{\tt public double {\bf getRadius}(  )
+}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает радиус объекта. 
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}}
+\startsubsubsection{Methods inherited from class {\tt Unit}}{
+\par{\small 
+\refdefined{l8}\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{getDistanceTo}
+{\tt public double {\bf getDistanceTo}( {\tt double } {\bf x},
+{\tt double } {\bf y} )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Parameters}
+\sld\isep
+  \begin{itemize}
+\sld\isep
+   \item{
+\sld
+{\tt x} - X-координата точки.}
+   \item{
+\sld
+{\tt y} - Y-координата точки.}
+  \end{itemize}
+}%end item
+\item{{\bf Returns} - 
+Возвращает расстояние до точки от центра данного объекта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getDistanceTo}
+\item{\vskip -1.9ex 
+\membername{getDistanceTo}
+{\tt public double {\bf getDistanceTo}( {\tt Unit } {\bf unit} )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Parameters}
+\sld\isep
+  \begin{itemize}
+\sld\isep
+   \item{
+\sld
+{\tt unit} - Объект, до центра которого необходимо определить расстояние.}
+  \end{itemize}
+}%end item
+\item{{\bf Returns} - 
+Возвращает расстояние от центра данного объекта до центра указанного объекта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getId}
+\item{\vskip -1.9ex 
+\membername{getId}
+{\tt public long {\bf getId}(  )
+}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает уникальный идентификатор объекта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getSquaredDistanceTo}
+\item{\vskip -1.9ex 
+\membername{getSquaredDistanceTo}
+{\tt public double {\bf getSquaredDistanceTo}( {\tt double } {\bf x},
+{\tt double } {\bf y} )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Parameters}
+\sld\isep
+  \begin{itemize}
+\sld\isep
+   \item{
+\sld
+{\tt x} - X-координата точки.}
+   \item{
+\sld
+{\tt y} - Y-координата точки.}
+  \end{itemize}
+}%end item
+\item{{\bf Returns} - 
+Возвращает квадрат расстояния до точки от центра данного объекта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getSquaredDistanceTo}
+\item{\vskip -1.9ex 
+\membername{getSquaredDistanceTo}
+{\tt public double {\bf getSquaredDistanceTo}( {\tt Unit } {\bf unit} )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Parameters}
+\sld\isep
+  \begin{itemize}
+\sld\isep
+   \item{
+\sld
+{\tt unit} - Объект, до центра которого необходимо определить квадрат расстояния.}
+  \end{itemize}
+}%end item
+\item{{\bf Returns} - 
+Возвращает квадрат расстояния от центра данного объекта до центра указанного объекта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getX}
+\item{\vskip -1.9ex 
+\membername{getX}
+{\tt public final double {\bf getX}(  )
+}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает X-координату центра объекта. Ось абсцисс направлена слева направо. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getY}
+\item{\vskip -1.9ex 
+\membername{getY}
+{\tt public final double {\bf getY}(  )
+}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает Y-координату центра объекта. Ось ординат направлена сверху вниз. 
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}}
+}
+}
+\startsection{Class}{VehicleType}{l10}{%
+{\small Тип техники.}
+\vskip .1in 
+\startsubsubsection{Declaration}{
+\fbox{\vbox{
+\hbox{\vbox{\small public final 
+class 
+VehicleType}}
+\noindent\hbox{\vbox{{\bf extends} Enum}}
+}}}
+\startsubsubsection{Fields}{
+\begin{itemize}
+\item{
+public static final VehicleType ARRV\begin{itemize}\item{\vskip -.9ex Бронированная ремонтно-эвакуационная машина. Наземный юнит.
+ Постепенно восстанавливает прочность находящейся поблизости неподвижной техники.}\end{itemize}
+}
+\item{
+public static final VehicleType FIGHTER\begin{itemize}\item{\vskip -.9ex Истребитель. Воздушный юнит. Крайне эффективен против другой воздушной техники. Не может атаковать наземные цели.}\end{itemize}
+}
+\item{
+public static final VehicleType HELICOPTER\begin{itemize}\item{\vskip -.9ex Ударный вертолёт. Воздушный юнит. Может атаковать как воздушные, так и наземные цели.}\end{itemize}
+}
+\item{
+public static final VehicleType IFV\begin{itemize}\item{\vskip -.9ex Боевая машина пехоты. Наземный юнит. Может атаковать как воздушные, так и наземные цели.}\end{itemize}
+}
+\item{
+public static final VehicleType TANK\begin{itemize}\item{\vskip -.9ex Танк. Наземный юнит. Крайне эффективен против другой наземной техники. Также может атаковать воздушные цели.}\end{itemize}
+}
+\end{itemize}
+}
+\hide{inherited}{
+\startsubsubsection{Methods inherited from class {\tt Enum}}{
+\par{\small 
+\refdefined{l14}\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{clone}
+{\tt protected final Object {\bf clone}(  )
+}%end signature
+}%end item
+\divideents{compareTo}
+\item{\vskip -1.9ex 
+\membername{compareTo}
+{\tt public final int {\bf compareTo}( {\tt Enum } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{equals}
+\item{\vskip -1.9ex 
+\membername{equals}
+{\tt public final boolean {\bf equals}( {\tt Object } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{finalize}
+\item{\vskip -1.9ex 
+\membername{finalize}
+{\tt protected final void {\bf finalize}(  )
+}%end signature
+}%end item
+\divideents{getDeclaringClass}
+\item{\vskip -1.9ex 
+\membername{getDeclaringClass}
+{\tt public final Class {\bf getDeclaringClass}(  )
+}%end signature
+}%end item
+\divideents{hashCode}
+\item{\vskip -1.9ex 
+\membername{hashCode}
+{\tt public final int {\bf hashCode}(  )
+}%end signature
+}%end item
+\divideents{name}
+\item{\vskip -1.9ex 
+\membername{name}
+{\tt public final String {\bf name}(  )
+}%end signature
+}%end item
+\divideents{ordinal}
+\item{\vskip -1.9ex 
+\membername{ordinal}
+{\tt public final int {\bf ordinal}(  )
+}%end signature
+}%end item
+\divideents{toString}
+\item{\vskip -1.9ex 
+\membername{toString}
+{\tt public String {\bf toString}(  )
+}%end signature
+}%end item
+\divideents{valueOf}
+\item{\vskip -1.9ex 
+\membername{valueOf}
+{\tt public static Enum {\bf valueOf}( {\tt Class } {\bf arg0},
+{\tt String } {\bf arg1} )
+}%end signature
+}%end item
+\end{itemize}
+}}
+}
+}
+\startsection{Class}{VehicleUpdate}{l11}{%
+{\small Класс, частично определяющий технику. Содержит уникальный идентификатор техники, а также все поля техники,
+ значения которых могут изменяться в процессе игры.}
+\vskip .1in 
+\startsubsubsection{Declaration}{
+\fbox{\vbox{
+\hbox{\vbox{\small public 
+class 
+VehicleUpdate}}
+\noindent\hbox{\vbox{{\bf extends} Object}}
+}}}
+
+% Removed by DocsPostProcessor:
+% \startsubsubsection{Constructors}{
+% \vskip -2em
+% \begin{itemize}
+% \item{\vskip -1.9ex 
+% \membername{VehicleUpdate}
+% {\tt public {\bf VehicleUpdate}( {\tt long } {\bf id},
+% {\tt double } {\bf x},
+% {\tt double } {\bf y},
+% {\tt int } {\bf durability},
+% {\tt int } {\bf remainingAttackCooldownTicks},
+% {\tt boolean } {\bf selected},
+% {\tt int[]} {\bf groups} )
+% \label{l343}\label{l344}}%end signature
+% }%end item
+% \end{itemize}
+% }
+% \\ Removed by DocsPostProcessor.
+
+\startsubsubsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{getDurability}
+{\tt public int {\bf getDurability}(  )
+\label{l345}\label{l346}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает текущую прочность или {\tt 0}, если техника была уничтожена либо ушла из зоны видимости. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getGroups}
+\item{\vskip -1.9ex 
+\membername{getGroups}
+{\tt public int[] {\bf getGroups}(  )
+\label{l347}\label{l348}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает группы, в которые входит эта техника. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getId}
+\item{\vskip -1.9ex 
+\membername{getId}
+{\tt public long {\bf getId}(  )
+\label{l349}\label{l350}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает уникальный идентификатор объекта. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getRemainingAttackCooldownTicks}
+\item{\vskip -1.9ex 
+\membername{getRemainingAttackCooldownTicks}
+{\tt public int {\bf getRemainingAttackCooldownTicks}(  )
+\label{l351}\label{l352}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает количество тиков, оставшееся до следующей атаки.
+ Для совершения атаки необходимо, чтобы это значение было равно нулю. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getX}
+\item{\vskip -1.9ex 
+\membername{getX}
+{\tt public double {\bf getX}(  )
+\label{l353}\label{l354}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает X-координату центра объекта. Ось абсцисс направлена слева направо. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getY}
+\item{\vskip -1.9ex 
+\membername{getY}
+{\tt public double {\bf getY}(  )
+\label{l355}\label{l356}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает Y-координату центра объекта. Ось ординат направлена сверху вниз. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{isSelected}
+\item{\vskip -1.9ex 
+\membername{isSelected}
+{\tt public boolean {\bf isSelected}(  )
+\label{l357}\label{l358}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает {\tt true} в том и только том случае, если эта техника выделена. 
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\hide{inherited}{
+}
+}
+\startsection{Class}{WeatherType}{l12}{%
+{\small Тип погоды.}
+\vskip .1in 
+\startsubsubsection{Declaration}{
+\fbox{\vbox{
+\hbox{\vbox{\small public final 
+class 
+WeatherType}}
+\noindent\hbox{\vbox{{\bf extends} Enum}}
+}}}
+\startsubsubsection{Fields}{
+\begin{itemize}
+\item{
+public static final WeatherType CLEAR\begin{itemize}\item{\vskip -.9ex Ясно.}\end{itemize}
+}
+\item{
+public static final WeatherType CLOUD\begin{itemize}\item{\vskip -.9ex Плотные облака.}\end{itemize}
+}
+\item{
+public static final WeatherType RAIN\begin{itemize}\item{\vskip -.9ex Сильный дождь.}\end{itemize}
+}
+\end{itemize}
+}
+\hide{inherited}{
+\startsubsubsection{Methods inherited from class {\tt Enum}}{
+\par{\small 
+\refdefined{l14}\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{clone}
+{\tt protected final Object {\bf clone}(  )
+}%end signature
+}%end item
+\divideents{compareTo}
+\item{\vskip -1.9ex 
+\membername{compareTo}
+{\tt public final int {\bf compareTo}( {\tt Enum } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{equals}
+\item{\vskip -1.9ex 
+\membername{equals}
+{\tt public final boolean {\bf equals}( {\tt Object } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{finalize}
+\item{\vskip -1.9ex 
+\membername{finalize}
+{\tt protected final void {\bf finalize}(  )
+}%end signature
+}%end item
+\divideents{getDeclaringClass}
+\item{\vskip -1.9ex 
+\membername{getDeclaringClass}
+{\tt public final Class {\bf getDeclaringClass}(  )
+}%end signature
+}%end item
+\divideents{hashCode}
+\item{\vskip -1.9ex 
+\membername{hashCode}
+{\tt public final int {\bf hashCode}(  )
+}%end signature
+}%end item
+\divideents{name}
+\item{\vskip -1.9ex 
+\membername{name}
+{\tt public final String {\bf name}(  )
+}%end signature
+}%end item
+\divideents{ordinal}
+\item{\vskip -1.9ex 
+\membername{ordinal}
+{\tt public final int {\bf ordinal}(  )
+}%end signature
+}%end item
+\divideents{toString}
+\item{\vskip -1.9ex 
+\membername{toString}
+{\tt public String {\bf toString}(  )
+}%end signature
+}%end item
+\divideents{valueOf}
+\item{\vskip -1.9ex 
+\membername{valueOf}
+{\tt public static Enum {\bf valueOf}( {\tt Class } {\bf arg0},
+{\tt String } {\bf arg1} )
+}%end signature
+}%end item
+\end{itemize}
+}}
+}
+}
+\startsection{Class}{World}{l13}{%
+{\small Этот класс описывает игровой мир. Содержит также описания всех игроков, игровых объектов (<<юнитов>>) и сооружений.}
+\vskip .1in 
+\startsubsubsection{Declaration}{
+\fbox{\vbox{
+\hbox{\vbox{\small public 
+class 
+World}}
+\noindent\hbox{\vbox{{\bf extends} Object}}
+}}}
+
+% Removed by DocsPostProcessor:
+% \startsubsubsection{Constructors}{
+% \vskip -2em
+% \begin{itemize}
+% \item{\vskip -1.9ex 
+% \membername{World}
+% {\tt public {\bf World}( {\tt int } {\bf tickIndex},
+% {\tt int } {\bf tickCount},
+% {\tt double } {\bf width},
+% {\tt double } {\bf height},
+% {\tt Player[]} {\bf players},
+% {\tt Vehicle[]} {\bf newVehicles},
+% {\tt VehicleUpdate[]} {\bf vehicleUpdates},
+% {\tt TerrainType[][]} {\bf terrainByCellXY},
+% {\tt WeatherType[][]} {\bf weatherByCellXY},
+% {\tt Facility[]} {\bf facilities} )
+% \label{l359}\label{l360}}%end signature
+% }%end item
+% \end{itemize}
+% }
+% \\ Removed by DocsPostProcessor.
+
+\startsubsubsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{getFacilities}
+{\tt public Facility[] {\bf getFacilities}(  )
+\label{l361}\label{l362}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает список сооружений (в случайном порядке).
+ В зависимости от реализации, объекты, задающие сооружения, могут пересоздаваться после каждого тика. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getHeight}
+\item{\vskip -1.9ex 
+\membername{getHeight}
+{\tt public double {\bf getHeight}(  )
+\label{l363}\label{l364}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает высоту мира. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getMyPlayer}
+\item{\vskip -1.9ex 
+\membername{getMyPlayer}
+{\tt public Player {\bf getMyPlayer}(  )
+\label{l365}\label{l366}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает вашего игрока. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getNewVehicles}
+\item{\vskip -1.9ex 
+\membername{getNewVehicles}
+{\tt public Vehicle[] {\bf getNewVehicles}(  )
+\label{l367}\label{l368}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает список техники, о которой у стратегии не было информации в предыдущий игровой тик. В этот
+ список попадает как только что произведённая техника, так и уже существующая, но находящаяся вне зоны видимости
+ до этого момента. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getOpponentPlayer}
+\item{\vskip -1.9ex 
+\membername{getOpponentPlayer}
+{\tt public Player {\bf getOpponentPlayer}(  )
+\label{l369}\label{l370}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает игрока, соревнующегося с вами. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getPlayers}
+\item{\vskip -1.9ex 
+\membername{getPlayers}
+{\tt public Player[] {\bf getPlayers}(  )
+\label{l371}\label{l372}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает список игроков (в случайном порядке).
+ В зависимости от реализации, объекты, задающие игроков, могут пересоздаваться после каждого тика. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTerrainByCellXY}
+\item{\vskip -1.9ex 
+\membername{getTerrainByCellXY}
+{\tt public TerrainType[][] {\bf getTerrainByCellXY}(  )
+\label{l373}\label{l374}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает карту местности. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTickCount}
+\item{\vskip -1.9ex 
+\membername{getTickCount}
+{\tt public int {\bf getTickCount}(  )
+\label{l375}\label{l376}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает базовую длительность игры в тиках. Реальная длительность может отличаться от этого значения в
+ меньшую сторону. Эквивалентно {\tt game.tickCount}. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTickIndex}
+\item{\vskip -1.9ex 
+\membername{getTickIndex}
+{\tt public int {\bf getTickIndex}(  )
+\label{l377}\label{l378}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает номер текущего тика. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getVehicleUpdates}
+\item{\vskip -1.9ex 
+\membername{getVehicleUpdates}
+{\tt public VehicleUpdate[] {\bf getVehicleUpdates}(  )
+\label{l379}\label{l380}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает значения изменяемых полей для каждой видимой техники, если хотя бы одно поле этой техники
+ изменилось. Нулевая прочность означает, что техника была уничтожена либо ушла из зоны видимости. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getWeatherByCellXY}
+\item{\vskip -1.9ex 
+\membername{getWeatherByCellXY}
+{\tt public WeatherType[][] {\bf getWeatherByCellXY}(  )
+\label{l381}\label{l382}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает карту погоды. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getWidth}
+\item{\vskip -1.9ex 
+\membername{getWidth}
+{\tt public double {\bf getWidth}(  )
+\label{l383}\label{l384}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает ширину мира. 
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\hide{inherited}{
+}
+}
+}
+}
+\newpage
+\def\packagename{\textless none\textgreater }
+\chapter{\bf Package \textless none\textgreater }{
+\vskip -.25in
+\hbox to \hsize{\it Package Contents\hfil Page}
+\rule{\hsize}{.7mm}
+\vskip .13in
+\hbox{\bf Interfaces}
+\entityintro{Strategy}{l385}{Стратегия --- интерфейс, содержащий описание методов искусственного интеллекта армии.}
+\vskip .1in
+\rule{\hsize}{.7mm}
+\vskip .1in
+\newpage
+\section{Interfaces}{
+\startsection{Interface}{Strategy}{l385}{%
+{\small Стратегия --- интерфейс, содержащий описание методов искусственного интеллекта армии.
+ Каждая пользовательская стратегия должна реализовывать этот интерфейс.
+ Может отсутствовать в некоторых языковых пакетах, если язык не поддерживает интерфейсы.}
+\vskip .1in 
+\startsubsubsection{Declaration}{
+\fbox{\vbox{
+\hbox{\vbox{\small public interface 
+Strategy}}
+}}}
+\startsubsubsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{move}
+{\tt public void {\bf move}( {\tt Player } {\bf me},
+{\tt World } {\bf world},
+{\tt Game } {\bf game},
+{\tt Move } {\bf move} )
+\label{l386}\label{l387}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Основной метод стратегии, осуществляющий управление армией. Вызывается каждый тик.
+}%end item
+  \end{itemize}
+}
+\item{
+\sld
+{\bf Parameters}
+\sld\isep
+  \begin{itemize}
+\sld\isep
+   \item{
+\sld
+{\tt me} - Информация о вашем игроке.}
+   \item{
+\sld
+{\tt world} - Текущее состояние мира.}
+   \item{
+\sld
+{\tt game} - Различные игровые константы.}
+   \item{
+\sld
+{\tt move} - Результатом работы метода является изменение полей данного объекта.}
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\hide{inherited}{
+}
+}
+}
+}
+\end{document}

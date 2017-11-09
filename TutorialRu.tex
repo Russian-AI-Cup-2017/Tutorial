@@ -617,14 +617,14 @@ using namespace std;
 
 void MyStrategy::move(const Player& me, const World& world, const Game& game, Move& move) {
     if (world.getTickIndex() == 0) {
-        move.setAction(ACTION_CLEAR_AND_SELECT);
+        move.setAction(ActionType::CLEAR_AND_SELECT);
         move.setRight(world.getWidth());
         move.setBottom(world.getHeight());
         return;
     }
 
     if (world.getTickIndex() == 1) {
-        move.setAction(ACTION_MOVE);
+        move.setAction(ActionType::MOVE);
         move.setX(world.getWidth() / 2.0);
         move.setY(world.getHeight() / 2.0);
     }

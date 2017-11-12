@@ -124,7 +124,7 @@
 \textsc{\Huge CodeWars 2017}\\
 \vspace{0.50in}
 \textsc{\LARGE Правила}\\
-\textsc{\small Версия 0.9.5.1 BETA}\\
+\textsc{\small Версия 0.9.6 BETA}\\
 \vspace{2.75in}
 \includegraphics{images/mail-ru-and-ssu-logo.png}
 }
@@ -234,6 +234,9 @@ public static final ActionType SCALE\begin{itemize}\item{\vskip -.9ex Масшт
 }
 \item{
 public static final ActionType SETUP\_VEHICLE\_PRODUCTION\begin{itemize}\item{\vskip -.9ex Настроить производство нужного типа техники на заводе ({\tt FacilityType.VEHICLE\_FACTORY}).}\end{itemize}
+}
+\item{
+public static final ActionType TACTICAL\_NUCLEAR\_STRIKE\begin{itemize}\item{\vskip -.9ex Запросить тактический ядерный удар.}\end{itemize}
 }
 \end{itemize}
 }
@@ -827,7 +830,12 @@ Game}}
 % {\tt double } {\bf maxFacilityCapturePoints},
 % {\tt double } {\bf facilityCapturePointsPerVehiclePerTick},
 % {\tt double } {\bf facilityWidth},
-% {\tt double } {\bf facilityHeight} )
+% {\tt double } {\bf facilityHeight},
+% {\tt int } {\bf baseTacticalNuclearStrikeCooldown},
+% {\tt int } {\bf tacticalNuclearStrikeCooldownDecreasePerControlCenter},
+% {\tt double } {\bf maxTacticalNuclearStrikeDamage},
+% {\tt double } {\bf tacticalNuclearStrikeRadius},
+% {\tt int } {\bf tacticalNuclearStrikeDelay} )
 % \label{l37}\label{l38}}%end signature
 % }%end item
 % \end{itemize}
@@ -973,11 +981,24 @@ Game}}
 }%end item
 \end{itemize}
 }%end item
+\divideents{getBaseTacticalNuclearStrikeCooldown}
+\item{\vskip -1.9ex 
+\membername{getBaseTacticalNuclearStrikeCooldown}
+{\tt public int {\bf getBaseTacticalNuclearStrikeCooldown}(  )
+\label{l61}\label{l62}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает минимально возможный интервал между двумя последовательными тактическими ядерными ударами
+ ({\tt ActionType.TACTICAL\_NUCLEAR\_STRIKE}). 
+}%end item
+\end{itemize}
+}%end item
 \divideents{getClearWeatherSpeedFactor}
 \item{\vskip -1.9ex 
 \membername{getClearWeatherSpeedFactor}
 {\tt public double {\bf getClearWeatherSpeedFactor}(  )
-\label{l61}\label{l62}}%end signature
+\label{l63}\label{l64}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -990,7 +1011,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getClearWeatherStealthFactor}
 {\tt public double {\bf getClearWeatherStealthFactor}(  )
-\label{l63}\label{l64}}%end signature
+\label{l65}\label{l66}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1003,7 +1024,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getClearWeatherVisionFactor}
 {\tt public double {\bf getClearWeatherVisionFactor}(  )
-\label{l65}\label{l66}}%end signature
+\label{l67}\label{l68}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1016,7 +1037,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getCloudWeatherSpeedFactor}
 {\tt public double {\bf getCloudWeatherSpeedFactor}(  )
-\label{l67}\label{l68}}%end signature
+\label{l69}\label{l70}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1029,7 +1050,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getCloudWeatherStealthFactor}
 {\tt public double {\bf getCloudWeatherStealthFactor}(  )
-\label{l69}\label{l70}}%end signature
+\label{l71}\label{l72}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1042,7 +1063,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getCloudWeatherVisionFactor}
 {\tt public double {\bf getCloudWeatherVisionFactor}(  )
-\label{l71}\label{l72}}%end signature
+\label{l73}\label{l74}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1055,7 +1076,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getFacilityCapturePointsPerVehiclePerTick}
 {\tt public double {\bf getFacilityCapturePointsPerVehiclePerTick}(  )
-\label{l73}\label{l74}}%end signature
+\label{l75}\label{l76}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1068,7 +1089,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getFacilityCaptureScore}
 {\tt public int {\bf getFacilityCaptureScore}(  )
-\label{l75}\label{l76}}%end signature
+\label{l77}\label{l78}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1080,7 +1101,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getFacilityHeight}
 {\tt public double {\bf getFacilityHeight}(  )
-\label{l77}\label{l78}}%end signature
+\label{l79}\label{l80}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1092,7 +1113,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getFacilityWidth}
 {\tt public double {\bf getFacilityWidth}(  )
-\label{l79}\label{l80}}%end signature
+\label{l81}\label{l82}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1104,7 +1125,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getFighterAerialAttackRange}
 {\tt public double {\bf getFighterAerialAttackRange}(  )
-\label{l81}\label{l82}}%end signature
+\label{l83}\label{l84}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1116,7 +1137,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getFighterAerialDamage}
 {\tt public int {\bf getFighterAerialDamage}(  )
-\label{l83}\label{l84}}%end signature
+\label{l85}\label{l86}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1128,7 +1149,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getFighterAerialDefence}
 {\tt public int {\bf getFighterAerialDefence}(  )
-\label{l85}\label{l86}}%end signature
+\label{l87}\label{l88}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1140,7 +1161,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getFighterAttackCooldownTicks}
 {\tt public int {\bf getFighterAttackCooldownTicks}(  )
-\label{l87}\label{l88}}%end signature
+\label{l89}\label{l90}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1152,7 +1173,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getFighterDurability}
 {\tt public int {\bf getFighterDurability}(  )
-\label{l89}\label{l90}}%end signature
+\label{l91}\label{l92}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1164,7 +1185,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getFighterGroundAttackRange}
 {\tt public double {\bf getFighterGroundAttackRange}(  )
-\label{l91}\label{l92}}%end signature
+\label{l93}\label{l94}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1176,7 +1197,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getFighterGroundDamage}
 {\tt public int {\bf getFighterGroundDamage}(  )
-\label{l93}\label{l94}}%end signature
+\label{l95}\label{l96}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1188,7 +1209,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getFighterGroundDefence}
 {\tt public int {\bf getFighterGroundDefence}(  )
-\label{l95}\label{l96}}%end signature
+\label{l97}\label{l98}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1200,7 +1221,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getFighterProductionCost}
 {\tt public int {\bf getFighterProductionCost}(  )
-\label{l97}\label{l98}}%end signature
+\label{l99}\label{l100}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1213,7 +1234,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getFighterSpeed}
 {\tt public double {\bf getFighterSpeed}(  )
-\label{l99}\label{l100}}%end signature
+\label{l101}\label{l102}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1225,7 +1246,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getFighterVisionRange}
 {\tt public double {\bf getFighterVisionRange}(  )
-\label{l101}\label{l102}}%end signature
+\label{l103}\label{l104}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1237,7 +1258,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getForestTerrainSpeedFactor}
 {\tt public double {\bf getForestTerrainSpeedFactor}(  )
-\label{l103}\label{l104}}%end signature
+\label{l105}\label{l106}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1250,7 +1271,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getForestTerrainStealthFactor}
 {\tt public double {\bf getForestTerrainStealthFactor}(  )
-\label{l105}\label{l106}}%end signature
+\label{l107}\label{l108}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1263,7 +1284,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getForestTerrainVisionFactor}
 {\tt public double {\bf getForestTerrainVisionFactor}(  )
-\label{l107}\label{l108}}%end signature
+\label{l109}\label{l110}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1276,7 +1297,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getHelicopterAerialAttackRange}
 {\tt public double {\bf getHelicopterAerialAttackRange}(  )
-\label{l109}\label{l110}}%end signature
+\label{l111}\label{l112}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1288,7 +1309,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getHelicopterAerialDamage}
 {\tt public int {\bf getHelicopterAerialDamage}(  )
-\label{l111}\label{l112}}%end signature
+\label{l113}\label{l114}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1300,7 +1321,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getHelicopterAerialDefence}
 {\tt public int {\bf getHelicopterAerialDefence}(  )
-\label{l113}\label{l114}}%end signature
+\label{l115}\label{l116}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1312,7 +1333,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getHelicopterAttackCooldownTicks}
 {\tt public int {\bf getHelicopterAttackCooldownTicks}(  )
-\label{l115}\label{l116}}%end signature
+\label{l117}\label{l118}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1324,7 +1345,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getHelicopterDurability}
 {\tt public int {\bf getHelicopterDurability}(  )
-\label{l117}\label{l118}}%end signature
+\label{l119}\label{l120}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1336,7 +1357,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getHelicopterGroundAttackRange}
 {\tt public double {\bf getHelicopterGroundAttackRange}(  )
-\label{l119}\label{l120}}%end signature
+\label{l121}\label{l122}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1348,7 +1369,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getHelicopterGroundDamage}
 {\tt public int {\bf getHelicopterGroundDamage}(  )
-\label{l121}\label{l122}}%end signature
+\label{l123}\label{l124}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1360,7 +1381,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getHelicopterGroundDefence}
 {\tt public int {\bf getHelicopterGroundDefence}(  )
-\label{l123}\label{l124}}%end signature
+\label{l125}\label{l126}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1372,7 +1393,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getHelicopterProductionCost}
 {\tt public int {\bf getHelicopterProductionCost}(  )
-\label{l125}\label{l126}}%end signature
+\label{l127}\label{l128}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1385,7 +1406,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getHelicopterSpeed}
 {\tt public double {\bf getHelicopterSpeed}(  )
-\label{l127}\label{l128}}%end signature
+\label{l129}\label{l130}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1397,7 +1418,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getHelicopterVisionRange}
 {\tt public double {\bf getHelicopterVisionRange}(  )
-\label{l129}\label{l130}}%end signature
+\label{l131}\label{l132}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1409,7 +1430,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getIfvAerialAttackRange}
 {\tt public double {\bf getIfvAerialAttackRange}(  )
-\label{l131}\label{l132}}%end signature
+\label{l133}\label{l134}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1421,7 +1442,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getIfvAerialDamage}
 {\tt public int {\bf getIfvAerialDamage}(  )
-\label{l133}\label{l134}}%end signature
+\label{l135}\label{l136}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1433,7 +1454,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getIfvAerialDefence}
 {\tt public int {\bf getIfvAerialDefence}(  )
-\label{l135}\label{l136}}%end signature
+\label{l137}\label{l138}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1445,7 +1466,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getIfvAttackCooldownTicks}
 {\tt public int {\bf getIfvAttackCooldownTicks}(  )
-\label{l137}\label{l138}}%end signature
+\label{l139}\label{l140}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1457,7 +1478,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getIfvDurability}
 {\tt public int {\bf getIfvDurability}(  )
-\label{l139}\label{l140}}%end signature
+\label{l141}\label{l142}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1469,7 +1490,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getIfvGroundAttackRange}
 {\tt public double {\bf getIfvGroundAttackRange}(  )
-\label{l141}\label{l142}}%end signature
+\label{l143}\label{l144}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1481,7 +1502,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getIfvGroundDamage}
 {\tt public int {\bf getIfvGroundDamage}(  )
-\label{l143}\label{l144}}%end signature
+\label{l145}\label{l146}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1493,7 +1514,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getIfvGroundDefence}
 {\tt public int {\bf getIfvGroundDefence}(  )
-\label{l145}\label{l146}}%end signature
+\label{l147}\label{l148}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1505,7 +1526,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getIfvProductionCost}
 {\tt public int {\bf getIfvProductionCost}(  )
-\label{l147}\label{l148}}%end signature
+\label{l149}\label{l150}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1518,7 +1539,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getIfvSpeed}
 {\tt public double {\bf getIfvSpeed}(  )
-\label{l149}\label{l150}}%end signature
+\label{l151}\label{l152}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1530,7 +1551,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getIfvVisionRange}
 {\tt public double {\bf getIfvVisionRange}(  )
-\label{l151}\label{l152}}%end signature
+\label{l153}\label{l154}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1542,7 +1563,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getMaxFacilityCapturePoints}
 {\tt public double {\bf getMaxFacilityCapturePoints}(  )
-\label{l153}\label{l154}}%end signature
+\label{l155}\label{l156}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1551,11 +1572,23 @@ Game}}
 }%end item
 \end{itemize}
 }%end item
+\divideents{getMaxTacticalNuclearStrikeDamage}
+\item{\vskip -1.9ex 
+\membername{getMaxTacticalNuclearStrikeDamage}
+{\tt public double {\bf getMaxTacticalNuclearStrikeDamage}(  )
+\label{l157}\label{l158}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает урон тактического ядерного удара в центре взрыва. 
+}%end item
+\end{itemize}
+}%end item
 \divideents{getMaxUnitGroup}
 \item{\vskip -1.9ex 
 \membername{getMaxUnitGroup}
 {\tt public int {\bf getMaxUnitGroup}(  )
-\label{l155}\label{l156}}%end signature
+\label{l159}\label{l160}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1567,7 +1600,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getPlainTerrainSpeedFactor}
 {\tt public double {\bf getPlainTerrainSpeedFactor}(  )
-\label{l157}\label{l158}}%end signature
+\label{l161}\label{l162}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1580,7 +1613,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getPlainTerrainStealthFactor}
 {\tt public double {\bf getPlainTerrainStealthFactor}(  )
-\label{l159}\label{l160}}%end signature
+\label{l163}\label{l164}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1593,7 +1626,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getPlainTerrainVisionFactor}
 {\tt public double {\bf getPlainTerrainVisionFactor}(  )
-\label{l161}\label{l162}}%end signature
+\label{l165}\label{l166}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1606,7 +1639,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getRainWeatherSpeedFactor}
 {\tt public double {\bf getRainWeatherSpeedFactor}(  )
-\label{l163}\label{l164}}%end signature
+\label{l167}\label{l168}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1619,7 +1652,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getRainWeatherStealthFactor}
 {\tt public double {\bf getRainWeatherStealthFactor}(  )
-\label{l165}\label{l166}}%end signature
+\label{l169}\label{l170}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1632,7 +1665,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getRainWeatherVisionFactor}
 {\tt public double {\bf getRainWeatherVisionFactor}(  )
-\label{l167}\label{l168}}%end signature
+\label{l171}\label{l172}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1645,7 +1678,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getRandomSeed}
 {\tt public long {\bf getRandomSeed}(  )
-\label{l169}\label{l170}}%end signature
+\label{l173}\label{l174}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1659,7 +1692,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getSwampTerrainSpeedFactor}
 {\tt public double {\bf getSwampTerrainSpeedFactor}(  )
-\label{l171}\label{l172}}%end signature
+\label{l175}\label{l176}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1672,7 +1705,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getSwampTerrainStealthFactor}
 {\tt public double {\bf getSwampTerrainStealthFactor}(  )
-\label{l173}\label{l174}}%end signature
+\label{l177}\label{l178}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1685,7 +1718,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getSwampTerrainVisionFactor}
 {\tt public double {\bf getSwampTerrainVisionFactor}(  )
-\label{l175}\label{l176}}%end signature
+\label{l179}\label{l180}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1694,11 +1727,48 @@ Game}}
 }%end item
 \end{itemize}
 }%end item
+\divideents{getTacticalNuclearStrikeCooldownDecreasePerControlCenter}
+\item{\vskip -1.9ex 
+\membername{getTacticalNuclearStrikeCooldownDecreasePerControlCenter}
+{\tt public int {\bf getTacticalNuclearStrikeCooldownDecreasePerControlCenter}(  )
+\label{l181}\label{l182}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает уменьшение интервала между тактическими ядерными ударами за каждый захваченный центр
+ управления ({\tt FacilityType.CONTROL\_CENTER}). 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTacticalNuclearStrikeDelay}
+\item{\vskip -1.9ex 
+\membername{getTacticalNuclearStrikeDelay}
+{\tt public int {\bf getTacticalNuclearStrikeDelay}(  )
+\label{l183}\label{l184}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает задержку между запросом нанесения тактического ядерного удара и собственно самим нанесением. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getTacticalNuclearStrikeRadius}
+\item{\vskip -1.9ex 
+\membername{getTacticalNuclearStrikeRadius}
+{\tt public double {\bf getTacticalNuclearStrikeRadius}(  )
+\label{l185}\label{l186}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает радиус взрыва тактического ядерного удара. 
+}%end item
+\end{itemize}
+}%end item
 \divideents{getTankAerialAttackRange}
 \item{\vskip -1.9ex 
 \membername{getTankAerialAttackRange}
 {\tt public double {\bf getTankAerialAttackRange}(  )
-\label{l177}\label{l178}}%end signature
+\label{l187}\label{l188}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1710,7 +1780,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getTankAerialDamage}
 {\tt public int {\bf getTankAerialDamage}(  )
-\label{l179}\label{l180}}%end signature
+\label{l189}\label{l190}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1722,7 +1792,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getTankAerialDefence}
 {\tt public int {\bf getTankAerialDefence}(  )
-\label{l181}\label{l182}}%end signature
+\label{l191}\label{l192}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1734,7 +1804,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getTankAttackCooldownTicks}
 {\tt public int {\bf getTankAttackCooldownTicks}(  )
-\label{l183}\label{l184}}%end signature
+\label{l193}\label{l194}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1746,7 +1816,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getTankDurability}
 {\tt public int {\bf getTankDurability}(  )
-\label{l185}\label{l186}}%end signature
+\label{l195}\label{l196}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1758,7 +1828,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getTankGroundAttackRange}
 {\tt public double {\bf getTankGroundAttackRange}(  )
-\label{l187}\label{l188}}%end signature
+\label{l197}\label{l198}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1770,7 +1840,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getTankGroundDamage}
 {\tt public int {\bf getTankGroundDamage}(  )
-\label{l189}\label{l190}}%end signature
+\label{l199}\label{l200}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1782,7 +1852,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getTankGroundDefence}
 {\tt public int {\bf getTankGroundDefence}(  )
-\label{l191}\label{l192}}%end signature
+\label{l201}\label{l202}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1794,7 +1864,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getTankProductionCost}
 {\tt public int {\bf getTankProductionCost}(  )
-\label{l193}\label{l194}}%end signature
+\label{l203}\label{l204}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1807,7 +1877,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getTankSpeed}
 {\tt public double {\bf getTankSpeed}(  )
-\label{l195}\label{l196}}%end signature
+\label{l205}\label{l206}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1819,7 +1889,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getTankVisionRange}
 {\tt public double {\bf getTankVisionRange}(  )
-\label{l197}\label{l198}}%end signature
+\label{l207}\label{l208}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1831,7 +1901,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getTerrainWeatherMapColumnCount}
 {\tt public int {\bf getTerrainWeatherMapColumnCount}(  )
-\label{l199}\label{l200}}%end signature
+\label{l209}\label{l210}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1843,7 +1913,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getTerrainWeatherMapRowCount}
 {\tt public int {\bf getTerrainWeatherMapRowCount}(  )
-\label{l201}\label{l202}}%end signature
+\label{l211}\label{l212}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1855,7 +1925,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getTickCount}
 {\tt public int {\bf getTickCount}(  )
-\label{l203}\label{l204}}%end signature
+\label{l213}\label{l214}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1868,7 +1938,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getVehicleEliminationScore}
 {\tt public int {\bf getVehicleEliminationScore}(  )
-\label{l205}\label{l206}}%end signature
+\label{l215}\label{l216}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1880,7 +1950,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getVehicleRadius}
 {\tt public double {\bf getVehicleRadius}(  )
-\label{l207}\label{l208}}%end signature
+\label{l217}\label{l218}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1892,7 +1962,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getVictoryScore}
 {\tt public int {\bf getVictoryScore}(  )
-\label{l209}\label{l210}}%end signature
+\label{l219}\label{l220}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1904,7 +1974,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getWorldHeight}
 {\tt public double {\bf getWorldHeight}(  )
-\label{l211}\label{l212}}%end signature
+\label{l221}\label{l222}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1916,7 +1986,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{getWorldWidth}
 {\tt public double {\bf getWorldWidth}(  )
-\label{l213}\label{l214}}%end signature
+\label{l223}\label{l224}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1928,7 +1998,7 @@ Game}}
 \item{\vskip -1.9ex 
 \membername{isFogOfWarEnabled}
 {\tt public boolean {\bf isFogOfWarEnabled}(  )
-\label{l215}\label{l216}}%end signature
+\label{l225}\label{l226}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1959,7 +2029,7 @@ Move}}
 % \item{\vskip -1.9ex 
 % \membername{Move}
 % {\tt public {\bf Move}(  )
-% \label{l217}\label{l218}}%end signature
+% \label{l227}\label{l228}}%end signature
 % }%end item
 % \end{itemize}
 % }
@@ -1971,7 +2041,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{getAction}
 {\tt public ActionType {\bf getAction}(  )
-\label{l219}\label{l220}}%end signature
+\label{l229}\label{l230}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1983,7 +2053,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{getAngle}
 {\tt public double {\bf getAngle}(  )
-\label{l221}\label{l222}}%end signature
+\label{l231}\label{l232}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -1995,7 +2065,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{getBottom}
 {\tt public double {\bf getBottom}(  )
-\label{l223}\label{l224}}%end signature
+\label{l233}\label{l234}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2007,7 +2077,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{getFacilityId}
 {\tt public long {\bf getFacilityId}(  )
-\label{l225}\label{l226}}%end signature
+\label{l235}\label{l236}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2019,7 +2089,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{getFactor}
 {\tt public double {\bf getFactor}(  )
-\label{l227}\label{l228}}%end signature
+\label{l237}\label{l238}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2031,7 +2101,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{getGroup}
 {\tt public int {\bf getGroup}(  )
-\label{l229}\label{l230}}%end signature
+\label{l239}\label{l240}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2043,7 +2113,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{getLeft}
 {\tt public double {\bf getLeft}(  )
-\label{l231}\label{l232}}%end signature
+\label{l241}\label{l242}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2055,7 +2125,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{getMaxAngularSpeed}
 {\tt public double {\bf getMaxAngularSpeed}(  )
-\label{l233}\label{l234}}%end signature
+\label{l243}\label{l244}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2067,7 +2137,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{getMaxSpeed}
 {\tt public double {\bf getMaxSpeed}(  )
-\label{l235}\label{l236}}%end signature
+\label{l245}\label{l246}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2079,7 +2149,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{getRight}
 {\tt public double {\bf getRight}(  )
-\label{l237}\label{l238}}%end signature
+\label{l247}\label{l248}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2091,7 +2161,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{getTop}
 {\tt public double {\bf getTop}(  )
-\label{l239}\label{l240}}%end signature
+\label{l249}\label{l250}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2099,11 +2169,23 @@ Move}}
 }%end item
 \end{itemize}
 }%end item
+\divideents{getVehicleId}
+\item{\vskip -1.9ex 
+\membername{getVehicleId}
+{\tt public long {\bf getVehicleId}(  )
+\label{l251}\label{l252}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает текущий идентификатор техники. 
+}%end item
+\end{itemize}
+}%end item
 \divideents{getVehicleType}
 \item{\vskip -1.9ex 
 \membername{getVehicleType}
 {\tt public VehicleType {\bf getVehicleType}(  )
-\label{l241}\label{l242}}%end signature
+\label{l253}\label{l254}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2115,7 +2197,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{getX}
 {\tt public double {\bf getX}(  )
-\label{l243}\label{l244}}%end signature
+\label{l255}\label{l256}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2127,7 +2209,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{getY}
 {\tt public double {\bf getY}(  )
-\label{l245}\label{l246}}%end signature
+\label{l257}\label{l258}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2139,7 +2221,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{setAction}
 {\tt public void {\bf setAction}( {\tt ActionType } {\bf action} )
-\label{l247}\label{l248}}%end signature
+\label{l259}\label{l260}}%end signature
 \begin{itemize}
 \sld
 \item{
@@ -2157,7 +2239,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{setAngle}
 {\tt public void {\bf setAngle}( {\tt double } {\bf angle} )
-\label{l249}\label{l250}}%end signature
+\label{l261}\label{l262}}%end signature
 \begin{itemize}
 \sld
 \item{
@@ -2180,7 +2262,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{setBottom}
 {\tt public void {\bf setBottom}( {\tt double } {\bf bottom} )
-\label{l251}\label{l252}}%end signature
+\label{l263}\label{l264}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2198,7 +2280,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{setFacilityId}
 {\tt public void {\bf setFacilityId}( {\tt long } {\bf facilityId} )
-\label{l253}\label{l254}}%end signature
+\label{l265}\label{l266}}%end signature
 \begin{itemize}
 \sld
 \item{
@@ -2220,7 +2302,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{setFactor}
 {\tt public void {\bf setFactor}( {\tt double } {\bf factor} )
-\label{l255}\label{l256}}%end signature
+\label{l267}\label{l268}}%end signature
 \begin{itemize}
 \sld
 \item{
@@ -2244,7 +2326,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{setGroup}
 {\tt public void {\bf setGroup}( {\tt int } {\bf group} )
-\label{l257}\label{l258}}%end signature
+\label{l269}\label{l270}}%end signature
 \begin{itemize}
 \sld
 \item{
@@ -2272,7 +2354,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{setLeft}
 {\tt public void {\bf setLeft}( {\tt double } {\bf left} )
-\label{l259}\label{l260}}%end signature
+\label{l271}\label{l272}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2290,7 +2372,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{setMaxAngularSpeed}
 {\tt public void {\bf setMaxAngularSpeed}( {\tt double } {\bf maxAngularSpeed} )
-\label{l261}\label{l262}}%end signature
+\label{l273}\label{l274}}%end signature
 \begin{itemize}
 \sld
 \item{
@@ -2314,7 +2396,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{setMaxSpeed}
 {\tt public void {\bf setMaxSpeed}( {\tt double } {\bf maxSpeed} )
-\label{l263}\label{l264}}%end signature
+\label{l275}\label{l276}}%end signature
 \begin{itemize}
 \sld
 \item{
@@ -2339,7 +2421,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{setRight}
 {\tt public void {\bf setRight}( {\tt double } {\bf right} )
-\label{l265}\label{l266}}%end signature
+\label{l277}\label{l278}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2357,7 +2439,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{setTop}
 {\tt public void {\bf setTop}( {\tt double } {\bf top} )
-\label{l267}\label{l268}}%end signature
+\label{l279}\label{l280}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2371,11 +2453,33 @@ Move}}
 }%end item
 \end{itemize}
 }%end item
+\divideents{setVehicleId}
+\item{\vskip -1.9ex 
+\membername{setVehicleId}
+{\tt public void {\bf setVehicleId}( {\tt long } {\bf vehicleId} )
+\label{l281}\label{l282}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Устанавливает идентификатор техники.
+ \bl 
+ Является обязательным параметром для действия {\tt ActionType.TACTICAL\_NUCLEAR\_STRIKE}. Если юнит с данным
+ идентификатором отсутствует в игре, принадлежит другому игроку или цель удара находится вне зоны видимости этого
+ юнита, то действие будет проигнорировано.
+}%end item
+  \end{itemize}
+}
+\end{itemize}
+}%end item
 \divideents{setVehicleType}
 \item{\vskip -1.9ex 
 \membername{setVehicleType}
 {\tt public void {\bf setVehicleType}( {\tt VehicleType } {\bf vehicleType} )
-\label{l269}\label{l270}}%end signature
+\label{l283}\label{l284}}%end signature
 \begin{itemize}
 \sld
 \item{
@@ -2402,7 +2506,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{setX}
 {\tt public void {\bf setX}( {\tt double } {\bf x} )
-\label{l271}\label{l272}}%end signature
+\label{l285}\label{l286}}%end signature
 \begin{itemize}
 \sld
 \item{
@@ -2421,10 +2525,15 @@ Move}}
  Является обязательным параметром для действия {\tt ActionType.SCALE} и задаёт абсциссу точки, относительно
  которой необходимо совершить масштабирование.
  \bl 
+ Является обязательным параметром для действия {\tt ActionType.TACTICAL\_NUCLEAR\_STRIKE} и задаёт абсциссу цели
+ тактического ядерного удара.
+ \bl 
  Корректными значениями для действия {\tt ActionType.MOVE} являются вещественные числа от
  {\tt -game.worldWidth} до {\tt game.worldWidth} включительно. Корректными значениями для действий
  {\tt ActionType.ROTATE} и {\tt ActionType.SCALE} являются вещественные числа от {\tt -game.worldWidth} до
- {\tt 2.0 * game.worldWidth} включительно.
+ {\tt 2.0 * game.worldWidth} включительно. Корректными значениями для действия
+ {\tt ActionType.TACTICAL\_NUCLEAR\_STRIKE} являются вещественные числа от {\tt 0.0} до {\tt game.worldWidth}
+ включительно.
 }%end item
   \end{itemize}
 }
@@ -2434,7 +2543,7 @@ Move}}
 \item{\vskip -1.9ex 
 \membername{setY}
 {\tt public void {\bf setY}( {\tt double } {\bf y} )
-\label{l273}\label{l274}}%end signature
+\label{l287}\label{l288}}%end signature
 \begin{itemize}
 \sld
 \item{
@@ -2453,10 +2562,15 @@ Move}}
  Является обязательным параметром для действия {\tt ActionType.SCALE} и задаёт ординату точки, относительно
  которой необходимо совершить масштабирование.
  \bl 
+ Является обязательным параметром для действия {\tt ActionType.TACTICAL\_NUCLEAR\_STRIKE} и задаёт ординату цели
+ тактического ядерного удара.
+ \bl 
  Корректными значениями для действия {\tt ActionType.MOVE} являются вещественные числа от
  {\tt -game.worldHeight} до {\tt game.worldHeight} включительно. Корректными значениями для действий
  {\tt ActionType.ROTATE} и {\tt ActionType.SCALE} являются вещественные числа от {\tt -game.worldHeight} до
- {\tt 2.0 * game.worldHeight} включительно.
+ {\tt 2.0 * game.worldHeight} включительно. Корректными значениями для действия
+ {\tt ActionType.TACTICAL\_NUCLEAR\_STRIKE} являются вещественные числа от {\tt 0.0} до {\tt game.worldHeight}
+ включительно.
 }%end item
   \end{itemize}
 }
@@ -2488,8 +2602,13 @@ Player}}
 % {\tt boolean } {\bf me},
 % {\tt boolean } {\bf strategyCrashed},
 % {\tt int } {\bf score},
-% {\tt int } {\bf remainingActionCooldownTicks} )
-% \label{l275}\label{l276}}%end signature
+% {\tt int } {\bf remainingActionCooldownTicks},
+% {\tt int } {\bf remainingNuclearStrikeCooldownTicks},
+% {\tt long } {\bf nextNuclearStrikeVehicleId},
+% {\tt int } {\bf nextNuclearStrikeTickIndex},
+% {\tt double } {\bf nextNuclearStrikeX},
+% {\tt double } {\bf nextNuclearStrikeY} )
+% \label{l289}\label{l290}}%end signature
 % }%end item
 % \end{itemize}
 % }
@@ -2501,7 +2620,7 @@ Player}}
 \item{\vskip -1.9ex 
 \membername{getId}
 {\tt public long {\bf getId}(  )
-\label{l277}\label{l278}}%end signature
+\label{l291}\label{l292}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2509,11 +2628,59 @@ Player}}
 }%end item
 \end{itemize}
 }%end item
+\divideents{getNextNuclearStrikeTickIndex}
+\item{\vskip -1.9ex 
+\membername{getNextNuclearStrikeTickIndex}
+{\tt public int {\bf getNextNuclearStrikeTickIndex}(  )
+\label{l293}\label{l294}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает тик нанесения следующего ядерного удара или {\tt -1}. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getNextNuclearStrikeVehicleId}
+\item{\vskip -1.9ex 
+\membername{getNextNuclearStrikeVehicleId}
+{\tt public long {\bf getNextNuclearStrikeVehicleId}(  )
+\label{l295}\label{l296}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает идентификатор техники, осуществляющей наведение ядерного удара на цель или {\tt -1}. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getNextNuclearStrikeX}
+\item{\vskip -1.9ex 
+\membername{getNextNuclearStrikeX}
+{\tt public double {\bf getNextNuclearStrikeX}(  )
+\label{l297}\label{l298}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает абсциссу цели следующего ядерного удара или {\tt -1.0}. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getNextNuclearStrikeY}
+\item{\vskip -1.9ex 
+\membername{getNextNuclearStrikeY}
+{\tt public double {\bf getNextNuclearStrikeY}(  )
+\label{l299}\label{l300}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает ординату цели следующего ядерного удара или {\tt -1.0}. 
+}%end item
+\end{itemize}
+}%end item
 \divideents{getRemainingActionCooldownTicks}
 \item{\vskip -1.9ex 
 \membername{getRemainingActionCooldownTicks}
 {\tt public int {\bf getRemainingActionCooldownTicks}(  )
-\label{l279}\label{l280}}%end signature
+\label{l301}\label{l302}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2522,11 +2689,24 @@ Player}}
 }%end item
 \end{itemize}
 }%end item
+\divideents{getRemainingNuclearStrikeCooldownTicks}
+\item{\vskip -1.9ex 
+\membername{getRemainingNuclearStrikeCooldownTicks}
+{\tt public int {\bf getRemainingNuclearStrikeCooldownTicks}(  )
+\label{l303}\label{l304}}%end signature
+\begin{itemize}
+\sld
+\item{{\bf Returns} - 
+Возвращает количество тиков, оставшееся до следующего тактического ядерного удара.
+ Если значение равно {\tt 0}, игрок может запросить удар в данный тик. 
+}%end item
+\end{itemize}
+}%end item
 \divideents{getScore}
 \item{\vskip -1.9ex 
 \membername{getScore}
 {\tt public int {\bf getScore}(  )
-\label{l281}\label{l282}}%end signature
+\label{l305}\label{l306}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2538,7 +2718,7 @@ Player}}
 \item{\vskip -1.9ex 
 \membername{isMe}
 {\tt public boolean {\bf isMe}(  )
-\label{l283}\label{l284}}%end signature
+\label{l307}\label{l308}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2550,7 +2730,7 @@ Player}}
 \item{\vskip -1.9ex 
 \membername{isStrategyCrashed}
 {\tt public boolean {\bf isStrategyCrashed}(  )
-\label{l285}\label{l286}}%end signature
+\label{l309}\label{l310}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2676,7 +2856,7 @@ Unit}}
 % {\tt protected {\bf Unit}( {\tt long } {\bf id},
 % {\tt double } {\bf x},
 % {\tt double } {\bf y} )
-% \label{l287}\label{l288}}%end signature
+% \label{l311}\label{l312}}%end signature
 % }%end item
 % \end{itemize}
 % }
@@ -2689,7 +2869,7 @@ Unit}}
 \membername{getDistanceTo}
 {\tt public double {\bf getDistanceTo}( {\tt double } {\bf x},
 {\tt double } {\bf y} )
-\label{l289}\label{l290}}%end signature
+\label{l313}\label{l314}}%end signature
 \begin{itemize}
 \sld
 \item{
@@ -2715,7 +2895,7 @@ Unit}}
 \item{\vskip -1.9ex 
 \membername{getDistanceTo}
 {\tt public double {\bf getDistanceTo}( {\tt Unit } {\bf unit} )
-\label{l291}\label{l292}}%end signature
+\label{l315}\label{l316}}%end signature
 \begin{itemize}
 \sld
 \item{
@@ -2738,7 +2918,7 @@ Unit}}
 \item{\vskip -1.9ex 
 \membername{getId}
 {\tt public long {\bf getId}(  )
-\label{l293}\label{l294}}%end signature
+\label{l317}\label{l318}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2751,7 +2931,7 @@ Unit}}
 \membername{getSquaredDistanceTo}
 {\tt public double {\bf getSquaredDistanceTo}( {\tt double } {\bf x},
 {\tt double } {\bf y} )
-\label{l295}\label{l296}}%end signature
+\label{l319}\label{l320}}%end signature
 \begin{itemize}
 \sld
 \item{
@@ -2777,7 +2957,7 @@ Unit}}
 \item{\vskip -1.9ex 
 \membername{getSquaredDistanceTo}
 {\tt public double {\bf getSquaredDistanceTo}( {\tt Unit } {\bf unit} )
-\label{l297}\label{l298}}%end signature
+\label{l321}\label{l322}}%end signature
 \begin{itemize}
 \sld
 \item{
@@ -2800,7 +2980,7 @@ Unit}}
 \item{\vskip -1.9ex 
 \membername{getX}
 {\tt public final double {\bf getX}(  )
-\label{l299}\label{l300}}%end signature
+\label{l323}\label{l324}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2812,7 +2992,7 @@ Unit}}
 \item{\vskip -1.9ex 
 \membername{getY}
 {\tt public final double {\bf getY}(  )
-\label{l301}\label{l302}}%end signature
+\label{l325}\label{l326}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2866,14 +3046,14 @@ Vehicle}}
 % {\tt boolean } {\bf aerial},
 % {\tt boolean } {\bf selected},
 % {\tt int[]} {\bf groups} )
-% \label{l303}\label{l304}}%end signature
+% \label{l327}\label{l328}}%end signature
 % }%end item
 % \divideents{Vehicle}
 % \item{\vskip -1.9ex 
 % \membername{Vehicle}
 % {\tt public {\bf Vehicle}( {\tt Vehicle } {\bf vehicle},
 % {\tt VehicleUpdate } {\bf vehicleUpdate} )
-% \label{l305}\label{l306}}%end signature
+% \label{l329}\label{l330}}%end signature
 % }%end item
 % \end{itemize}
 % }
@@ -2885,7 +3065,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{getAerialAttackRange}
 {\tt public double {\bf getAerialAttackRange}(  )
-\label{l307}\label{l308}}%end signature
+\label{l331}\label{l332}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2898,7 +3078,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{getAerialDamage}
 {\tt public int {\bf getAerialDamage}(  )
-\label{l309}\label{l310}}%end signature
+\label{l333}\label{l334}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2910,7 +3090,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{getAerialDefence}
 {\tt public int {\bf getAerialDefence}(  )
-\label{l311}\label{l312}}%end signature
+\label{l335}\label{l336}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2922,7 +3102,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{getAttackCooldownTicks}
 {\tt public int {\bf getAttackCooldownTicks}(  )
-\label{l313}\label{l314}}%end signature
+\label{l337}\label{l338}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2934,7 +3114,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{getDurability}
 {\tt public int {\bf getDurability}(  )
-\label{l315}\label{l316}}%end signature
+\label{l339}\label{l340}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2946,7 +3126,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{getGroundAttackRange}
 {\tt public double {\bf getGroundAttackRange}(  )
-\label{l317}\label{l318}}%end signature
+\label{l341}\label{l342}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2959,7 +3139,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{getGroundDamage}
 {\tt public int {\bf getGroundDamage}(  )
-\label{l319}\label{l320}}%end signature
+\label{l343}\label{l344}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2971,7 +3151,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{getGroundDefence}
 {\tt public int {\bf getGroundDefence}(  )
-\label{l321}\label{l322}}%end signature
+\label{l345}\label{l346}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2983,7 +3163,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{getGroups}
 {\tt public int[] {\bf getGroups}(  )
-\label{l323}\label{l324}}%end signature
+\label{l347}\label{l348}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -2995,7 +3175,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{getMaxDurability}
 {\tt public int {\bf getMaxDurability}(  )
-\label{l325}\label{l326}}%end signature
+\label{l349}\label{l350}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3007,7 +3187,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{getMaxSpeed}
 {\tt public double {\bf getMaxSpeed}(  )
-\label{l327}\label{l328}}%end signature
+\label{l351}\label{l352}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3021,7 +3201,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{getPlayerId}
 {\tt public long {\bf getPlayerId}(  )
-\label{l329}\label{l330}}%end signature
+\label{l353}\label{l354}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3033,7 +3213,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{getRemainingAttackCooldownTicks}
 {\tt public int {\bf getRemainingAttackCooldownTicks}(  )
-\label{l331}\label{l332}}%end signature
+\label{l355}\label{l356}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3046,7 +3226,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{getSquaredAerialAttackRange}
 {\tt public double {\bf getSquaredAerialAttackRange}(  )
-\label{l333}\label{l334}}%end signature
+\label{l357}\label{l358}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3059,7 +3239,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{getSquaredGroundAttackRange}
 {\tt public double {\bf getSquaredGroundAttackRange}(  )
-\label{l335}\label{l336}}%end signature
+\label{l359}\label{l360}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3072,7 +3252,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{getSquaredVisionRange}
 {\tt public double {\bf getSquaredVisionRange}(  )
-\label{l337}\label{l338}}%end signature
+\label{l361}\label{l362}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3085,7 +3265,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{getType}
 {\tt public VehicleType {\bf getType}(  )
-\label{l339}\label{l340}}%end signature
+\label{l363}\label{l364}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3097,7 +3277,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{getVisionRange}
 {\tt public double {\bf getVisionRange}(  )
-\label{l341}\label{l342}}%end signature
+\label{l365}\label{l366}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3110,7 +3290,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{isAerial}
 {\tt public boolean {\bf isAerial}(  )
-\label{l343}\label{l344}}%end signature
+\label{l367}\label{l368}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3122,7 +3302,7 @@ Vehicle}}
 \item{\vskip -1.9ex 
 \membername{isSelected}
 {\tt public boolean {\bf isSelected}(  )
-\label{l345}\label{l346}}%end signature
+\label{l369}\label{l370}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3417,7 +3597,7 @@ VehicleUpdate}}
 % {\tt int } {\bf remainingAttackCooldownTicks},
 % {\tt boolean } {\bf selected},
 % {\tt int[]} {\bf groups} )
-% \label{l347}\label{l348}}%end signature
+% \label{l371}\label{l372}}%end signature
 % }%end item
 % \end{itemize}
 % }
@@ -3429,7 +3609,7 @@ VehicleUpdate}}
 \item{\vskip -1.9ex 
 \membername{getDurability}
 {\tt public int {\bf getDurability}(  )
-\label{l349}\label{l350}}%end signature
+\label{l373}\label{l374}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3441,7 +3621,7 @@ VehicleUpdate}}
 \item{\vskip -1.9ex 
 \membername{getGroups}
 {\tt public int[] {\bf getGroups}(  )
-\label{l351}\label{l352}}%end signature
+\label{l375}\label{l376}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3453,7 +3633,7 @@ VehicleUpdate}}
 \item{\vskip -1.9ex 
 \membername{getId}
 {\tt public long {\bf getId}(  )
-\label{l353}\label{l354}}%end signature
+\label{l377}\label{l378}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3465,7 +3645,7 @@ VehicleUpdate}}
 \item{\vskip -1.9ex 
 \membername{getRemainingAttackCooldownTicks}
 {\tt public int {\bf getRemainingAttackCooldownTicks}(  )
-\label{l355}\label{l356}}%end signature
+\label{l379}\label{l380}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3478,7 +3658,7 @@ VehicleUpdate}}
 \item{\vskip -1.9ex 
 \membername{getX}
 {\tt public double {\bf getX}(  )
-\label{l357}\label{l358}}%end signature
+\label{l381}\label{l382}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3490,7 +3670,7 @@ VehicleUpdate}}
 \item{\vskip -1.9ex 
 \membername{getY}
 {\tt public double {\bf getY}(  )
-\label{l359}\label{l360}}%end signature
+\label{l383}\label{l384}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3502,7 +3682,7 @@ VehicleUpdate}}
 \item{\vskip -1.9ex 
 \membername{isSelected}
 {\tt public boolean {\bf isSelected}(  )
-\label{l361}\label{l362}}%end signature
+\label{l385}\label{l386}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3634,7 +3814,7 @@ World}}
 % {\tt TerrainType[][]} {\bf terrainByCellXY},
 % {\tt WeatherType[][]} {\bf weatherByCellXY},
 % {\tt Facility[]} {\bf facilities} )
-% \label{l363}\label{l364}}%end signature
+% \label{l387}\label{l388}}%end signature
 % }%end item
 % \end{itemize}
 % }
@@ -3646,7 +3826,7 @@ World}}
 \item{\vskip -1.9ex 
 \membername{getFacilities}
 {\tt public Facility[] {\bf getFacilities}(  )
-\label{l365}\label{l366}}%end signature
+\label{l389}\label{l390}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3659,7 +3839,7 @@ World}}
 \item{\vskip -1.9ex 
 \membername{getHeight}
 {\tt public double {\bf getHeight}(  )
-\label{l367}\label{l368}}%end signature
+\label{l391}\label{l392}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3671,7 +3851,7 @@ World}}
 \item{\vskip -1.9ex 
 \membername{getMyPlayer}
 {\tt public Player {\bf getMyPlayer}(  )
-\label{l369}\label{l370}}%end signature
+\label{l393}\label{l394}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3683,7 +3863,7 @@ World}}
 \item{\vskip -1.9ex 
 \membername{getNewVehicles}
 {\tt public Vehicle[] {\bf getNewVehicles}(  )
-\label{l371}\label{l372}}%end signature
+\label{l395}\label{l396}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3697,7 +3877,7 @@ World}}
 \item{\vskip -1.9ex 
 \membername{getOpponentPlayer}
 {\tt public Player {\bf getOpponentPlayer}(  )
-\label{l373}\label{l374}}%end signature
+\label{l397}\label{l398}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3709,7 +3889,7 @@ World}}
 \item{\vskip -1.9ex 
 \membername{getPlayers}
 {\tt public Player[] {\bf getPlayers}(  )
-\label{l375}\label{l376}}%end signature
+\label{l399}\label{l400}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3722,7 +3902,7 @@ World}}
 \item{\vskip -1.9ex 
 \membername{getTerrainByCellXY}
 {\tt public TerrainType[][] {\bf getTerrainByCellXY}(  )
-\label{l377}\label{l378}}%end signature
+\label{l401}\label{l402}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3734,7 +3914,7 @@ World}}
 \item{\vskip -1.9ex 
 \membername{getTickCount}
 {\tt public int {\bf getTickCount}(  )
-\label{l379}\label{l380}}%end signature
+\label{l403}\label{l404}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3747,7 +3927,7 @@ World}}
 \item{\vskip -1.9ex 
 \membername{getTickIndex}
 {\tt public int {\bf getTickIndex}(  )
-\label{l381}\label{l382}}%end signature
+\label{l405}\label{l406}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3759,7 +3939,7 @@ World}}
 \item{\vskip -1.9ex 
 \membername{getVehicleUpdates}
 {\tt public VehicleUpdate[] {\bf getVehicleUpdates}(  )
-\label{l383}\label{l384}}%end signature
+\label{l407}\label{l408}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3772,7 +3952,7 @@ World}}
 \item{\vskip -1.9ex 
 \membername{getWeatherByCellXY}
 {\tt public WeatherType[][] {\bf getWeatherByCellXY}(  )
-\label{l385}\label{l386}}%end signature
+\label{l409}\label{l410}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3784,7 +3964,7 @@ World}}
 \item{\vskip -1.9ex 
 \membername{getWidth}
 {\tt public double {\bf getWidth}(  )
-\label{l387}\label{l388}}%end signature
+\label{l411}\label{l412}}%end signature
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
@@ -3807,13 +3987,13 @@ World}}
 \rule{\hsize}{.7mm}
 \vskip .13in
 \hbox{\bf Interfaces}
-\entityintro{Strategy}{l389}{Стратегия --- интерфейс, содержащий описание методов искусственного интеллекта армии.}
+\entityintro{Strategy}{l413}{Стратегия --- интерфейс, содержащий описание методов искусственного интеллекта армии.}
 \vskip .1in
 \rule{\hsize}{.7mm}
 \vskip .1in
 \newpage
 \section{Interfaces}{
-\startsection{Interface}{Strategy}{l389}{%
+\startsection{Interface}{Strategy}{l413}{%
 {\small Стратегия --- интерфейс, содержащий описание методов искусственного интеллекта армии.
  Каждая пользовательская стратегия должна реализовывать этот интерфейс.
  Может отсутствовать в некоторых языковых пакетах, если язык не поддерживает интерфейсы.}
@@ -3832,7 +4012,7 @@ Strategy}}
 {\tt World } {\bf world},
 {\tt Game } {\bf game},
 {\tt Move } {\bf move} )
-\label{l390}\label{l391}}%end signature
+\label{l414}\label{l415}}%end signature
 \begin{itemize}
 \sld
 \item{

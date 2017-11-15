@@ -98,7 +98,7 @@
 
 % Replaced by DocsPostProcessor:
 % \date{DoNotModifyDateHere}
-\date{Ноябрь --- декабрь, 2017}
+\date{November --- December, 2017}
 % \\ Replaced by DocsPostProcessor.
 
 
@@ -123,8 +123,8 @@
 \vspace{0.61in}
 \textsc{\Huge CodeWars 2017}\\
 \vspace{0.50in}
-\textsc{\LARGE Правила}\\
-\textsc{\small Версия 1.0.1}\\
+\textsc{\LARGE Rules}\\
+\textsc{\small Revision 1.0.1}\\
 \vspace{2.75in}
 \includegraphics{images/mail-ru-and-ssu-logo.png}
 }
@@ -138,7 +138,7 @@
 
 % Added by DocsPostProcessor:
 \markboth{qqq}{{\footnotesize CodeWars 2017}}
-\input TutorialRu.tex
+\input TutorialEn.tex
 \raggedright
 \sloppy
 % \\ Added by DocsPostProcessor.
@@ -153,20 +153,20 @@
 \rule{\hsize}{.7mm}
 \vskip .13in
 \hbox{\bf Classes}
-\entityintro{ActionType}{l0}{Возможные действия игрока.}
-\entityintro{CircularUnit}{l1}{Базовый класс для определения круглых объектов.}
-\entityintro{Facility}{l2}{Класс, определяющий сооружение --- прямоугольную область на карте.}
-\entityintro{FacilityType}{l3}{Тип сооружения.}
-\entityintro{Game}{l4}{Предоставляет доступ к различным игровым константам.}
-\entityintro{Move}{l5}{Стратегия игрока может управлять юнитами посредством установки свойств объекта данного класса.}
-\entityintro{Player}{l6}{Содержит данные о текущем состоянии игрока.}
-\entityintro{TerrainType}{l7}{Тип местности.}
-\entityintro{Unit}{l8}{Базовый класс для определения объектов (<<юнитов>>) на игровом поле.}
-\entityintro{Vehicle}{l9}{Класс, определяющий технику.}
-\entityintro{VehicleType}{l10}{Тип техники.}
-\entityintro{VehicleUpdate}{l11}{Класс, частично определяющий технику.}
-\entityintro{WeatherType}{l12}{Тип погоды.}
-\entityintro{World}{l13}{Этот класс описывает игровой мир.}
+\entityintro{ActionType}{l0}{Available player actions.}
+\entityintro{CircularUnit}{l1}{This base class describes any circular unit in the game world.}
+\entityintro{Facility}{l2}{This class describes a facility.}
+\entityintro{FacilityType}{l3}{Facility type.}
+\entityintro{Game}{l4}{An instance of this class contains all game constants.}
+\entityintro{Move}{l5}{An encapsulated result of each move of your strategy.}
+\entityintro{Player}{l6}{The instance of this class contains all the data about player's state.}
+\entityintro{TerrainType}{l7}{Terrain type.}
+\entityintro{Unit}{l8}{Base class that describes any object (``unit'') in the game world.}
+\entityintro{Vehicle}{l9}{Class describing a vehicle.}
+\entityintro{VehicleType}{l10}{Vehicle type.}
+\entityintro{VehicleUpdate}{l11}{Class that partly describes a vehicle.}
+\entityintro{WeatherType}{l12}{Weather type.}
+\entityintro{World}{l13}{This class describes a game world.}
 
 % Removed by DocsPostProcessor:
 % \vskip .1in
@@ -177,17 +177,16 @@
 \newpage
 \section{Classes}{
 \startsection{Class}{ActionType}{l0}{%
-{\small Возможные действия игрока.
+{\small Available player actions.
  \bl 
- Игрок не может совершить новое действие, если в течение последних {\tt game.actionDetectionInterval - 1} игровых
- тиков он уже совершил максимально возможное для него количество действий. В начале игры это ограничение для каждого
- игрока равно {\tt game.baseActionCount}. Ограничение увеличивается за каждый контролируемый игроком центр
- управления ({\tt FacilityType.CONTROL\_CENTER}).
+ A player can not perform any new action, if during last {\tt game.actionDetectionInterval - 1} game ticks he
+ already performed maximum possible actions. At the start of the game this limit is {\tt game.baseActionCount} for
+ each player. The limit increases for each captured control center.
  \bl 
- Большинство действий требует указания дополнительных параметров, являющихся полями объекта {\tt move}. В случае,
- если эти параметры установлены некорректно либо указаны не все обязательные параметры, действие будет проигнорировано
- игровым симулятором. Любое действие, отличное от {\tt NONE}, даже проигнорированное, будет учтено в счётчике
- действий игрока.}
+ The most actions require additional parameters to perform. The strategy can set up an action with parameters updating
+ fields of a {\tt move} object. If the specified parameters are incorrect or not sufficient, the action will be
+ ignored by game simulator. However, each action that is specified and is not {\tt NONE} counts in the list of last
+ actions.}
 \vskip .1in 
 \startsubsubsection{Declaration}{
 \fbox{\vbox{
@@ -199,44 +198,44 @@ ActionType}}
 \startsubsubsection{Fields}{
 \begin{itemize}
 \item{
-public static final ActionType NONE\begin{itemize}\item{\vskip -.9ex Ничего не делать.}\end{itemize}
+public static final ActionType NONE\begin{itemize}\item{\vskip -.9ex Do nothing.}\end{itemize}
 }
 \item{
-public static final ActionType CLEAR\_AND\_SELECT\begin{itemize}\item{\vskip -.9ex Пометить юнитов, соответствующих некоторым параметрам, как выделенных.
- При этом, со всех остальных юнитов выделение снимается.
- Юниты других игроков автоматически исключаются из выделения.}\end{itemize}
+public static final ActionType CLEAR\_AND\_SELECT\begin{itemize}\item{\vskip -.9ex Select units that match specified parameters.
+ Deselect units that do not match these parameters.
+ The units of other players are automatically excluded.}\end{itemize}
 }
 \item{
-public static final ActionType ADD\_TO\_SELECTION\begin{itemize}\item{\vskip -.9ex Пометить юнитов, соответствующих некоторым параметрам, как выделенных.
- При этом, выделенные ранее юниты остаются выделенными.
- Юниты других игроков автоматически исключаются из выделения.}\end{itemize}
+public static final ActionType ADD\_TO\_SELECTION\begin{itemize}\item{\vskip -.9ex Select units that match specified parameters.
+ Already selected units stay selected.
+ The units of other players are automatically excluded.}\end{itemize}
 }
 \item{
-public static final ActionType DESELECT\begin{itemize}\item{\vskip -.9ex Снять выделение с юнитов, соответствующих некоторым параметрам.}\end{itemize}
+public static final ActionType DESELECT\begin{itemize}\item{\vskip -.9ex Deselect units that match specified parameters.}\end{itemize}
 }
 \item{
-public static final ActionType ASSIGN\begin{itemize}\item{\vskip -.9ex Установить для выделенных юнитов принадлежность к группе.}\end{itemize}
+public static final ActionType ASSIGN\begin{itemize}\item{\vskip -.9ex Assign selected units to the specified group.}\end{itemize}
 }
 \item{
-public static final ActionType DISMISS\begin{itemize}\item{\vskip -.9ex Убрать у выделенных юнитов принадлежность к группе.}\end{itemize}
+public static final ActionType DISMISS\begin{itemize}\item{\vskip -.9ex Dismiss selected units from the specified group.}\end{itemize}
 }
 \item{
-public static final ActionType DISBAND\begin{itemize}\item{\vskip -.9ex Расформировать группу.}\end{itemize}
+public static final ActionType DISBAND\begin{itemize}\item{\vskip -.9ex Disband the group.}\end{itemize}
 }
 \item{
-public static final ActionType MOVE\begin{itemize}\item{\vskip -.9ex Приказать выделенным юнитам меремещаться в указанном направлении.}\end{itemize}
+public static final ActionType MOVE\begin{itemize}\item{\vskip -.9ex Order selected units to move in the specified direction direction.}\end{itemize}
 }
 \item{
-public static final ActionType ROTATE\begin{itemize}\item{\vskip -.9ex Приказать выделенным юнитам поворачиваться относительно указанной точки.}\end{itemize}
+public static final ActionType ROTATE\begin{itemize}\item{\vskip -.9ex Order selected units to rotate around the specified point.}\end{itemize}
 }
 \item{
-public static final ActionType SCALE\begin{itemize}\item{\vskip -.9ex Масштабировать формацию выделенных юнитов относительно указанной точки.}\end{itemize}
+public static final ActionType SCALE\begin{itemize}\item{\vskip -.9ex Scale the formation of selected units relative to the specified point.}\end{itemize}
 }
 \item{
-public static final ActionType SETUP\_VEHICLE\_PRODUCTION\begin{itemize}\item{\vskip -.9ex Настроить производство нужного типа техники на заводе ({\tt FacilityType.VEHICLE\_FACTORY}).}\end{itemize}
+public static final ActionType SETUP\_VEHICLE\_PRODUCTION\begin{itemize}\item{\vskip -.9ex Set up production of the specified vehicle type on factory.}\end{itemize}
 }
 \item{
-public static final ActionType TACTICAL\_NUCLEAR\_STRIKE\begin{itemize}\item{\vskip -.9ex Запросить тактический ядерный удар.}\end{itemize}
+public static final ActionType TACTICAL\_NUCLEAR\_STRIKE\begin{itemize}\item{\vskip -.9ex Request tactical nuclear strike.}\end{itemize}
 }
 \end{itemize}
 }
@@ -310,7 +309,7 @@ public static final ActionType TACTICAL\_NUCLEAR\_STRIKE\begin{itemize}\item{\vs
 }
 }
 \startsection{Class}{CircularUnit}{l1}{%
-{\small Базовый класс для определения круглых объектов. Содержит также все свойства юнита.}
+{\small This base class describes any circular unit in the game world.}
 \vskip .1in 
 \startsubsubsection{Declaration}{
 \fbox{\vbox{
@@ -346,7 +345,7 @@ CircularUnit}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает радиус объекта. 
+the radius of this unit. 
 }%end item
 \end{itemize}
 }%end item
@@ -372,14 +371,14 @@ CircularUnit}}
 \sld\isep
    \item{
 \sld
-{\tt x} - X-координата точки.}
+{\tt x} - X-coordinate of the point to get the distance to.}
    \item{
 \sld
-{\tt y} - Y-координата точки.}
+{\tt y} - Y-coordinate of the point to get the distance to.}
   \end{itemize}
 }%end item
 \item{{\bf Returns} - 
-Возвращает расстояние до точки от центра данного объекта. 
+the range between the specified point and the center of this unit. 
 }%end item
 \end{itemize}
 }%end item
@@ -398,11 +397,11 @@ CircularUnit}}
 \sld\isep
    \item{
 \sld
-{\tt unit} - Объект, до центра которого необходимо определить расстояние.}
+{\tt unit} - the unit to get the distance to.}
   \end{itemize}
 }%end item
 \item{{\bf Returns} - 
-Возвращает расстояние от центра данного объекта до центра указанного объекта. 
+the range between the center of the specified unit and the center of this unit. 
 }%end item
 \end{itemize}
 }%end item
@@ -414,7 +413,7 @@ CircularUnit}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает уникальный идентификатор объекта. 
+the unique unit ID. 
 }%end item
 \end{itemize}
 }%end item
@@ -434,14 +433,14 @@ CircularUnit}}
 \sld\isep
    \item{
 \sld
-{\tt x} - X-координата точки.}
+{\tt x} - X-coordinate of the point to get the distance to.}
    \item{
 \sld
-{\tt y} - Y-координата точки.}
+{\tt y} - Y-coordinate of the point to get the distance to.}
   \end{itemize}
 }%end item
 \item{{\bf Returns} - 
-Возвращает квадрат расстояния до точки от центра данного объекта. 
+the squared range between the specified point and the center of this unit. 
 }%end item
 \end{itemize}
 }%end item
@@ -460,11 +459,11 @@ CircularUnit}}
 \sld\isep
    \item{
 \sld
-{\tt unit} - Объект, до центра которого необходимо определить квадрат расстояния.}
+{\tt unit} - the unit to get the distance to.}
   \end{itemize}
 }%end item
 \item{{\bf Returns} - 
-Возвращает квадрат расстояния от центра данного объекта до центра указанного объекта. 
+the squared range between the center of the specified unit and the center of this unit. 
 }%end item
 \end{itemize}
 }%end item
@@ -476,7 +475,7 @@ CircularUnit}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает X-координату центра объекта. Ось абсцисс направлена слева направо. 
+the X of the unit's center. The X-axis is directed from left to right. 
 }%end item
 \end{itemize}
 }%end item
@@ -488,7 +487,7 @@ CircularUnit}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает Y-координату центра объекта. Ось ординат направлена сверху вниз. 
+the Y of the unit's center. The Y-axis is directed downward. 
 }%end item
 \end{itemize}
 }%end item
@@ -497,7 +496,7 @@ CircularUnit}}
 }
 }
 \startsection{Class}{Facility}{l2}{%
-{\small Класс, определяющий сооружение --- прямоугольную область на карте.}
+{\small This class describes a facility. A facility is a rectangular area on the map.}
 \vskip .1in 
 \startsubsubsection{Declaration}{
 \fbox{\vbox{
@@ -537,9 +536,9 @@ Facility}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает индикатор захвата сооружения в интервале от {\tt -game.maxFacilityCapturePoints} до
- {\tt game.maxFacilityCapturePoints}. Если индикатор находится в положительной зоне, очки захвата принадлежат
- вам, иначе вашему противнику. 
+the capture level of the facility in the range of {\tt -game.maxFacilityCapturePoints} to
+ {\tt game.maxFacilityCapturePoints}. The positive level means, that you are capturing this facility.
+ The negative level means, that some other player is capturing this facility. 
 }%end item
 \end{itemize}
 }%end item
@@ -551,7 +550,7 @@ Facility}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает уникальный идентификатор сооружения. 
+the unique facility ID 
 }%end item
 \end{itemize}
 }%end item
@@ -563,7 +562,7 @@ Facility}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает абсциссу левой границы сооружения. 
+the leftmost X of the facility. 
 }%end item
 \end{itemize}
 }%end item
@@ -575,8 +574,7 @@ Facility}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает идентификатор игрока, захватившего сооружение, или {\tt -1}, если сооружение никем не
- контролируется. 
+the owner player ID or {\tt -1}. 
 }%end item
 \end{itemize}
 }%end item
@@ -588,8 +586,8 @@ Facility}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает неотрицательное число --- прогресс производства техники. Применимо только к заводу
- ({\tt FacilityType.VEHICLE\_FACTORY}). 
+the nonnegative number that is vehicle production progress. For control center the value is always
+ {\tt 0}. 
 }%end item
 \end{itemize}
 }%end item
@@ -601,7 +599,7 @@ Facility}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает ординату верхней границы сооружения. 
+the topmost Y of the facility. 
 }%end item
 \end{itemize}
 }%end item
@@ -613,7 +611,7 @@ Facility}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает тип сооружения. 
+the facility type. 
 }%end item
 \end{itemize}
 }%end item
@@ -625,8 +623,8 @@ Facility}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает тип техники, производящейся в данном сооружении, или {\tt null}. Применимо только к заводу
- ({\tt FacilityType.VEHICLE\_FACTORY}). 
+the type of the vehicle that this factory produces or {\tt null}. For control center the value is
+ always {\tt null}. 
 }%end item
 \end{itemize}
 }%end item
@@ -636,7 +634,7 @@ Facility}}
 }
 }
 \startsection{Class}{FacilityType}{l3}{%
-{\small Тип сооружения.}
+{\small Facility type.}
 \vskip .1in 
 \startsubsubsection{Declaration}{
 \fbox{\vbox{
@@ -648,12 +646,11 @@ FacilityType}}
 \startsubsubsection{Fields}{
 \begin{itemize}
 \item{
-public static final FacilityType CONTROL\_CENTER\begin{itemize}\item{\vskip -.9ex Центр управления. Увеличивает возможное количество действий игрока на
- {\tt game.additionalActionCountPerControlCenter} за {\tt game.actionDetectionInterval} игровых тиков.
- Также немного уменьшает задержку между двумя последовательными тактическими ядерными ударами.}\end{itemize}
+public static final FacilityType CONTROL\_CENTER\begin{itemize}\item{\vskip -.9ex Increases the limit of player actions for {\tt game.additionalActionCountPerControlCenter} per
+ {\tt game.actionDetectionInterval} game ticks. Also slightly reduced cooldown of tactical nuclear strikes.}\end{itemize}
 }
 \item{
-public static final FacilityType VEHICLE\_FACTORY\begin{itemize}\item{\vskip -.9ex Завод. Может производить технику любого типа по выбору игрока.}\end{itemize}
+public static final FacilityType VEHICLE\_FACTORY\begin{itemize}\item{\vskip -.9ex The factory can produce vehicles of any type.}\end{itemize}
 }
 \end{itemize}
 }
@@ -727,7 +724,7 @@ public static final FacilityType VEHICLE\_FACTORY\begin{itemize}\item{\vskip -.9
 }
 }
 \startsection{Class}{Game}{l4}{%
-{\small Предоставляет доступ к различным игровым константам.}
+{\small An instance of this class contains all game constants.}
 \vskip .1in 
 \startsubsubsection{Declaration}{
 \fbox{\vbox{
@@ -853,7 +850,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает интервал, учитываемый в ограничении количества действий стратегии. 
+the interval that is used to limit player actions. 
 }%end item
 \end{itemize}
 }%end item
@@ -865,8 +862,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает дополнительное количество действий за каждый захваченный центр управления
- ({\tt FacilityType.CONTROL\_CENTER}). 
+the additional action count per each captured control center. 
 }%end item
 \end{itemize}
 }%end item
@@ -878,7 +874,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает защиту БРЭМ от атак воздушной техники. 
+the defence of an ARRV against aerial attacks. 
 }%end item
 \end{itemize}
 }%end item
@@ -890,7 +886,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает максимальную прочность БРЭМ. 
+the maximal durability of an ARRV. 
 }%end item
 \end{itemize}
 }%end item
@@ -902,7 +898,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает защиту БРЭМ от атак наземной техники. 
+the defence of an ARRV against ground attacks. 
 }%end item
 \end{itemize}
 }%end item
@@ -914,8 +910,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает количество тиков, необхожимое для производства одной БРЭМ на заводе
- ({\tt FacilityType.VEHICLE\_FACTORY}). 
+the amount of ticks to produce an ARRV on a factory. 
 }%end item
 \end{itemize}
 }%end item
@@ -927,8 +922,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает максимальное расстояние (от центра до центра), на котором БРЭМ может ремонтировать
- дружественную технику. 
+the repair range of an ARRV. 
 }%end item
 \end{itemize}
 }%end item
@@ -940,8 +934,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает максимальное количество прочности, которое БРЭМ может восстановить дружественной технике за
- один тик. 
+the repair amount of an ARRV per tick. 
 }%end item
 \end{itemize}
 }%end item
@@ -953,7 +946,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает максимальную скорость БРЭМ. 
+the maximal speed of an ARRV. 
 }%end item
 \end{itemize}
 }%end item
@@ -965,7 +958,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает базовый радиус обзора БРЭМ. 
+the base vision range of an ARRV. 
 }%end item
 \end{itemize}
 }%end item
@@ -977,8 +970,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает базовое количество действий, которое может совершить стратегия за
- {\tt actionDetectionInterval} последовательных тиков. 
+the base action count that player can perform in {\tt actionDetectionInterval} ticks. 
 }%end item
 \end{itemize}
 }%end item
@@ -990,8 +982,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает минимально возможный интервал между двумя последовательными тактическими ядерными ударами
- ({\tt ActionType.TACTICAL\_NUCLEAR\_STRIKE}). 
+the base cooldown of tactical nuclear strike request. 
 }%end item
 \end{itemize}
 }%end item
@@ -1003,8 +994,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает мультипликатор максимальной скорости воздушной техники, находящейся в области ясной погоды
- ({\tt WeatherType.CLEAR}). 
+the speed factor of aerial vehicles in clear weather. 
 }%end item
 \end{itemize}
 }%end item
@@ -1016,8 +1006,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает мультипликатор радиуса обзора любой техники при обнаружении воздушной техники противника,
- находящейся в области ясной погоды ({\tt WeatherType.CLEAR}). 
+the vision range factor of any vehicle that is trying to detect an aerial vehicle in clear weather. 
 }%end item
 \end{itemize}
 }%end item
@@ -1029,8 +1018,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает мультипликатор радиуса обзора воздушной техники, находящейся в области ясной погоды
- ({\tt WeatherType.CLEAR}). 
+the vision range factor of an aerial vehicle in clear weather. 
 }%end item
 \end{itemize}
 }%end item
@@ -1042,8 +1030,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает мультипликатор максимальной скорости воздушной техники, находящейся в плотных облаках
- ({\tt WeatherType.CLOUD}). 
+the speed factor of aerial vehicles in cloud weather. 
 }%end item
 \end{itemize}
 }%end item
@@ -1055,8 +1042,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает мультипликатор радиуса обзора любой техники при обнаружении воздушной техники противника,
- находящейся в плотных облаках ({\tt WeatherType.CLOUD}). 
+the vision range factor of any vehicle that is trying to detect an aerial vehicle in cloud weather. 
 }%end item
 \end{itemize}
 }%end item
@@ -1068,8 +1054,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает мультипликатор радиуса обзора воздушной техники, находящейся в плотных облаках
- ({\tt WeatherType.CLOUD}). 
+the vision range factor of an aerial vehicle in cloud weather. 
 }%end item
 \end{itemize}
 }%end item
@@ -1081,8 +1066,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает скорость изменения индикатора захвата сооружения ({\tt facility.capturePoints}) за каждую
- единицу техники, центр которой находится внутри сооружения. 
+the speed of facility capturing per each vehicle inside the facility area. 
 }%end item
 \end{itemize}
 }%end item
@@ -1094,7 +1078,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает количество баллов за захват сооружения. 
+the amount of score points for capturing a facility. 
 }%end item
 \end{itemize}
 }%end item
@@ -1106,7 +1090,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает высоту сооружения. 
+the height of facility area. 
 }%end item
 \end{itemize}
 }%end item
@@ -1118,7 +1102,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает ширину сооружения. 
+the width of facility area. 
 }%end item
 \end{itemize}
 }%end item
@@ -1130,7 +1114,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает дальность атаки истребителя по воздушным целям. 
+the attack range of a fighter against aerial targets. 
 }%end item
 \end{itemize}
 }%end item
@@ -1142,7 +1126,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает урон одной атаки истребителя по воздушной технике. 
+the attack damage of a fighter against aerial targets. 
 }%end item
 \end{itemize}
 }%end item
@@ -1154,7 +1138,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает защиту истребителя от атак воздушной техники. 
+the defence of a fighter against aerial attacks. 
 }%end item
 \end{itemize}
 }%end item
@@ -1166,7 +1150,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает интервал в тиках между двумя последовательными атаками истребителя. 
+the attack cooldown of a fighter. 
 }%end item
 \end{itemize}
 }%end item
@@ -1178,7 +1162,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает максимальную прочность истребителя. 
+the maximal durability of a fighter. 
 }%end item
 \end{itemize}
 }%end item
@@ -1190,7 +1174,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает дальность атаки истребителя по наземным целям. 
+the attack range of a fighter against ground targets. 
 }%end item
 \end{itemize}
 }%end item
@@ -1202,7 +1186,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает урон одной атаки истребителя по наземной технике. 
+the attack damage of a fighter against ground targets. 
 }%end item
 \end{itemize}
 }%end item
@@ -1214,7 +1198,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает защиту истребителя от атак наземной техники. 
+the defence of a fighter against ground attacks. 
 }%end item
 \end{itemize}
 }%end item
@@ -1226,8 +1210,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает количество тиков, необхожимое для производства одного истребителя на заводе
- ({\tt FacilityType.VEHICLE\_FACTORY}). 
+the amount of ticks to produce a fighter on a factory. 
 }%end item
 \end{itemize}
 }%end item
@@ -1239,7 +1222,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает максимальную скорость истребителя. 
+the maximal speed of a fighter. 
 }%end item
 \end{itemize}
 }%end item
@@ -1251,7 +1234,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает базовый радиус обзора истребителя. 
+the base vision range of a fighter. 
 }%end item
 \end{itemize}
 }%end item
@@ -1263,8 +1246,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает мультипликатор максимальной скорости наземной техники, находящейся в лесистой местности
- ({\tt TerrainType.FOREST}). 
+the speed factor of ground vehicles in forest terrain. 
 }%end item
 \end{itemize}
 }%end item
@@ -1276,8 +1258,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает мультипликатор радиуса обзора любой техники при обнаружении наземной техники противника,
- находящейся в лесистой местности ({\tt TerrainType.FOREST}). 
+the vision range factor of any vehicle that is trying to detect a ground vehicle in forest terrain. 
 }%end item
 \end{itemize}
 }%end item
@@ -1289,8 +1270,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает мультипликатор радиуса обзора наземной техники, находящейся в лесистой местности
- ({\tt TerrainType.FOREST}). 
+the vision range factor of a ground vehicle in forest terrain. 
 }%end item
 \end{itemize}
 }%end item
@@ -1302,7 +1282,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает дальность атаки ударного вертолёта по воздушным целям. 
+the attack range of a helicopter against aerial targets. 
 }%end item
 \end{itemize}
 }%end item
@@ -1314,7 +1294,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает урон одной атаки ударного вертолёта по воздушной технике. 
+the attack damage of a helicopter against aerial targets. 
 }%end item
 \end{itemize}
 }%end item
@@ -1326,7 +1306,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает защиту ударного вертолёта от атак воздушной техники. 
+the defence of a helicopter against aerial attacks. 
 }%end item
 \end{itemize}
 }%end item
@@ -1338,7 +1318,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает интервал в тиках между двумя последовательными атаками ударного вертолёта. 
+the attack cooldown of a helicopter. 
 }%end item
 \end{itemize}
 }%end item
@@ -1350,7 +1330,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает максимальную прочность ударного вертолёта. 
+the maximal durability of a helicopter. 
 }%end item
 \end{itemize}
 }%end item
@@ -1362,7 +1342,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает дальность атаки ударного вертолёта по наземным целям. 
+the attack range of a helicopter against ground targets. 
 }%end item
 \end{itemize}
 }%end item
@@ -1374,7 +1354,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает урон одной атаки ударного вертолёта по наземной технике. 
+the attack damage of a helicopter against ground targets. 
 }%end item
 \end{itemize}
 }%end item
@@ -1386,7 +1366,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает защиту ударного вертолёта от атак наземной техники. 
+the defence of a helicopter against ground attacks. 
 }%end item
 \end{itemize}
 }%end item
@@ -1398,8 +1378,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает количество тиков, необхожимое для производства одного ударного вертолёта на заводе
- ({\tt FacilityType.VEHICLE\_FACTORY}). 
+the amount of ticks to produce a helicopter on a factory. 
 }%end item
 \end{itemize}
 }%end item
@@ -1411,7 +1390,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает максимальную скорость ударного вертолёта. 
+the maximal speed of a helicopter. 
 }%end item
 \end{itemize}
 }%end item
@@ -1423,7 +1402,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает базовый радиус обзора ударного вертолёта. 
+the base vision range of a helicopter. 
 }%end item
 \end{itemize}
 }%end item
@@ -1435,7 +1414,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает дальность атаки БМП по воздушным целям. 
+the attack range of an IFV against aerial targets. 
 }%end item
 \end{itemize}
 }%end item
@@ -1447,7 +1426,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает урон одной атаки БМП по воздушной технике. 
+the attack damage of an IFV against aerial targets. 
 }%end item
 \end{itemize}
 }%end item
@@ -1459,7 +1438,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает защиту БМП от атак воздушной техники. 
+the defence of an IFV against aerial attacks. 
 }%end item
 \end{itemize}
 }%end item
@@ -1471,7 +1450,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает интервал в тиках между двумя последовательными атаками БМП. 
+the attack cooldown of an IFV. 
 }%end item
 \end{itemize}
 }%end item
@@ -1483,7 +1462,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает максимальную прочность БМП. 
+the maximal durability of an IFV. 
 }%end item
 \end{itemize}
 }%end item
@@ -1495,7 +1474,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает дальность атаки БМП по наземным целям. 
+the attack range of an IFV against ground targets. 
 }%end item
 \end{itemize}
 }%end item
@@ -1507,7 +1486,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает урон одной атаки БМП по наземной технике. 
+the attack damage of an IFV against ground targets. 
 }%end item
 \end{itemize}
 }%end item
@@ -1519,7 +1498,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает защиту БМП от атак наземной техники. 
+the defence of an IFV against ground attacks. 
 }%end item
 \end{itemize}
 }%end item
@@ -1531,8 +1510,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает количество тиков, необхожимое для производства одной БМП на заводе
- ({\tt FacilityType.VEHICLE\_FACTORY}). 
+the amount of ticks to produce an IFV on a factory. 
 }%end item
 \end{itemize}
 }%end item
@@ -1544,7 +1522,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает максимальную скорость БМП. 
+the maximal speed of an IFV. 
 }%end item
 \end{itemize}
 }%end item
@@ -1556,7 +1534,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает базовый радиус обзора БМП. 
+the base vision range of an IFV. 
 }%end item
 \end{itemize}
 }%end item
@@ -1568,8 +1546,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает максимально возможную абсолютную величину индикатора захвата сооружения
- ({\tt facility.capturePoints}). 
+the maximal possible amount of facility capture points. 
 }%end item
 \end{itemize}
 }%end item
@@ -1581,7 +1558,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает урон тактического ядерного удара в центре взрыва. 
+the damage in the center of a nuclear explosion. 
 }%end item
 \end{itemize}
 }%end item
@@ -1593,7 +1570,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает максимально возможный индекс группы юнитов. 
+the max index of a unit group. 
 }%end item
 \end{itemize}
 }%end item
@@ -1605,8 +1582,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает мультипликатор максимальной скорости наземной техники, находящейся на равнинной местности
- ({\tt TerrainType.PLAIN}). 
+the speed factor of ground vehicles in plain terrain. 
 }%end item
 \end{itemize}
 }%end item
@@ -1618,8 +1594,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает мультипликатор радиуса обзора любой техники при обнаружении наземной техники противника,
- находящейся на равнинной местности ({\tt TerrainType.PLAIN}). 
+the vision range factor of any vehicle that is trying to detect a ground vehicle in plain terrain. 
 }%end item
 \end{itemize}
 }%end item
@@ -1631,8 +1606,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает мультипликатор радиуса обзора наземной техники, находящейся на равнинной местности
- ({\tt TerrainType.PLAIN}). 
+the vision range factor of a ground vehicle in plain terrain. 
 }%end item
 \end{itemize}
 }%end item
@@ -1644,8 +1618,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает мультипликатор максимальной скорости воздушной техники, находящейся в условиях сильного дождя
- ({\tt WeatherType.RAIN}). 
+the speed factor of aerial vehicles in rain weather. 
 }%end item
 \end{itemize}
 }%end item
@@ -1657,8 +1630,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает мультипликатор радиуса обзора любой техники при обнаружении воздушной техники противника,
- находящейся в условиях сильного дождя ({\tt WeatherType.RAIN}). 
+the vision range factor of any vehicle that is trying to detect an aerial vehicle in rain weather. 
 }%end item
 \end{itemize}
 }%end item
@@ -1670,8 +1642,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает мультипликатор радиуса обзора воздушной техники, находящейся в условиях сильного дождя
- ({\tt WeatherType.RAIN}). 
+the vision range factor of an aerial vehicle in rain weather. 
 }%end item
 \end{itemize}
 }%end item
@@ -1683,9 +1654,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает некоторое число, которое ваша стратегия может использовать для инициализации генератора
- случайных чисел. Данное значение имеет рекомендательный характер, однако позволит более точно воспроизводить
- прошедшие игры. 
+the number that is highly recommended to use as a seed for RNG (generator of pseudo-random numbers). 
 }%end item
 \end{itemize}
 }%end item
@@ -1697,8 +1666,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает мультипликатор максимальной скорости наземной техники, находящейся в болотистой местности
- ({\tt TerrainType.SWAMP}). 
+the speed factor of ground vehicles in swamp terrain. 
 }%end item
 \end{itemize}
 }%end item
@@ -1710,8 +1678,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает мультипликатор радиуса обзора любой техники при обнаружении наземной техники противника,
- находящейся в болотистой местности ({\tt TerrainType.SWAMP}). 
+the vision range factor of any vehicle that is trying to detect a ground vehicle in swamp terrain. 
 }%end item
 \end{itemize}
 }%end item
@@ -1723,8 +1690,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает мультипликатор радиуса обзора наземной техники, находящейся в болотистой местности
- ({\tt TerrainType.SWAMP}). 
+the vision range factor of a ground vehicle in swamp terrain. 
 }%end item
 \end{itemize}
 }%end item
@@ -1736,8 +1702,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает уменьшение интервала между тактическими ядерными ударами за каждый захваченный центр
- управления ({\tt FacilityType.CONTROL\_CENTER}). 
+the cooldown decrease of tactical nuclear strike request per each captured control center. 
 }%end item
 \end{itemize}
 }%end item
@@ -1749,7 +1714,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает задержку между запросом нанесения тактического ядерного удара и собственно самим нанесением. 
+the delay between the request of tactical nuclear strike and the nuclear explosion. 
 }%end item
 \end{itemize}
 }%end item
@@ -1761,7 +1726,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает радиус взрыва тактического ядерного удара. 
+the radius of a nuclear explosion. 
 }%end item
 \end{itemize}
 }%end item
@@ -1773,7 +1738,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает дальность атаки танка по воздушным целям. 
+the attack range of a tank against aerial targets. 
 }%end item
 \end{itemize}
 }%end item
@@ -1785,7 +1750,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает урон одной атаки танка по воздушной технике. 
+the attack damage of a tank against aerial targets. 
 }%end item
 \end{itemize}
 }%end item
@@ -1797,7 +1762,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает защиту танка от атак воздушной техники. 
+the defence of a tank against aerial attacks. 
 }%end item
 \end{itemize}
 }%end item
@@ -1809,7 +1774,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает интервал в тиках между двумя последовательными атаками танка. 
+the attack cooldown of a tank. 
 }%end item
 \end{itemize}
 }%end item
@@ -1821,7 +1786,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает максимальную прочность танка. 
+the maximal durability of a tank. 
 }%end item
 \end{itemize}
 }%end item
@@ -1833,7 +1798,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает дальность атаки танка по наземным целям. 
+the attack range of a tank against ground targets. 
 }%end item
 \end{itemize}
 }%end item
@@ -1845,7 +1810,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает урон одной атаки танка по наземной технике. 
+the attack damage of a tank against ground targets. 
 }%end item
 \end{itemize}
 }%end item
@@ -1857,7 +1822,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает защиту танка от атак наземной техники. 
+the defence of a tank against ground attacks. 
 }%end item
 \end{itemize}
 }%end item
@@ -1869,8 +1834,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает количество тиков, необхожимое для производства одного танка на заводе
- ({\tt FacilityType.VEHICLE\_FACTORY}). 
+the amount of ticks to produce a tank on a factory. 
 }%end item
 \end{itemize}
 }%end item
@@ -1882,7 +1846,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает максимальную скорость танка. 
+the maximal speed of a tank. 
 }%end item
 \end{itemize}
 }%end item
@@ -1894,7 +1858,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает базовый радиус обзора танка. 
+the base vision range of a tank. 
 }%end item
 \end{itemize}
 }%end item
@@ -1906,7 +1870,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает количество столбцов в картах местности и погоды. 
+the count of columns in terrain$/$weather maps. 
 }%end item
 \end{itemize}
 }%end item
@@ -1918,7 +1882,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает количество строк в картах местности и погоды. 
+the count of rows in terrain$/$weather maps. 
 }%end item
 \end{itemize}
 }%end item
@@ -1930,8 +1894,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает базовую длительность игры в тиках. Реальная длительность может отличаться от этого значения в
- меньшую сторону. Эквивалентно {\tt world.tickCount}. 
+the base game duration in ticks. A real game duration may be lower. Equals to {\tt world.tickCount}. 
 }%end item
 \end{itemize}
 }%end item
@@ -1943,7 +1906,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает количество баллов за уничтожение юнита противника. 
+the amount of score points for destroying a single enemy unit. 
 }%end item
 \end{itemize}
 }%end item
@@ -1955,7 +1918,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает радиус техники. 
+the radius of a vehicle. 
 }%end item
 \end{itemize}
 }%end item
@@ -1967,7 +1930,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает количество баллов, получаемое игроком в случае уничтожения всех юнитов противника. 
+the amount of score points received for destroying all enemy units. 
 }%end item
 \end{itemize}
 }%end item
@@ -1979,7 +1942,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает высоту карты. 
+the height of the map. 
 }%end item
 \end{itemize}
 }%end item
@@ -1991,7 +1954,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает ширину карты. 
+the width of the map. 
 }%end item
 \end{itemize}
 }%end item
@@ -2003,7 +1966,7 @@ Game}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает {\tt true}, если и только если в данной игре включен режим частичной видимости. 
+{\tt true} if and only if the fog of war is enabled in the current game. 
 }%end item
 \end{itemize}
 }%end item
@@ -2013,7 +1976,7 @@ Game}}
 }
 }
 \startsection{Class}{Move}{l5}{%
-{\small Стратегия игрока может управлять юнитами посредством установки свойств объекта данного класса.}
+{\small An encapsulated result of each move of your strategy.}
 \vskip .1in 
 \startsubsubsection{Declaration}{
 \fbox{\vbox{
@@ -2046,7 +2009,7 @@ Move}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает текущее действие игрока. 
+the current action. 
 }%end item
 \end{itemize}
 }%end item
@@ -2058,7 +2021,7 @@ Move}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает текущий угол поворота. 
+the current rotation angle. 
 }%end item
 \end{itemize}
 }%end item
@@ -2070,7 +2033,7 @@ Move}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает текущую нижнюю границу прямоугольной рамки, предназначенной для выделения юнитов. 
+the current bottommost Y of selection rectangle. 
 }%end item
 \end{itemize}
 }%end item
@@ -2082,7 +2045,7 @@ Move}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает текущий идентификатор сооружения. 
+the current facility ID. 
 }%end item
 \end{itemize}
 }%end item
@@ -2094,7 +2057,7 @@ Move}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает текущий коэффициент масштабирования. 
+the current scale factor. 
 }%end item
 \end{itemize}
 }%end item
@@ -2106,7 +2069,7 @@ Move}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает текущую группу юнитов. 
+the current group of units. 
 }%end item
 \end{itemize}
 }%end item
@@ -2118,7 +2081,7 @@ Move}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает текущую левую границу прямоугольной рамки, предназначенной для выделения юнитов. 
+the current leftmost X of selection rectangle. 
 }%end item
 \end{itemize}
 }%end item
@@ -2130,7 +2093,7 @@ Move}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает текущее абсолютное ограничение скорости поворота. 
+the current angular speed limit. 
 }%end item
 \end{itemize}
 }%end item
@@ -2142,7 +2105,7 @@ Move}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает текущее ограничение линейной скорости. 
+the current speed limit. 
 }%end item
 \end{itemize}
 }%end item
@@ -2154,7 +2117,7 @@ Move}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает текущую правую границу прямоугольной рамки, предназначенной для выделения юнитов. 
+the current rightmost X of selection rectangle. 
 }%end item
 \end{itemize}
 }%end item
@@ -2166,7 +2129,7 @@ Move}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает текущую верхнюю границу прямоугольной рамки, предназначенной для выделения юнитов. 
+the current topmost Y of selection rectangle. 
 }%end item
 \end{itemize}
 }%end item
@@ -2178,7 +2141,7 @@ Move}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает текущий идентификатор техники. 
+the current vehicle ID. 
 }%end item
 \end{itemize}
 }%end item
@@ -2190,7 +2153,7 @@ Move}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает текущий тип техники. 
+the current vehicle type. 
 }%end item
 \end{itemize}
 }%end item
@@ -2202,7 +2165,7 @@ Move}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает текущую абсциссу точки или вектора. 
+the current X of a point or vector. 
 }%end item
 \end{itemize}
 }%end item
@@ -2214,7 +2177,7 @@ Move}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает текущую ординату точки или вектора. 
+the current Y of a point or vector. 
 }%end item
 \end{itemize}
 }%end item
@@ -2230,7 +2193,7 @@ Move}}
 {\bf Usage}
   \begin{itemize}\isep
    \item{
-Устанавливает действие игрока.
+Sets the desired action.
 }%end item
   \end{itemize}
 }
@@ -2248,12 +2211,11 @@ Move}}
 {\bf Usage}
   \begin{itemize}\isep
    \item{
-Задаёт угол поворота.
+Sets the rotation angle.
  \bl 
- Является обязательным параметром для действия {\tt ActionType.ROTATE} и задаёт угол поворота относительно точки
- ({\tt x}, {\tt y}). Положительные значения соответствуют повороту по часовой стрелке.
+ This is required parameter for {\tt ActionType.ROTATE}. The positive values mean clockwise rotation.
  \bl 
- Корректными значениями являются вещественные числа от {\tt -PI} до {\tt PI} включительно.
+ The correct values are real numbers in range of {\tt -PI} to {\tt PI} both inclusive.
 }%end item
   \end{itemize}
 }
@@ -2271,13 +2233,12 @@ Move}}
 {\bf Usage}
   \begin{itemize}\isep
    \item{
-Устанавливает нижнюю границу прямоугольной рамки для выделения юнитов.
+Sets the bottommost Y of selection rectangle.
  \bl 
- Является обязательным параметром для действий {\tt ActionType.CLEAR\_AND\_SELECT},
- {\tt ActionType.ADD\_TO\_SELECTION} и {\tt ActionType.DESELECT}, если не установлена группа юнитов.
- В противном случае граница будет проигнорирована.
+ This is required parameter for {\tt ActionType.CLEAR\_AND\_SELECT}, {\tt ActionType.ADD\_TO\_SELECTION} and
+ {\tt ActionType.DESELECT}, if the group is not set. Otherwise this value will be ignored.
  \bl 
- Корректными значениями являются вещественные числа от {\tt top} до {\tt game.worldHeight} включительно.
+ The correct values are real numbers in range of {\tt top} to {\tt game.worldHeight} both inclusive.
 }%end item
   \end{itemize}
 }
@@ -2295,11 +2256,10 @@ Move}}
 {\bf Usage}
   \begin{itemize}\isep
    \item{
-Устанавливает идентификатор сооружения.
+Sets the facility ID.
  \bl 
- Является обязательным параметром для действия {\tt ActionType.SETUP\_VEHICLE\_PRODUCTION}.
- Если сооружение с данным идентификатором отсутствует в игре, не является заводом по производству техники
- ({\tt FacilityType.VEHICLE\_FACTORY}) или принадлежит другому игроку, то действие будет проигнорировано.
+ This is required parameter for {\tt ActionType.SETUP\_VEHICLE\_PRODUCTION}. If there is no factory with this ID
+ or it is not owned by your strategy, then the action will be ignored.
 }%end item
   \end{itemize}
 }
@@ -2317,13 +2277,12 @@ Move}}
 {\bf Usage}
   \begin{itemize}\isep
    \item{
-Задаёт коэффициент масштабирования.
+Sets the scale factor.
  \bl 
- Является обязательным параметром для действия {\tt ActionType.SCALE} и задаёт коэффициент масштабирования
- формации юнитов относительно точки ({\tt x}, {\tt y}). При значениях коэффициента больше {\tt 1.0}
- происходит расширение формации, при значениях меньше {\tt 1.0} --- сжатие.
+ This is required parameter for {\tt ActionType.SCALE}. The values greater than {\tt 1.0} increase formation
+ size, the values less than {\tt 1.0} decrease formation size.
  \bl 
- Корректными значениями являются вещественные числа от {\tt 0.1} до {\tt 10.0} включительно.
+ The correct values are real numbers in range of {\tt 0.1} to {\tt 10.0} both inclusive.
 }%end item
   \end{itemize}
 }
@@ -2341,17 +2300,16 @@ Move}}
 {\bf Usage}
   \begin{itemize}\isep
    \item{
-Устанавливает группу юнитов для различных действий.
+Sets the group of units for various actions.
  \bl 
- Является опциональным параметром для действий {\tt ActionType.CLEAR\_AND\_SELECT},
- {\tt ActionType.ADD\_TO\_SELECTION} и {\tt ActionType.DESELECT}. Если для этих действий группа юнитов
- установлена, то параметр {\tt vehicleType}, а также параметры прямоугольной рамки {\tt left}, {\tt top},
- {\tt right} и {\tt bottom} будут проигнорированы.
+ This parameter is optional for {\tt ActionType.CLEAR\_AND\_SELECT}, {\tt ActionType.ADD\_TO\_SELECTION} and
+ {\tt ActionType.DESELECT}. If the group is set for these actions, then all other parameters
+ ({\tt vehicleType}, {\tt left}, {\tt top}, {\tt right}, {\tt bottom}) will be ignored.
  \bl 
- Является обязательным параметром для действий {\tt ActionType.ASSIGN}, {\tt ActionType.DISMISS} и
- {\tt ActionType.DISBAND}. Для действия {\tt ActionType.DISBAND} является единственным учитываемым параметром.
+ This parameter is required for {\tt ActionType.ASSIGN}, {\tt ActionType.DISMISS} and
+ {\tt ActionType.DISBAND}. This is the only parameter for {\tt ActionType.DISBAND}.
  \bl 
- Корректными значениями являются целые числа от {\tt 1} до {\tt game.maxUnitGroup} включительно.
+ The correct values are integers in range of {\tt 1} to {\tt game.maxUnitGroup} both inclusive.
 }%end item
   \end{itemize}
 }
@@ -2369,13 +2327,12 @@ Move}}
 {\bf Usage}
   \begin{itemize}\isep
    \item{
-Устанавливает левую границу прямоугольной рамки для выделения юнитов.
+Sets the leftmost X of selection rectangle.
  \bl 
- Является обязательным параметром для действий {\tt ActionType.CLEAR\_AND\_SELECT},
- {\tt ActionType.ADD\_TO\_SELECTION} и {\tt ActionType.DESELECT}, если не установлена группа юнитов.
- В противном случае граница будет проигнорирована.
+ This is required parameter for {\tt ActionType.CLEAR\_AND\_SELECT}, {\tt ActionType.ADD\_TO\_SELECTION} and
+ {\tt ActionType.DESELECT}, if the group is not set. Otherwise this value will be ignored.
  \bl 
- Корректными значениями являются вещественные числа от {\tt 0.0} до {\tt right} включительно.
+ The correct values are real numbers in range of {\tt 0.0} to {\tt right} both inclusive.
 }%end item
   \end{itemize}
 }
@@ -2393,13 +2350,13 @@ Move}}
 {\bf Usage}
   \begin{itemize}\isep
    \item{
-Устанавливает абсолютное ограничение скорости поворота в радианах за тик.
+Sets the angular speed limit.
  \bl 
- Является опциональным параметром для действия {\tt ActionType.ROTATE}. Если для этого действия установлено
- ограничение скорости поворота, то параметр {\tt maxSpeed} будет проигнорирован.
+ This is optional parameter for {\tt ActionType.ROTATE}. If this parameter is set, then {\tt maxSpeed} will be
+ ignored.
  \bl 
- Корректными значениями являются вещественные числа в интервале от {\tt 0.0} до {\tt PI} включительно. При
- этом, {\tt 0.0} означает, что ограничение отсутствует.
+ The correct values are real numbers in range of {\tt 0.0} to {\tt PI} both inclusive. The special {\tt 0.0}
+ value means that there is no limit.
 }%end item
   \end{itemize}
 }
@@ -2417,14 +2374,12 @@ Move}}
 {\bf Usage}
   \begin{itemize}\isep
    \item{
-Устанавливает абсолютное ограничение линейной скорости.
+Sets the speed limit.
  \bl 
- Является опциональным параметром для действий {\tt ActionType.MOVE}, {\tt ActionType.ROTATE} и
- {\tt ActionType.SCALE}. Если для действия {\tt ActionType.ROTATE} установлено ограничение скорости поворота,
- то этот параметр будет проигнорирован.
+ This is optional parameter for {\tt ActionType.MOVE}, {\tt ActionType.ROTATE} and {\tt ActionType.SCALE}.
+ If for {\tt ActionType.ROTATE} the max angular speed is set, then this parameter will be ignored.
  \bl 
- Корректными значениями являются вещественные неотрицательные числа. При этом, {\tt 0.0} означает, что
- ограничение отсутствует.
+ The correct values are real nonnegative numbers. The special {\tt 0.0} value means that there is no limit.
 }%end item
   \end{itemize}
 }
@@ -2442,13 +2397,12 @@ Move}}
 {\bf Usage}
   \begin{itemize}\isep
    \item{
-Устанавливает правую границу прямоугольной рамки для выделения юнитов.
+Sets the rightmost X of selection rectangle.
  \bl 
- Является обязательным параметром для действий {\tt ActionType.CLEAR\_AND\_SELECT},
- {\tt ActionType.ADD\_TO\_SELECTION} и {\tt ActionType.DESELECT}, если не установлена группа юнитов.
- В противном случае граница будет проигнорирована.
+ This is required parameter for {\tt ActionType.CLEAR\_AND\_SELECT}, {\tt ActionType.ADD\_TO\_SELECTION} and
+ {\tt ActionType.DESELECT}, if the group is not set. Otherwise this value will be ignored.
  \bl 
- Корректными значениями являются вещественные числа от {\tt left} до {\tt game.worldWidth} включительно.
+ The correct values are real numbers in range of {\tt left} to {\tt game.worldWidth} both inclusive.
 }%end item
   \end{itemize}
 }
@@ -2466,13 +2420,12 @@ Move}}
 {\bf Usage}
   \begin{itemize}\isep
    \item{
-Устанавливает верхнюю границу прямоугольной рамки для выделения юнитов.
+Sets the topmost Y of selection rectangle.
  \bl 
- Является обязательным параметром для действий {\tt ActionType.CLEAR\_AND\_SELECT},
- {\tt ActionType.ADD\_TO\_SELECTION} и {\tt ActionType.DESELECT}, если не установлена группа юнитов.
- В противном случае граница будет проигнорирована.
+ This is required parameter for {\tt ActionType.CLEAR\_AND\_SELECT}, {\tt ActionType.ADD\_TO\_SELECTION} and
+ {\tt ActionType.DESELECT}, if the group is not set. Otherwise this value will be ignored.
  \bl 
- Корректными значениями являются вещественные числа от {\tt 0.0} до {\tt bottom} включительно.
+ The correct values are real numbers in range of {\tt 0.0} to {\tt bottom} both inclusive.
 }%end item
   \end{itemize}
 }
@@ -2490,11 +2443,11 @@ Move}}
 {\bf Usage}
   \begin{itemize}\isep
    \item{
-Устанавливает идентификатор техники.
+Sets the vehicle ID.
  \bl 
- Является обязательным параметром для действия {\tt ActionType.TACTICAL\_NUCLEAR\_STRIKE}. Если юнит с данным
- идентификатором отсутствует в игре, принадлежит другому игроку или цель удара находится вне зоны видимости этого
- юнита, то действие будет проигнорировано.
+ This is required parameter for {\tt ActionType.TACTICAL\_NUCLEAR\_STRIKE}. The action will be ignored, if there
+ is no vehicle with this ID, if unit with this ID is owned by other player or if the nuclear strike target is
+ beyond the vision range of the specified unit.
 }%end item
   \end{itemize}
 }
@@ -2512,16 +2465,13 @@ Move}}
 {\bf Usage}
   \begin{itemize}\isep
    \item{
-Устанавливает тип техники.
+Sets the vehicle type.
  \bl 
- Является опциональным параметром для действий {\tt ActionType.CLEAR\_AND\_SELECT},
- {\tt ActionType.ADD\_TO\_SELECTION} и {\tt ActionType.DESELECT}.
- Указанные действия будут применены только к технике выбранного типа.
- Параметр будет проигнорирован, если установлена группа юнитов.
+ This is optional filter parameter for {\tt ActionType.CLEAR\_AND\_SELECT}, {\tt ActionType.ADD\_TO\_SELECTION}
+ and {\tt ActionType.DESELECT}. This parameter will be ignored, if the group is set.
  \bl 
- Является опциональным параметром для действия {\tt ActionType.SETUP\_VEHICLE\_PRODUCTION}.
- Завод будет настроен на производство техники данного типа. При этом, прогресс производства будет обнулён.
- Если данный параметр не установлен, то производство техники на заводе будет остановлено.
+ This is optional filter parameter for {\tt ActionType.SETUP\_VEHICLE\_PRODUCTION}. The production progress will
+ be zeroed in any case.
 }%end item
   \end{itemize}
 }
@@ -2539,26 +2489,22 @@ Move}}
 {\bf Usage}
   \begin{itemize}\isep
    \item{
-Устанавливает абсциссу точки или вектора.
+Sets the X of a point or vector.
  \bl 
- Является обязательным параметром для действия {\tt ActionType.MOVE} и задаёт целевую величину смещения юнитов
- вдоль оси абсцисс.
+ This is required parameter for {\tt ActionType.MOVE} and specifies the X offset.
  \bl 
- Является обязательным параметром для действия {\tt ActionType.ROTATE} и задаёт абсциссу точки, относительно
- которой необходимо совершить поворот.
+ This is required parameter for {\tt ActionType.ROTATE} and specifies the X of the rotation center.
  \bl 
- Является обязательным параметром для действия {\tt ActionType.SCALE} и задаёт абсциссу точки, относительно
- которой необходимо совершить масштабирование.
+ This is required parameter for {\tt ActionType.SCALE} and specifies the X of the scale pivot.
  \bl 
- Является обязательным параметром для действия {\tt ActionType.TACTICAL\_NUCLEAR\_STRIKE} и задаёт абсциссу цели
- тактического ядерного удара.
+ This is required parameter for {\tt ActionType.TACTICAL\_NUCLEAR\_STRIKE} and specifies the X of the explosion
+ center.
  \bl 
- Корректными значениями для действия {\tt ActionType.MOVE} являются вещественные числа от
- {\tt -game.worldWidth} до {\tt game.worldWidth} включительно. Корректными значениями для действий
- {\tt ActionType.ROTATE} и {\tt ActionType.SCALE} являются вещественные числа от {\tt -game.worldWidth} до
- {\tt 2.0 * game.worldWidth} включительно. Корректными значениями для действия
- {\tt ActionType.TACTICAL\_NUCLEAR\_STRIKE} являются вещественные числа от {\tt 0.0} до {\tt game.worldWidth}
- включительно.
+ The correct values for {\tt ActionType.MOVE} are real numbers in range of {\tt -game.worldWidth} to
+ {\tt game.worldWidth} both inclusive. The correct values for {\tt ActionType.ROTATE} and
+ {\tt ActionType.SCALE} are real numbers in range of {\tt -game.worldWidth} to {\tt 2.0 * game.worldWidth}
+ both inclusive. The correct values for {\tt ActionType.TACTICAL\_NUCLEAR\_STRIKE} are real numbers in range of
+ {\tt 0.0} to {\tt game.worldWidth} both inclusive.
 }%end item
   \end{itemize}
 }
@@ -2576,26 +2522,22 @@ Move}}
 {\bf Usage}
   \begin{itemize}\isep
    \item{
-Устанавливает ординату точки или вектора.
+Sets the Y of a point or vector.
  \bl 
- Является обязательным параметром для действия {\tt ActionType.MOVE} и задаёт целевую величину смещения юнитов
- вдоль оси ординат.
+ This is required parameter for {\tt ActionType.MOVE} and specifies the Y offset.
  \bl 
- Является обязательным параметром для действия {\tt ActionType.ROTATE} и задаёт ординату точки, относительно
- которой необходимо совершить поворот.
+ This is required parameter for {\tt ActionType.ROTATE} and specifies the Y of the rotation center.
  \bl 
- Является обязательным параметром для действия {\tt ActionType.SCALE} и задаёт ординату точки, относительно
- которой необходимо совершить масштабирование.
+ This is required parameter for {\tt ActionType.SCALE} and specifies the Y of the scale pivot.
  \bl 
- Является обязательным параметром для действия {\tt ActionType.TACTICAL\_NUCLEAR\_STRIKE} и задаёт ординату цели
- тактического ядерного удара.
+ This is required parameter for {\tt ActionType.TACTICAL\_NUCLEAR\_STRIKE} and specifies the Y of the explosion
+ center.
  \bl 
- Корректными значениями для действия {\tt ActionType.MOVE} являются вещественные числа от
- {\tt -game.worldHeight} до {\tt game.worldHeight} включительно. Корректными значениями для действий
- {\tt ActionType.ROTATE} и {\tt ActionType.SCALE} являются вещественные числа от {\tt -game.worldHeight} до
- {\tt 2.0 * game.worldHeight} включительно. Корректными значениями для действия
- {\tt ActionType.TACTICAL\_NUCLEAR\_STRIKE} являются вещественные числа от {\tt 0.0} до {\tt game.worldHeight}
- включительно.
+ The correct values for {\tt ActionType.MOVE} are real numbers in range of {\tt -game.worldHeight} to
+ {\tt game.worldHeight} both inclusive. The correct values for {\tt ActionType.ROTATE} and
+ {\tt ActionType.SCALE} are real numbers in range of {\tt -game.worldHeight} to {\tt 2.0 * game.worldHeight}
+ both inclusive. The correct values for {\tt ActionType.TACTICAL\_NUCLEAR\_STRIKE} are real numbers in range of
+ {\tt 0.0} to {\tt game.worldHeight} both inclusive.
 }%end item
   \end{itemize}
 }
@@ -2607,7 +2549,7 @@ Move}}
 }
 }
 \startsection{Class}{Player}{l6}{%
-{\small Содержит данные о текущем состоянии игрока.}
+{\small The instance of this class contains all the data about player's state.}
 \vskip .1in 
 \startsubsubsection{Declaration}{
 \fbox{\vbox{
@@ -2649,7 +2591,7 @@ Player}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает уникальный идентификатор игрока. 
+the unique player ID. 
 }%end item
 \end{itemize}
 }%end item
@@ -2661,7 +2603,7 @@ Player}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает тик нанесения следующего ядерного удара или {\tt -1}. 
+the tick index of this player's next nuclear strike or {\tt -1}. 
 }%end item
 \end{itemize}
 }%end item
@@ -2673,7 +2615,7 @@ Player}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает идентификатор техники, осуществляющей наведение ядерного удара на цель или {\tt -1}. 
+the nuclear strike spotter vehicle ID or {\tt -1}. 
 }%end item
 \end{itemize}
 }%end item
@@ -2685,7 +2627,7 @@ Player}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает абсциссу цели следующего ядерного удара или {\tt -1.0}. 
+the X of this player's next nuclear strike or {\tt -1.0}. 
 }%end item
 \end{itemize}
 }%end item
@@ -2697,7 +2639,7 @@ Player}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает ординату цели следующего ядерного удара или {\tt -1.0}. 
+the Y of this player's next nuclear strike or {\tt -1.0}. 
 }%end item
 \end{itemize}
 }%end item
@@ -2709,8 +2651,8 @@ Player}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает количество тиков, оставшееся до любого следующего действия.
- Если значение равно {\tt 0}, игрок может совершить действие в данный тик. 
+the amount of ticks remaining before any next action. If this value is {\tt 0}, then the player may
+ perform an action in the current tick. 
 }%end item
 \end{itemize}
 }%end item
@@ -2722,8 +2664,8 @@ Player}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает количество тиков, оставшееся до следующего тактического ядерного удара.
- Если значение равно {\tt 0}, игрок может запросить удар в данный тик. 
+the amount of ticks remaining before next tactical nuclear strike request. If this value is {\tt 0},
+ then the player may request a nuclear strike in the current tick. 
 }%end item
 \end{itemize}
 }%end item
@@ -2735,7 +2677,7 @@ Player}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает количество баллов, набранное игроком. 
+the amount of score points. 
 }%end item
 \end{itemize}
 }%end item
@@ -2747,7 +2689,7 @@ Player}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает {\tt true} в том и только в том случае, если этот игрок ваш. 
+{\tt true} if and only if this is your player. 
 }%end item
 \end{itemize}
 }%end item
@@ -2759,8 +2701,7 @@ Player}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает специальный флаг --- показатель того, что стратегия игрока <<упала>>.
- Более подробную информацию можно найти в документации к игре. 
+{\tt true} if and only if the strategy of this player is crashed. 
 }%end item
 \end{itemize}
 }%end item
@@ -2770,7 +2711,7 @@ Player}}
 }
 }
 \startsection{Class}{TerrainType}{l7}{%
-{\small Тип местности.}
+{\small Terrain type.}
 \vskip .1in 
 \startsubsubsection{Declaration}{
 \fbox{\vbox{
@@ -2782,13 +2723,13 @@ TerrainType}}
 \startsubsubsection{Fields}{
 \begin{itemize}
 \item{
-public static final TerrainType PLAIN\begin{itemize}\item{\vskip -.9ex Равнина.}\end{itemize}
+public static final TerrainType PLAIN\begin{itemize}\item{\vskip -.9ex Plain.}\end{itemize}
 }
 \item{
-public static final TerrainType SWAMP\begin{itemize}\item{\vskip -.9ex Топь.}\end{itemize}
+public static final TerrainType SWAMP\begin{itemize}\item{\vskip -.9ex Swamp.}\end{itemize}
 }
 \item{
-public static final TerrainType FOREST\begin{itemize}\item{\vskip -.9ex Лес.}\end{itemize}
+public static final TerrainType FOREST\begin{itemize}\item{\vskip -.9ex Forest.}\end{itemize}
 }
 \end{itemize}
 }
@@ -2862,7 +2803,7 @@ public static final TerrainType FOREST\begin{itemize}\item{\vskip -.9ex Лес.}
 }
 }
 \startsection{Class}{Unit}{l8}{%
-{\small Базовый класс для определения объектов (<<юнитов>>) на игровом поле.}
+{\small Base class that describes any object (``unit'') in the game world.}
 \vskip .1in 
 \startsubsubsection{Declaration}{
 \fbox{\vbox{
@@ -2905,14 +2846,14 @@ Unit}}
 \sld\isep
    \item{
 \sld
-{\tt x} - X-координата точки.}
+{\tt x} - X-coordinate of the point to get the distance to.}
    \item{
 \sld
-{\tt y} - Y-координата точки.}
+{\tt y} - Y-coordinate of the point to get the distance to.}
   \end{itemize}
 }%end item
 \item{{\bf Returns} - 
-Возвращает расстояние до точки от центра данного объекта. 
+the range between the specified point and the center of this unit. 
 }%end item
 \end{itemize}
 }%end item
@@ -2931,11 +2872,11 @@ Unit}}
 \sld\isep
    \item{
 \sld
-{\tt unit} - Объект, до центра которого необходимо определить расстояние.}
+{\tt unit} - the unit to get the distance to.}
   \end{itemize}
 }%end item
 \item{{\bf Returns} - 
-Возвращает расстояние от центра данного объекта до центра указанного объекта. 
+the range between the center of the specified unit and the center of this unit. 
 }%end item
 \end{itemize}
 }%end item
@@ -2947,7 +2888,7 @@ Unit}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает уникальный идентификатор объекта. 
+the unique unit ID. 
 }%end item
 \end{itemize}
 }%end item
@@ -2967,14 +2908,14 @@ Unit}}
 \sld\isep
    \item{
 \sld
-{\tt x} - X-координата точки.}
+{\tt x} - X-coordinate of the point to get the distance to.}
    \item{
 \sld
-{\tt y} - Y-координата точки.}
+{\tt y} - Y-coordinate of the point to get the distance to.}
   \end{itemize}
 }%end item
 \item{{\bf Returns} - 
-Возвращает квадрат расстояния до точки от центра данного объекта. 
+the squared range between the specified point and the center of this unit. 
 }%end item
 \end{itemize}
 }%end item
@@ -2993,11 +2934,11 @@ Unit}}
 \sld\isep
    \item{
 \sld
-{\tt unit} - Объект, до центра которого необходимо определить квадрат расстояния.}
+{\tt unit} - the unit to get the distance to.}
   \end{itemize}
 }%end item
 \item{{\bf Returns} - 
-Возвращает квадрат расстояния от центра данного объекта до центра указанного объекта. 
+the squared range between the center of the specified unit and the center of this unit. 
 }%end item
 \end{itemize}
 }%end item
@@ -3009,7 +2950,7 @@ Unit}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает X-координату центра объекта. Ось абсцисс направлена слева направо. 
+the X of the unit's center. The X-axis is directed from left to right. 
 }%end item
 \end{itemize}
 }%end item
@@ -3021,7 +2962,7 @@ Unit}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает Y-координату центра объекта. Ось ординат направлена сверху вниз. 
+the Y of the unit's center. The Y-axis is directed downward. 
 }%end item
 \end{itemize}
 }%end item
@@ -3031,7 +2972,7 @@ Unit}}
 }
 }
 \startsection{Class}{Vehicle}{l9}{%
-{\small Класс, определяющий технику. Содержит также все свойства круглых объектов.}
+{\small Class describing a vehicle. Also contains all properties of a circular unit.}
 \vskip .1in 
 \startsubsubsection{Declaration}{
 \fbox{\vbox{
@@ -3094,8 +3035,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает максимальное расстояние (от центра до центра),
- на котором данная техника может атаковать воздушные объекты. 
+maximal range (from center to center) at which this vehicle can attack aerial units. 
 }%end item
 \end{itemize}
 }%end item
@@ -3107,7 +3047,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает урон одной атаки по воздушному объекту. 
+damage of one attack dealt to an aerial unit. 
 }%end item
 \end{itemize}
 }%end item
@@ -3119,7 +3059,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает защиту от атак воздушых юнитов. 
+value of defence from aerial units' attacks. 
 }%end item
 \end{itemize}
 }%end item
@@ -3131,7 +3071,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает минимально возможный интервал между двумя последовательными атаками данной техники. 
+minimal possible interval between attacks. 
 }%end item
 \end{itemize}
 }%end item
@@ -3143,7 +3083,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает текущую прочность. 
+current durability. 
 }%end item
 \end{itemize}
 }%end item
@@ -3155,8 +3095,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает максимальное расстояние (от центра до центра),
- на котором данная техника может атаковать наземные объекты. 
+maximal range (from center to center) at which this vehicle can attack ground units. 
 }%end item
 \end{itemize}
 }%end item
@@ -3168,7 +3107,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает урон одной атаки по наземному объекту. 
+damage of one attack dealt to a ground unit. 
 }%end item
 \end{itemize}
 }%end item
@@ -3180,7 +3119,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает защиту от атак наземных юнитов. 
+value of defence from ground units' attacks. 
 }%end item
 \end{itemize}
 }%end item
@@ -3192,7 +3131,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает группы, в которые входит эта техника. 
+list of groups that the vehicle belongs to. 
 }%end item
 \end{itemize}
 }%end item
@@ -3204,7 +3143,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает максимальную прочность. 
+maximal durability. 
 }%end item
 \end{itemize}
 }%end item
@@ -3216,9 +3155,9 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает максимальное расстояние, на которое данная техника может переместиться за один игровой тик,
- без учёта типа местности и погоды. При перемещении по дуге учитывается длина дуги,
- а не кратчайшее расстояние между начальной и конечной точками. 
+maximal distance that can be travelled in one tick
+ when not affected by terrain or weather. While rotating arc length is taken into account,
+ not the distance between start and finish positions. 
 }%end item
 \end{itemize}
 }%end item
@@ -3230,7 +3169,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает идентификатор игрока, которому принадлежит техника. 
+owner player's ID. 
 }%end item
 \end{itemize}
 }%end item
@@ -3242,8 +3181,8 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает количество тиков, оставшееся до следующей атаки.
- Для совершения атаки необходимо, чтобы это значение было равно нулю. 
+amount of ticks before the vehicle can attack again.
+ In order to attack this value has to be equal zero. 
 }%end item
 \end{itemize}
 }%end item
@@ -3255,8 +3194,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает квадрат максимального расстояния (от центра до центра),
- на котором данная техника может атаковать воздушные объекты. 
+squared maximal range (from center to center) at which this vehicle can attack aerial units. 
 }%end item
 \end{itemize}
 }%end item
@@ -3268,8 +3206,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает квадрат максимального расстояния (от центра до центра),
- на котором данная техника может атаковать наземные объекты. 
+squared maximal range (from center to center) at which this vehicle can attack ground units. 
 }%end item
 \end{itemize}
 }%end item
@@ -3281,8 +3218,8 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает квадрат максимального расстояния (от центра до центра),
- на котором данная техника обнаруживает другие объекты, без учёта типа местности и погоды. 
+squared maximal range (from center to center) at which this vehicle can detect other objects,
+ when not affected by terrain or weather. 
 }%end item
 \end{itemize}
 }%end item
@@ -3294,7 +3231,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает тип техники. 
+vehicle's type. 
 }%end item
 \end{itemize}
 }%end item
@@ -3306,8 +3243,8 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает максимальное расстояние (от центра до центра),
- на котором данная техника обнаруживает другие объекты, без учёта типа местности и погоды. 
+maximal range (from center to center) at which this vehicle can detect other objects,
+ when not affected by terrain or weather. 
 }%end item
 \end{itemize}
 }%end item
@@ -3319,7 +3256,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает {\tt true} в том и только том случае, если эта техника воздушная. 
+{\tt true} iff the vehicle is aerial. 
 }%end item
 \end{itemize}
 }%end item
@@ -3331,7 +3268,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает {\tt true} в том и только том случае, если эта техника выделена. 
+{\tt true} iff the vehicle is selected. 
 }%end item
 \end{itemize}
 }%end item
@@ -3349,7 +3286,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает радиус объекта. 
+the radius of this unit. 
 }%end item
 \end{itemize}
 }%end item
@@ -3374,14 +3311,14 @@ Vehicle}}
 \sld\isep
    \item{
 \sld
-{\tt x} - X-координата точки.}
+{\tt x} - X-coordinate of the point to get the distance to.}
    \item{
 \sld
-{\tt y} - Y-координата точки.}
+{\tt y} - Y-coordinate of the point to get the distance to.}
   \end{itemize}
 }%end item
 \item{{\bf Returns} - 
-Возвращает расстояние до точки от центра данного объекта. 
+the range between the specified point and the center of this unit. 
 }%end item
 \end{itemize}
 }%end item
@@ -3400,11 +3337,11 @@ Vehicle}}
 \sld\isep
    \item{
 \sld
-{\tt unit} - Объект, до центра которого необходимо определить расстояние.}
+{\tt unit} - the unit to get the distance to.}
   \end{itemize}
 }%end item
 \item{{\bf Returns} - 
-Возвращает расстояние от центра данного объекта до центра указанного объекта. 
+the range between the center of the specified unit and the center of this unit. 
 }%end item
 \end{itemize}
 }%end item
@@ -3416,7 +3353,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает уникальный идентификатор объекта. 
+the unique unit ID. 
 }%end item
 \end{itemize}
 }%end item
@@ -3436,14 +3373,14 @@ Vehicle}}
 \sld\isep
    \item{
 \sld
-{\tt x} - X-координата точки.}
+{\tt x} - X-coordinate of the point to get the distance to.}
    \item{
 \sld
-{\tt y} - Y-координата точки.}
+{\tt y} - Y-coordinate of the point to get the distance to.}
   \end{itemize}
 }%end item
 \item{{\bf Returns} - 
-Возвращает квадрат расстояния до точки от центра данного объекта. 
+the squared range between the specified point and the center of this unit. 
 }%end item
 \end{itemize}
 }%end item
@@ -3462,11 +3399,11 @@ Vehicle}}
 \sld\isep
    \item{
 \sld
-{\tt unit} - Объект, до центра которого необходимо определить квадрат расстояния.}
+{\tt unit} - the unit to get the distance to.}
   \end{itemize}
 }%end item
 \item{{\bf Returns} - 
-Возвращает квадрат расстояния от центра данного объекта до центра указанного объекта. 
+the squared range between the center of the specified unit and the center of this unit. 
 }%end item
 \end{itemize}
 }%end item
@@ -3478,7 +3415,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает X-координату центра объекта. Ось абсцисс направлена слева направо. 
+the X of the unit's center. The X-axis is directed from left to right. 
 }%end item
 \end{itemize}
 }%end item
@@ -3490,7 +3427,7 @@ Vehicle}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает Y-координату центра объекта. Ось ординат направлена сверху вниз. 
+the Y of the unit's center. The Y-axis is directed downward. 
 }%end item
 \end{itemize}
 }%end item
@@ -3499,7 +3436,7 @@ Vehicle}}
 }
 }
 \startsection{Class}{VehicleType}{l10}{%
-{\small Тип техники.}
+{\small Vehicle type.}
 \vskip .1in 
 \startsubsubsection{Declaration}{
 \fbox{\vbox{
@@ -3511,20 +3448,20 @@ VehicleType}}
 \startsubsubsection{Fields}{
 \begin{itemize}
 \item{
-public static final VehicleType ARRV\begin{itemize}\item{\vskip -.9ex Бронированная ремонтно-эвакуационная машина. Наземный юнит.
- Постепенно восстанавливает прочность находящейся поблизости техники.}\end{itemize}
+public static final VehicleType ARRV\begin{itemize}\item{\vskip -.9ex Armored repair and recovery vehicle. Ground unit.
+ Gradually restores durability of nearby vehicles.}\end{itemize}
 }
 \item{
-public static final VehicleType FIGHTER\begin{itemize}\item{\vskip -.9ex Истребитель. Воздушный юнит. Крайне эффективен против другой воздушной техники. Не может атаковать наземные цели.}\end{itemize}
+public static final VehicleType FIGHTER\begin{itemize}\item{\vskip -.9ex Fighter. Aerial unit. Effective against other aerial units. Can not attack ground units.}\end{itemize}
 }
 \item{
-public static final VehicleType HELICOPTER\begin{itemize}\item{\vskip -.9ex Ударный вертолёт. Воздушный юнит. Может атаковать как воздушные, так и наземные цели.}\end{itemize}
+public static final VehicleType HELICOPTER\begin{itemize}\item{\vskip -.9ex Attack helicopter. Aerial unit. Can attack both aerial and ground units.}\end{itemize}
 }
 \item{
-public static final VehicleType IFV\begin{itemize}\item{\vskip -.9ex Боевая машина пехоты. Наземный юнит. Может атаковать как воздушные, так и наземные цели.}\end{itemize}
+public static final VehicleType IFV\begin{itemize}\item{\vskip -.9ex Infantry fighting vehicle. Ground unit. Can attack both aerial and ground units.}\end{itemize}
 }
 \item{
-public static final VehicleType TANK\begin{itemize}\item{\vskip -.9ex Танк. Наземный юнит. Крайне эффективен против другой наземной техники. Также может атаковать воздушные цели.}\end{itemize}
+public static final VehicleType TANK\begin{itemize}\item{\vskip -.9ex Tank. Ground unit. Effective against other ground units. Can also attack aerial units.}\end{itemize}
 }
 \end{itemize}
 }
@@ -3598,8 +3535,8 @@ public static final VehicleType TANK\begin{itemize}\item{\vskip -.9ex Танк. 
 }
 }
 \startsection{Class}{VehicleUpdate}{l11}{%
-{\small Класс, частично определяющий технику. Содержит уникальный идентификатор техники, а также все поля техники,
- значения которых могут изменяться в процессе игры.}
+{\small Class that partly describes a vehicle. Contains a unique vehicle's identifier as well as all vehicle's fields that
+ may be changed during the game.}
 \vskip .1in 
 \startsubsubsection{Declaration}{
 \fbox{\vbox{
@@ -3638,7 +3575,7 @@ VehicleUpdate}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает текущую прочность или {\tt 0}, если техника была уничтожена либо ушла из зоны видимости. 
+current durability, or {\tt 0} if the vehicle has either been destroyed or became invisible to you. 
 }%end item
 \end{itemize}
 }%end item
@@ -3650,7 +3587,7 @@ VehicleUpdate}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает группы, в которые входит эта техника. 
+list of groups that the vehicle belongs to. 
 }%end item
 \end{itemize}
 }%end item
@@ -3662,7 +3599,7 @@ VehicleUpdate}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает уникальный идентификатор объекта. 
+unique object's identifier. 
 }%end item
 \end{itemize}
 }%end item
@@ -3674,8 +3611,8 @@ VehicleUpdate}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает количество тиков, оставшееся до следующей атаки.
- Для совершения атаки необходимо, чтобы это значение было равно нулю. 
+amount of ticks before the vehicle can attack again.
+ In order to attack this value has to be equal zero. 
 }%end item
 \end{itemize}
 }%end item
@@ -3687,7 +3624,7 @@ VehicleUpdate}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает X-координату центра объекта. Ось абсцисс направлена слева направо. 
+the X of the unit's center. The X-axis is directed from left to right. 
 }%end item
 \end{itemize}
 }%end item
@@ -3699,7 +3636,7 @@ VehicleUpdate}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает Y-координату центра объекта. Ось ординат направлена сверху вниз. 
+the Y of the unit's center. The Y-axis is directed downward. 
 }%end item
 \end{itemize}
 }%end item
@@ -3711,7 +3648,7 @@ VehicleUpdate}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает {\tt true} в том и только том случае, если эта техника выделена. 
+{\tt true} iff the vehicle is selected. 
 }%end item
 \end{itemize}
 }%end item
@@ -3721,7 +3658,7 @@ VehicleUpdate}}
 }
 }
 \startsection{Class}{WeatherType}{l12}{%
-{\small Тип погоды.}
+{\small Weather type.}
 \vskip .1in 
 \startsubsubsection{Declaration}{
 \fbox{\vbox{
@@ -3733,13 +3670,13 @@ WeatherType}}
 \startsubsubsection{Fields}{
 \begin{itemize}
 \item{
-public static final WeatherType CLEAR\begin{itemize}\item{\vskip -.9ex Ясно.}\end{itemize}
+public static final WeatherType CLEAR\begin{itemize}\item{\vskip -.9ex Clear.}\end{itemize}
 }
 \item{
-public static final WeatherType CLOUD\begin{itemize}\item{\vskip -.9ex Плотные облака.}\end{itemize}
+public static final WeatherType CLOUD\begin{itemize}\item{\vskip -.9ex Cloud.}\end{itemize}
 }
 \item{
-public static final WeatherType RAIN\begin{itemize}\item{\vskip -.9ex Сильный дождь.}\end{itemize}
+public static final WeatherType RAIN\begin{itemize}\item{\vskip -.9ex Rain.}\end{itemize}
 }
 \end{itemize}
 }
@@ -3813,7 +3750,7 @@ public static final WeatherType RAIN\begin{itemize}\item{\vskip -.9ex Сильн
 }
 }
 \startsection{Class}{World}{l13}{%
-{\small Этот класс описывает игровой мир. Содержит также описания всех игроков, игровых объектов (<<юнитов>>) и сооружений.}
+{\small This class describes a game world. A world contains all players and game objects (``units’’).}
 \vskip .1in 
 \startsubsubsection{Declaration}{
 \fbox{\vbox{
@@ -3855,8 +3792,8 @@ World}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает список сооружений (в случайном порядке).
- В зависимости от реализации, объекты, задающие сооружения, могут пересоздаваться после каждого тика. 
+list of facilities (in random order).
+ Depending on implementation, corresponding objects may be or not recreated each tick. 
 }%end item
 \end{itemize}
 }%end item
@@ -3868,7 +3805,7 @@ World}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает высоту мира. 
+the world height. 
 }%end item
 \end{itemize}
 }%end item
@@ -3880,7 +3817,7 @@ World}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает вашего игрока. 
+your player. 
 }%end item
 \end{itemize}
 }%end item
@@ -3892,9 +3829,8 @@ World}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает список техники, о которой у стратегии не было информации в предыдущий игровой тик. В этот
- список попадает как только что произведённая техника, так и уже существующая, но находящаяся вне зоны видимости
- до этого момента. 
+list of vehicles that had no information availavle in the precious tick.
+ It contains both newly created vehicles and those that already existed but were not visible before. 
 }%end item
 \end{itemize}
 }%end item
@@ -3906,7 +3842,7 @@ World}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает игрока, соревнующегося с вами. 
+opponent's player. 
 }%end item
 \end{itemize}
 }%end item
@@ -3918,8 +3854,7 @@ World}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает список игроков (в случайном порядке).
- В зависимости от реализации, объекты, задающие игроков, могут пересоздаваться после каждого тика. 
+all players (in random order). After each tick the player objects are recreated. 
 }%end item
 \end{itemize}
 }%end item
@@ -3931,7 +3866,7 @@ World}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает карту местности. 
+terrain map. 
 }%end item
 \end{itemize}
 }%end item
@@ -3943,8 +3878,7 @@ World}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает базовую длительность игры в тиках. Реальная длительность может отличаться от этого значения в
- меньшую сторону. Эквивалентно {\tt game.tickCount}. 
+the base game duration in ticks. A real game duration may be lower. Equals to {\tt game.tickCount}. 
 }%end item
 \end{itemize}
 }%end item
@@ -3956,7 +3890,7 @@ World}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает номер текущего тика. 
+the current game tick. 
 }%end item
 \end{itemize}
 }%end item
@@ -3968,8 +3902,8 @@ World}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает значения изменяемых полей для каждой видимой техники, если хотя бы одно поле этой техники
- изменилось. Нулевая прочность означает, что техника была уничтожена либо ушла из зоны видимости. 
+changing field values for each visible vehicle if at least one of these fields has been changed.
+ Durability value zero means that the vehicle is either destroyed or became invisible for you. 
 }%end item
 \end{itemize}
 }%end item
@@ -3981,7 +3915,7 @@ World}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает карту погоды. 
+weather map. 
 }%end item
 \end{itemize}
 }%end item
@@ -3993,7 +3927,7 @@ World}}
 \begin{itemize}
 \sld
 \item{{\bf Returns} - 
-Возвращает ширину мира. 
+the world width. 
 }%end item
 \end{itemize}
 }%end item
@@ -4012,16 +3946,14 @@ World}}
 \rule{\hsize}{.7mm}
 \vskip .13in
 \hbox{\bf Interfaces}
-\entityintro{Strategy}{l413}{Стратегия --- интерфейс, содержащий описание методов искусственного интеллекта армии.}
+\entityintro{Strategy}{l413}{This interface contains the methods that each strategy should implement.}
 \vskip .1in
 \rule{\hsize}{.7mm}
 \vskip .1in
 \newpage
 \section{Interfaces}{
 \startsection{Interface}{Strategy}{l413}{%
-{\small Стратегия --- интерфейс, содержащий описание методов искусственного интеллекта армии.
- Каждая пользовательская стратегия должна реализовывать этот интерфейс.
- Может отсутствовать в некоторых языковых пакетах, если язык не поддерживает интерфейсы.}
+{\small This interface contains the methods that each strategy should implement.}
 \vskip .1in 
 \startsubsubsection{Declaration}{
 \fbox{\vbox{
@@ -4045,7 +3977,8 @@ Strategy}}
 {\bf Usage}
   \begin{itemize}\isep
    \item{
-Основной метод стратегии, осуществляющий управление армией. Вызывается каждый тик.
+Main strategy method, controlling the vehicles.
+ The game engine calls this method once each time tick.
 }%end item
   \end{itemize}
 }
@@ -4057,16 +3990,16 @@ Strategy}}
 \sld\isep
    \item{
 \sld
-{\tt me} - Информация о вашем игроке.}
+{\tt me} - the owner player of this strategy.}
    \item{
 \sld
-{\tt world} - Текущее состояние мира.}
+{\tt world} - the current world snapshot.}
    \item{
 \sld
-{\tt game} - Различные игровые константы.}
+{\tt game} - many game constants.}
    \item{
 \sld
-{\tt move} - Результатом работы метода является изменение полей данного объекта.}
+{\tt move} - the object that encapsulates all strategy instructions.}
   \end{itemize}
 }%end item
 \end{itemize}

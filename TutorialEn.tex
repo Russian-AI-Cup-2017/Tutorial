@@ -343,10 +343,11 @@ If everything is obvious with speed and vision range factors, then the vehicles 
 when checking the visibility of these vehicles. Thus, the unit sees the target if and only if the distance to the target is less than or equal to
 \begin{equation}
 \begin{split}
-\textit{<vision\_range\_of\_unit>}\times\textit{<vision\_range\_factor>} \\ \times\textit{<target\_stealth\_factor>}
+\textit{<vision\_range\_of\_unit>}\times\textit{<vision\_range\_factor\_of\_unit>} \\ \times\textit{<stealth\_factor\_of\_target>}
 \end{split}
 \end{equation}
-Of course, without fog of war, there is only the speed factor.
+If fog of war is disabled, the stealth factor do not affect the game in any way; also the vision range factor only used to restrict some
+strategy actions.
 
 \section{Facilities}
 
@@ -437,7 +438,12 @@ As it was already mentioned, the control in CodeWars is similar with control in 
         of the specified unit, both at the time of the request and all subsequent ticks before the strike. If either the unit that marks the target dies
         or the target leaves the vision area of the unit for at least one tick, the strike is canceled. The strike hits all targets at a distance
         not exceeding $50.0$, both enemy and allied. Also, the damage in the center of the explosion is $99$ units and evenly drops to
-        zero on the edge.
+        zero on the edge. A unit can mark a target if and only if the distance to this target is less than or equal to
+        \begin{equation}
+        \begin{split}
+        \textit{<vision\_range\_of\_unit>}\times\textit{<vision\_range\_factor\_of\_unit>}
+        \end{split}
+        \end{equation}
 \end{itemize}
 
 \section{Collision of units}

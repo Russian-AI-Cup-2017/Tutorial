@@ -244,14 +244,14 @@ The ``crashed’’ strategy can no longer control the vehicles. The strategy is
 \begin{itemize}
   \item The process in which the strategy is started has unexpectedly terminated, or an error has occurred in the protocol of interaction between the strategy
         And game server.
-  \item The strategy exceeded one (any) of the time constraints assigned to it. Strategy for one tick is allocated not more than $10$ seconds
+  \item The strategy exceeded one (any) of the time constraints assigned to it. Strategy for one tick is allocated not more than $20$ seconds
         of real time. But in sum for the whole game the strategy process is given
         \begin{equation}
-        20\times\textit{<duration\_of\_game\_in\_ticks>}+10000
+        20\times\textit{<duration\_of\_game\_in\_ticks>}+20000
         \end{equation}
         milliseconds of real time and
         \begin{equation}
-        10\times\textit{< duration\_of\_game\_in\_ticks>}+10000
+        10\times\textit{< duration\_of\_game\_in\_ticks>}+20000
         \end{equation}
         milliseconds of processor time.\footnote[1]{Despite the fact that the restriction of real time is much higher than the limitation
         of processor time, it is forbidden artificially ``slow down’’ testing of strategy by commands like ``\texttt{sleep}’’ (as well as

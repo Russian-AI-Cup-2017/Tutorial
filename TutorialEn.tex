@@ -283,16 +283,17 @@ Comparative characteristics of vehicles types are given in the following table:
 
 \begin{tabular}{| l | l | l | l | l | l |}
     \hline
-    Characteristic \char`\\ Vehicle type & Tank  & IFV   & Helicopter & Fighter & ARRV  \\
+    Characteristic \char`\\ Vehicle type      & Tank  & IFV   & Helicopter & Fighter   & ARRV  \\
     \hline
-    Speed                           & $0.3$ & $0.4$ & $0.9$ & $1.2$     & $0.4$ \\
-    Vision range                 & $80$  & $80$  & $100$ & $120$     & $60$  \\
-    Attack range against ground targets   & $20$  & $18$  & $20$  & --        & --   \\
-    Attack range against aerial targets  & $18$  & $20$  & $18$     & $20$      & --   \\
-    Attack damage against ground targets  & $100$ & $90$  & $100$ & --        & --   \\
-    Attack damage against aerial targets & $60$  & $80$  & $80$  & $100$     & --   \\
-    Defence against attacks of ground targets    & $80$  & $60$  & $40$  & $70$      & $50$  \\
-    Defence against attacks of air targets   & $60$  & $80$  & $40$  & $70$      & $20$  \\
+    Speed                                     & $0.3$ & $0.4$ & $0.9$      & $1.2$     & $0.4$ \\
+    Vision range                              & $80$  & $80$  & $100$      & $120$     & $60$  \\
+    Attack range against ground targets       & $20$  & $18$  & $20$       & --        & --    \\
+    Attack range against aerial targets       & $18$  & $20$  & $18$       & $20$      & --    \\
+    Attack damage against ground targets      & $100$ & $90$  & $100$      & --        & --    \\
+    Attack damage against aerial targets      & $60$  & $80$  & $80$       & $100$     & --    \\
+    Defence against attacks of ground targets & $80$  & $60$  & $40$       & $70$      & $50$  \\
+    Defence against attacks of air targets    & $60$  & $80$  & $40$       & $70$      & $20$  \\
+    Production cost, ticks                    & $60$  & $60$  & $75$       & $90$      & $60$  \\
     \hline
 \end{tabular}
 
@@ -366,8 +367,8 @@ to zero.
 Types of facilities:
 \begin{itemize}
     \item control center: increases the limit of the number of strategy actions by $3$ for $60$ of ticks, and
-        reduces the interval between tactical nuclear strikes by $60$ ticks;
-    \item factory: every $60$ ticks produces one unit of vehicle, the type of vehicles produced is determined by the strategy.
+          reduces the interval between tactical nuclear strikes by $60$ ticks;
+    \item factory: automatically produces vehicles, the type of vehicle is determined by the strategy, the production speed depends on the type of vehicle.
 \end{itemize}
 
 A new strategy vehicles appear at the plant in rows from left to right, from top to bottom. The opponent’s vehicles – are also in rows, but from right to left, from the bottom to the top. The distance between the centers of two neighboring units produced at the factory is $6.0$. If the next position of the unit is occupied,

@@ -459,8 +459,9 @@ Score points are awarded for the following actions:
     \item $1$ score point is given for the destruction of the enemy unit.
     \item The capturing of the facilities brings $100$ score points to the strategy.
     \item When all opponents’ units are destroyed, the strategy receives $1000$ score points. The game is completed.
-    \item Every $1000$ ticks, starting at $10000$ and not including the last tick, the strategy that have less vehicles gains $1$ score
-          point for each $10$ units of difference.
+    \item Every $1000$ ticks, starting at $10000$ and not including the last tick, each strategy pays $1$ score point for maintenance of
+          each $20$ vehicles that are controlled by this strategy, but not less than $25$ score points per single payment. The amount of
+          score points can not drop below zero.
 \end{itemize}
 
 \chapter{Strategy creation}
